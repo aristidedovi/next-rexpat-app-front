@@ -20,8 +20,8 @@ const CountrySelect = ({
   formErrors,
 }: any) => {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  //const [searchTerm, setSearchTerm] = useState<string>("");
+  //const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
 
   const inputClassName =
     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -37,7 +37,7 @@ const CountrySelect = ({
           a.name.common.localeCompare(b.name.common)
         );
         setCountries(sortedCountries);
-        setFilteredCountries(sortedCountries);
+        //setFilteredCountries(sortedCountries);
       } catch (error) {
         console.error("Erreur lors de la récuperation des pays:", error);
       }

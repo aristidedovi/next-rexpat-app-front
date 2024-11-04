@@ -1,5 +1,5 @@
 import NextButton from "@/components/ui/NextButton";
-import React, { useState } from "react";
+import React from "react";
 
 const StepFirst = ({ formData, handelChangeInput, handelNextStep }: any) => {
   const initialStepInformation = [

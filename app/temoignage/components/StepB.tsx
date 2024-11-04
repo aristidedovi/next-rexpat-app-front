@@ -16,13 +16,13 @@ const StepB = ({
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 
-  const stepConditions = {
-    A: true,
-    B: formData.isEmploi,
-    C: formData.isEducation,
-    D: formData.isLogement,
-    // D: formData.isTransport,
-  };
+  // const stepConditions = {
+  //   A: true,
+  //   B: formData.isEmploi,
+  //   C: formData.isEducation,
+  //   D: formData.isLogement,
+  //   // D: formData.isTransport,
+  // };
 
   return (
     <div>
@@ -81,7 +81,7 @@ const StepB = ({
           }`}
         >
           <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d'activité
+            Secteur d-activite
           </label>
           <input
             placeholder="Ex: Communication"

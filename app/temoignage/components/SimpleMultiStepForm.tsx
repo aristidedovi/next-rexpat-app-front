@@ -120,7 +120,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   };
 
   const validateFormIG = (): boolean => {
-    let formErrors: Record<string, string> = {
+    const formErrors: Record<string, string> = {
       genre: "",
       nationalite: "",
       situation_matrimoniale: "",
@@ -217,7 +217,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   };
 
   const validateFormEmploi = (): boolean => {
-    let formErrors: Record<string, string> = {
+    const formErrors: Record<string, string> = {
       emploiSecteur: "",
       emploiEmployeur: "",
       emploiTypeContrat: "",
@@ -311,7 +311,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   const handelChangeInput = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const { name, value } = event.target;
+    //const { name, value } = event.target;
+    const { name } = event.target;
     let fieldValue: string | boolean;
 
     if (

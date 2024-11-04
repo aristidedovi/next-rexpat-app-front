@@ -279,7 +279,8 @@ const SimpleMultiStepForm = ({ showStepNumber }) => {
 
   // We nedd a method to go to prev step
   const handelChangeInput = (event) => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    //const { name, value } = event.target;
     let fieldValue;
 
     if (

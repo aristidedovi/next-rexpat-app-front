@@ -1,7 +1,7 @@
 import CountrySelect from "@/components/CountrySelect";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import React, { useState } from "react";
+import React from "react";
 
 const StepA = ({
   formData,
@@ -16,11 +16,11 @@ const StepA = ({
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 
-  const isRegionRequired = (region: string) => {
-    if (region.length === 0) return true;
-    // other checks here
-    return false;
-  };
+  // const isRegionRequired = (region: string) => {
+  //   if (region.length === 0) return true;
+  //   // other checks here
+  //   return false;
+  // };
 
   return (
     <div>
@@ -116,7 +116,7 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="nombre_enfants" className={labelClassName}>
-            Nombre d'enfants*
+            Nombre d-enfants*
           </label>
           <input
             placeholder="3"
@@ -272,7 +272,7 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_accueil" className={labelClassName}>
-            Durée pays d'accueil (ans)
+            Duree pays d-accueil (ans)
           </label>
           <input
             placeholder="3 ans"
