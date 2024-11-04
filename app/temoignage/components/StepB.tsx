@@ -81,7 +81,7 @@ const StepB = ({
           }`}
         >
           <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d-activite
+            Secteur d'activite
           </label>
           <input
             placeholder="Ex: Communication"

@@ -116,7 +116,7 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="nombre_enfants" className={labelClassName}>
-            Nombre d-enfants*
+            Nombre d'enfants*
           </label>
           <input
             placeholder="3"
@@ -272,7 +272,7 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_accueil" className={labelClassName}>
-            Duree pays d-accueil (ans)
+            Duree pays d'accueil (ans)
           </label>
           <input
             placeholder="3 ans"
