@@ -10,10 +10,6 @@ export default function CurrencyInput({
   inputDeviseValue,
   inputDeviseName,
 }: any) {
-  const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState("USD");
-  //inputDeviseValue = "USD";
-
   useEffect(() => {
     if (inputDeviseValue === "") {
     }
@@ -24,17 +20,6 @@ export default function CurrencyInput({
 
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
-
-  const handleAmountChange = (e: any) => {
-    const value = e.target.value;
-    if (!isNaN(value)) {
-      setAmount(value);
-    }
-  };
-
-  const handleCurrencyChange = (e: any) => {
-    setCurrency(e.target.value);
-  };
 
   return (
     <div>
