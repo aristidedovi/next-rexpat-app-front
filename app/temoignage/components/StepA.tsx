@@ -1,4 +1,5 @@
 import CountrySelect from "@/components/CountrySelect";
+import CurrencyInput from "@/components/ui/CurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
 import React from "react";
@@ -136,6 +137,18 @@ const StepA = ({
           )} */}
         </div>
         <div className="lg:my-4 sm:my-2">
+          <CurrencyInput
+            handelChangeInput={handelChangeInput}
+            inputLabel="Revenu mensuel"
+            inputName="revenu_mensuel"
+            inputId="revenu_mensuel"
+            inputValue={formData.revenu_mensuel}
+            formErrors={errors.revenu_mensuel}
+            inputDeviseValue={formData.devise_revenu}
+            inputDeviseName="devise_revenu"
+          />
+        </div>
+        {/* <div className="lg:my-4 sm:my-2">
           <label htmlFor="revenu_mensuel" className={labelClassName}>
             Revenu mensuel (FCFA)*
           </label>
@@ -155,23 +168,7 @@ const StepA = ({
             <option value="500 000 - 750 000">500 000 - 750 000</option>
             <option value="750 000 - 1 000 000">750 000 - 1 000 000</option>
           </select>
-          {/* <input
-            placeholder="200 000"
-            type="number"
-            name="revenu_mensuel"
-            value={formData.revenu_mensuel}
-            onChange={(e) => handelChangeInput(e)}
-            id="revenu_mensuel"
-            className={`${inputClassName} ${
-              errors.revenu_mensuel ? "border-red-500" : ""
-            }`}
-          /> */}
-          {/* {errors.revenu_mensuel && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.revenu_mensuel}
-            </p>
-          )} */}
-        </div>
+        </div> */}
       </div>
       {/* // Pays de provenance  */}
       <div className="grid lg:grid-cols-2 sm:grid-cols-1  gap-4">
@@ -192,6 +189,25 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_provenance" className={labelClassName}>
+            Durée pays de provenance (ans)*
+          </label>
+          <select
+            name="duree_pays_provenance"
+            value={formData.duree_pays_provenance}
+            onChange={(e) => handelChangeInput(e)}
+            id="duree_pays_provenance"
+            className={`${inputClassName} ${
+              errors.duree_pays_provenance ? "border-red-500" : ""
+            }`}
+          >
+            <option>Choisir la durée</option>
+            <option value="moins de 3 mois">moins de 3 mois</option>
+            <option value="3 à 12 mois">3 à 12 mois</option>
+            <option value="2plus de 12 mois">plus de 12 mois</option>
+          </select>
+        </div>
+        {/* <div className="lg:my-4 sm:my-2">
+          <label htmlFor="duree_pays_provenance" className={labelClassName}>
             Durée pays de provenance (ans)
           </label>
           <input
@@ -205,13 +221,13 @@ const StepA = ({
             // className={`${inputClassName} ${
             //   errors.duree_pays_provenance ? "border-red-500" : ""
             // }`}
-          />
-          {/* {errors.duree_pays_provenance && (
+          /> */}
+        {/* {errors.duree_pays_provenance && (
             <p className="mt-2 text-pink-600 text-sm">
               {errors.duree_pays_provenance}
             </p>
           )} */}
-        </div>
+        {/* </div> */}
       </div>
 
       {/* // Pays d'accueil  */}
@@ -272,6 +288,25 @@ const StepA = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_accueil" className={labelClassName}>
+            Duree pays d'accueil (ans)*
+          </label>
+          <select
+            name="duree_pays_accueil"
+            value={formData.duree_pays_accueil}
+            onChange={(e) => handelChangeInput(e)}
+            id="duree_pays_accueil"
+            className={`${inputClassName} ${
+              errors.duree_pays_accueil ? "border-red-500" : ""
+            }`}
+          >
+            <option>Choisir la durée</option>
+            <option value="moins de 3 mois">moins de 3 mois</option>
+            <option value="3 à 12 mois">3 à 12 mois</option>
+            <option value="2plus de 12 mois">plus de 12 mois</option>
+          </select>
+        </div>
+        {/* <div className="lg:my-4 sm:my-2">
+          <label htmlFor="duree_pays_accueil" className={labelClassName}>
             Duree pays d'accueil (ans)
           </label>
           <input
@@ -285,13 +320,13 @@ const StepA = ({
             // className={`${inputClassName} ${
             //   errors.duree_pays_accueil ? "border-red-500" : ""
             // }`}
-          />
-          {/* {errors.duree_pays_accueil && (
+          /> */}
+        {/* {errors.duree_pays_accueil && (
             <p className="mt-2 text-pink-600 text-sm">
               {errors.duree_pays_accueil}
             </p>
           )} */}
-        </div>
+        {/* </div> */}
       </div>
       {/* // nombre d'enfant / revenue mensuel */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4"></div>

@@ -20,6 +20,7 @@ interface InitialFormData {
   pays_accueil: string;
   duree_pays_accueil: number;
   revenu_mensuel: string;
+  devise_revenu: string;
   nombre_enfants: number;
   agreeToTerms: boolean;
   isEmploi: boolean;
@@ -47,6 +48,7 @@ const initialFormDataRexpat: InitialFormData = {
   pays_accueil: "",
   duree_pays_accueil: 0,
   revenu_mensuel: "",
+  devise_revenu: "USD",
   nombre_enfants: 0,
   agreeToTerms: true,
   isEmploi: false,
@@ -132,6 +134,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       pays_provenance: "",
       duree_pays_provenance: "",
       revenu_mensuel: "",
+      devise_revenu: "",
       nombre_enfants: "",
       // emploiSecteur: "",
       // emploiEmployeur: "",
@@ -178,8 +181,22 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       formErrors.revenu_mensuel = "Veuillez entrer un revenu mensuel valide.";
       isValid = false;
     }
+    if (!formData.devise_revenu) {
+      formErrors.devise_revenu = "Veuillez selectionner uen devise.";
+      isValid = false;
+    }
     if (!formData.nombre_enfants || formData.nombre_enfants <= 0) {
       formErrors.nombre_enfants = "Veuillez entrer un nombre d'enfant valide.";
+      isValid = false;
+    }
+    if (!formData.duree_pays_provenance) {
+      formErrors.duree_pays_provenance =
+        "Veuillez choisir une durée de provenance.";
+      isValid = false;
+    }
+    if (!formData.duree_pays_accueil) {
+      formErrors.duree_pays_accueil =
+        "Veuillez choisir une durée de provenance.";
       isValid = false;
     }
 
@@ -314,6 +331,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     //const { name, value } = event.target;
     const { name } = event.target;
     let fieldValue: string | boolean;
+    //console.log(event.target.value);
 
     if (
       name === "agreeToTerms" ||
