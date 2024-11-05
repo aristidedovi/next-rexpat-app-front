@@ -34,7 +34,7 @@ const SecteurActivites = ({
         const data: SecteurActivite[] = await response.json();
         setSecteurs(data);
       } catch (error) {
-        setError("Erreur lors du chargement des secteurs d'activité");
+        setError("Erreur lors du chargement des secteurs d'activité", error);
       } finally {
         setLoading(false);
       }
