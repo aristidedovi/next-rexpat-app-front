@@ -1,3 +1,4 @@
+import SecteurActivites from "@/components/SecteurActivites";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
 import React from "react";
@@ -47,61 +48,32 @@ const StepB = ({
             value={formData.emploiSituationProActuelle}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="DEFAULT">Choisir ma situation</option>
+            <option value="">Choisir ma situation</option>
             <option value="Chômeur">Chômeur</option>
             <option value="Entrepruneur">Entrepreuneur</option>
             <option value="Salarie">Salarie</option>
             <option value="Etudiant">Etudiant</option>
           </select>
         </div>
-        <div
-          className={`lg:my-4 sm:my-2 ${
-            formData.emploiSituationProActuelle !== "Chômeur" ? "hidden" : ""
-          }`}
-        >
-          <label htmlFor="emploiEmail" className={labelClassName}>
-            Adresse email
-          </label>
-          <input
-            placeholder="Ex: nom@gmail.com"
-            type="text"
-            name="emploiEmail"
-            value={formData.emploiEmail}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiEmail"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            }`}
-          />
-        </div>
-        <div
-          className={`lg:my-4 sm:my-2 ${
-            formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          }`}
-        >
+
+        <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d'activite
+            Secteur d'activité
           </label>
-          <input
-            placeholder="Ex: Communication"
-            type="text"
-            name="emploiSecteur"
-            value={formData.emploiSecteur}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiSecteur"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+          <SecteurActivites
+            inputName="emploiSecteur"
+            inputValue={formData.emploiSecteur}
+            inputId="emploiSecteur"
+            errors={errorsEmploi.emploiSecteur}
+            handelChangeInput={handelChangeInput}
           />
         </div>
 
         <div
-          className={`lg:my-4 sm:my-2 ${
-            formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          }`}
+          className="lg:my-4 sm:my-2"
+          // className={`lg:my-4 sm:my-2 ${
+          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
+          // }`}
         >
           <label htmlFor="emploiEmployeur" className={labelClassName}>
             Employeur actuel
@@ -122,12 +94,35 @@ const StepB = ({
             disabled={formData.emploiSituationProActuelle === "Chômeur"}
           />
         </div>
-      </div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div
+        {/* <div
           className={`lg:my-4 sm:my-2 ${
             formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
           }`}
+        >
+          <label htmlFor="emploiSecteur" className={labelClassName}>
+            Secteur d'activite
+          </label>
+          <input
+            placeholder="Ex: Communication"
+            type="text"
+            name="emploiSecteur"
+            value={formData.emploiSecteur}
+            onChange={(e) => handelChangeInput(e)}
+            id="emploiSecteur"
+            //className={inputClassName}
+            className={`${inputClassName} ${
+              errorsEmploi.emploiSecteur ? "border-red-500" : ""
+            }`}
+            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+          />
+        </div> */}
+      </div>
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+        <div
+          className="lg:my-4 sm:my-2"
+          // className={`lg:my-4 sm:my-2 ${
+          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
+          // }`}
         >
           <label htmlFor="emploiTypeContrat" className={labelClassName}>
             Type de contrat
@@ -143,7 +138,7 @@ const StepB = ({
             value={formData.emploiTypeContrat}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="DEFAULT">Choisir son type</option>
+            <option value="">Choisir son type</option>
             <option value="Stage">Stage</option>
             <option value="Freelance">Freelance</option>
             <option value="Consultance">Consultance</option>
@@ -152,9 +147,10 @@ const StepB = ({
           </select>
         </div>
         <div
-          className={`lg:my-4 sm:my-2 ${
-            formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          }`}
+          className="lg:my-4 sm:my-2"
+          // className={`lg:my-4 sm:my-2 ${
+          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
+          // }`}
         >
           <label htmlFor="emploiCanaux" className={labelClassName}>
             Canal utilisé
@@ -172,12 +168,34 @@ const StepB = ({
             value={formData.emploiCanaux}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="DEFAULT">Choisir un canal</option>
+            <option value="">Choisir un canal</option>
             <option value="Site web">Site web</option>
             <option value="Reseaux Sociaux">Reseaux sociaux</option>
             <option value="Recommandation">Recommandation</option>
             <option value="Autres">Autres</option>
           </select>
+        </div>
+        <div
+          className="lg:my-4 sm:my-2"
+          // className={`lg:my-4 sm:my-2 ${
+          //   formData.emploiSituationProActuelle !== "Chômeur" ? "hidden" : ""
+          // }`}
+        >
+          <label htmlFor="emploiEmail" className={labelClassName}>
+            Adresse email
+          </label>
+          <input
+            placeholder="Ex: nom@gmail.com"
+            type="text"
+            name="emploiEmail"
+            value={formData.emploiEmail}
+            onChange={(e) => handelChangeInput(e)}
+            id="emploiEmail"
+            //className={inputClassName}
+            className={`${inputClassName} ${
+              errorsEmploi.emploiSecteur ? "border-red-500" : ""
+            }`}
+          />
         </div>
       </div>
 

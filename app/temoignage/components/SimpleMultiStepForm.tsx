@@ -267,13 +267,13 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       isValid = false;
     }
 
-    if (
-      !formData.emploiEmail &&
-      formData.emploiSituationProActuelle === "Chômeur"
-    ) {
-      formErrors.emploiEmail = "Veuillez entree votre adresse email";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiEmail &&
+    //   formData.emploiSituationProActuelle === "Chômeur"
+    // ) {
+    //   formErrors.emploiEmail = "Veuillez entree votre adresse email";
+    //   isValid = false;
+    // }
 
     setErrorsEmploi(formErrors);
     return isValid;
@@ -290,7 +290,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       } else if (formData.isLogement) {
         setStep("D");
       }
-    } else if (step === "B") {
+    } else if (step === "B" && validateFormEmploi()) {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isLogement) {

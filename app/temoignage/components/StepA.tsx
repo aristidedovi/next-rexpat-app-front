@@ -58,7 +58,7 @@ const StepA = ({
             value={formData.genre}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option>Choisr son genre</option>
+            <option value="">Choisr son genre</option>
             <option value="Homme">Homme</option>
             <option value="Femme">Femme</option>
           </select>
@@ -81,7 +81,7 @@ const StepA = ({
             value={formData.situation_matrimoniale}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option>Choisir sa situation matrimoniale</option>
+            <option value="">Choisir sa situation matrimoniale</option>
             <option value="Célibataire">Célibataire</option>
             <option value="Marié">Marié</option>
             <option value="Divorcé">Divorcé</option>
@@ -200,7 +200,7 @@ const StepA = ({
               errors.duree_pays_provenance ? "border-red-500" : ""
             }`}
           >
-            <option>Choisir la durée</option>
+            <option value="">Choisir la durée</option>
             <option value="moins de 3 mois">moins de 3 mois</option>
             <option value="3 à 12 mois">3 à 12 mois</option>
             <option value="2plus de 12 mois">plus de 12 mois</option>
@@ -299,7 +299,7 @@ const StepA = ({
               errors.duree_pays_accueil ? "border-red-500" : ""
             }`}
           >
-            <option>Choisir la durée</option>
+            <option value="">Choisir la durée</option>
             <option value="moins de 3 mois">moins de 3 mois</option>
             <option value="3 à 12 mois">3 à 12 mois</option>
             <option value="2plus de 12 mois">plus de 12 mois</option>
