@@ -1,5 +1,5 @@
 import CountrySelect from "@/components/CountrySelect";
-import CurrencyInput from "@/components/ui/CurrencyInput";
+import CurrencyInput from "@/components/CurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
 import React from "react";
@@ -52,7 +52,11 @@ const StepA = ({
           <select
             id="genre"
             className={`${inputClassName} ${
-              errors.genre ? "border-red-500" : ""
+              errors.genre && !formData.genre
+                ? "border-red-500"
+                : formData.genre && errors.genre !== ""
+                ? "border-blue-500"
+                : ""
             }`}
             name="genre"
             value={formData.genre}
@@ -74,8 +78,16 @@ const StepA = ({
           </label>
           <select
             id="situation_matrimoniale"
+            // className={`${inputClassName} ${
+            //   errors.situation_matrimoniale ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.situation_matrimoniale ? "border-red-500" : ""
+              errors.situation_matrimoniale && !formData.situation_matrimoniale
+                ? "border-red-500"
+                : formData.situation_matrimoniale &&
+                  errors.situation_matrimoniale !== ""
+                ? "border-blue-500"
+                : ""
             }`}
             name="situation_matrimoniale"
             value={formData.situation_matrimoniale}
@@ -107,8 +119,15 @@ const StepA = ({
             value={formData.age}
             onChange={(e) => handelChangeInput(e)}
             id="age"
+            // className={`${inputClassName} ${
+            //   errors.age ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.age ? "border-red-500" : ""
+              errors.age && !formData.age
+                ? "border-red-500"
+                : formData.age && errors.age !== ""
+                ? "border-blue-500"
+                : ""
             }`}
           />
           {/* {errors.age && (
@@ -125,9 +144,16 @@ const StepA = ({
             name="nombre_enfants"
             value={formData.nombre_enfants}
             onChange={(e) => handelChangeInput(e)}
-            id="nombre_enfants"
+            // id="nombre_enfants"
+            // className={`${inputClassName} ${
+            //   errors.nombre_enfants ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.nombre_enfants ? "border-red-500" : ""
+              errors.nombre_enfants && !formData.nombre_enfants
+                ? "border-red-500"
+                : formData.nombre_enfants && errors.nombre_enfants !== ""
+                ? "border-blue-500"
+                : ""
             }`}
           />
           {/* {errors.nombre_enfants && (
@@ -196,8 +222,16 @@ const StepA = ({
             value={formData.duree_pays_provenance}
             onChange={(e) => handelChangeInput(e)}
             id="duree_pays_provenance"
+            // className={`${inputClassName} ${
+            //   errors.duree_pays_provenance ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.duree_pays_provenance ? "border-red-500" : ""
+              errors.duree_pays_provenance && !formData.duree_pays_provenance
+                ? "border-red-500"
+                : formData.duree_pays_provenance &&
+                  errors.duree_pays_provenance !== ""
+                ? "border-blue-500"
+                : ""
             }`}
           >
             <option value="">Choisir la durée</option>
@@ -257,10 +291,16 @@ const StepA = ({
             onChange={(e) => handelChangeInput(e)}
             id="region"
             //className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errors.region ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.region ? "border-red-500" : ""
+              errors.region && !formData.region
+                ? "border-red-500"
+                : formData.region && errors.region !== ""
+                ? "border-blue-500"
+                : ""
             }`}
-            required
           />
           {/* {errors.region && (
             <p className="mt-2 text-pink-600 text-sm">{errors.region}</p>
@@ -295,8 +335,16 @@ const StepA = ({
             value={formData.duree_pays_accueil}
             onChange={(e) => handelChangeInput(e)}
             id="duree_pays_accueil"
+            // className={`${inputClassName} ${
+            //   errors.duree_pays_accueil ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errors.duree_pays_accueil ? "border-red-500" : ""
+              errors.duree_pays_accueil && !formData.duree_pays_accueil
+                ? "border-red-500"
+                : formData.duree_pays_accueil &&
+                  errors.duree_pays_accueil !== ""
+                ? "border-blue-500"
+                : ""
             }`}
           >
             <option value="">Choisir la durée</option>

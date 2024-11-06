@@ -50,7 +50,14 @@ const SecteurActivites = ({
         <p>{error}</p>
       ) : (
         <Select
-          className={`${inputClassName} ${errors ? "border-red-500" : ""}`}
+          //className={`${inputClassName} ${errors ? "border-red-500" : ""}`}
+          className={`${inputClassName} ${
+            errors && !inputValue
+              ? "border-red-500"
+              : inputValue && errors !== ""
+              ? "border-blue-500"
+              : ""
+          }`}
           name={inputName}
           id={inputId}
           value={inputValue}

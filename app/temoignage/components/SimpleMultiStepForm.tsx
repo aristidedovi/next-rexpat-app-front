@@ -136,14 +136,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       revenu_mensuel: "",
       devise_revenu: "",
       nombre_enfants: "",
-      // emploiSecteur: "",
-      // emploiEmployeur: "",
-      // emploiTypeContrat: "",
-      // emploiCanaux: "",
-      // emploiSituationProActuelle: "",
-      // emploiEmail: "",
-      // emploiNiveauDifficulte: "",
     };
+    //console.log("Validate IG form");
 
     let isValid: boolean = true;
 
@@ -200,35 +194,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       isValid = false;
     }
 
-    // if (!formData.emploiSituationProActuelle) {
-    //   formErrors.emploiSituationProActuelle =
-    //     "Veuillez sélectionner votre situation professionnelle";
-    //   isValid = false;
-    // }
-    // if (
-    //   !formData.emploiTypeContrat &&
-    //   formData.emploiSituationProActuelle !== "Chômeur"
-    // ) {
-    //   formErrors.emploiTypeContrat =
-    //     "Veuillez sélectionner votre type de contrat";
-    //   isValid = false;
-    // }
-    // if (
-    //   !formData.emploiSecteur &&
-    //   formData.emploiSituationProActuelle !== "Chômeur"
-    // ) {
-    //   formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
-    //   isValid = false;
-    // }
-
-    // if (
-    //   !formData.emploiEmail &&
-    //   formData.emploiSituationProActuelle === "Chômeur"
-    // ) {
-    //   formErrors.emploiEmail = "Veuillez entree votre adresse email";
-    //   isValid = false;
-    // }
-
     setErrorsIG(formErrors);
     return isValid;
   };
@@ -266,14 +231,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
       isValid = false;
     }
-
-    // if (
-    //   !formData.emploiEmail &&
-    //   formData.emploiSituationProActuelle === "Chômeur"
-    // ) {
-    //   formErrors.emploiEmail = "Veuillez entree votre adresse email";
-    //   isValid = false;
-    // }
 
     setErrorsEmploi(formErrors);
     return isValid;

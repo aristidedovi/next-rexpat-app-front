@@ -28,7 +28,14 @@ export default function CurrencyInput({
         onChange={handelChangeInput}
         //className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         //className={inputClassName}
-        className={`${inputClassName} ${formErrors ? "border-red-500" : ""}`}
+        //className={`${inputClassName} ${formErrors ? "border-red-500" : ""}`}
+        className={`${inputClassName} ${
+          formErrors && !inputValue
+            ? "border-red-500"
+            : inputValue && formErrors !== ""
+            ? "border-blue-500"
+            : ""
+        }`}
       />
       <select
         name={inputDeviseName}

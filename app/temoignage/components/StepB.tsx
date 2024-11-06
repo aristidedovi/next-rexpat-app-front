@@ -17,14 +17,6 @@ const StepB = ({
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 
-  // const stepConditions = {
-  //   A: true,
-  //   B: formData.isEmploi,
-  //   C: formData.isEducation,
-  //   D: formData.isLogement,
-  //   // D: formData.isTransport,
-  // };
-
   return (
     <div>
       {/* <h1 className="mt-2 text-xl font-bold text-blue-900">
@@ -36,13 +28,23 @@ const StepB = ({
             htmlFor="emploiSituationProActuelle"
             className={labelClassName}
           >
-            Situation professionnele actuelle
+            Situation professionnele actuelle*
           </label>
           <select
             id="emploiSituationProActuelle"
             //className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsEmploi.emploiSituationProActuelle ? "border-red-500" : ""
+            // }`}
+
             className={`${inputClassName} ${
-              errorsEmploi.emploiSituationProActuelle ? "border-red-500" : ""
+              errorsEmploi.emploiSituationProActuelle &&
+              !formData.emploiSituationProActuelle
+                ? "border-red-500"
+                : formData.emploiSituationProActuelle &&
+                  errorsEmploi.emploiSituationProActuelle !== ""
+                ? "border-blue-500"
+                : ""
             }`}
             name="emploiSituationProActuelle"
             value={formData.emploiSituationProActuelle}
@@ -58,7 +60,7 @@ const StepB = ({
 
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d'activité
+            Secteur d'activité*
           </label>
           <SecteurActivites
             inputName="emploiSecteur"
@@ -85,37 +87,10 @@ const StepB = ({
             value={formData.emploiEmployeur}
             onChange={(e) => handelChangeInput(e)}
             id="emploiEmployeur"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              formData.emploiSituationProActuelle === "Chômeur"
-                ? "border-black"
-                : ""
-            }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            className={inputClassName}
+            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
           />
         </div>
-        {/* <div
-          className={`lg:my-4 sm:my-2 ${
-            formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          }`}
-        >
-          <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d'activite
-          </label>
-          <input
-            placeholder="Ex: Communication"
-            type="text"
-            name="emploiSecteur"
-            value={formData.emploiSecteur}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiSecteur"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
-          />
-        </div> */}
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div
@@ -125,15 +100,23 @@ const StepB = ({
           // }`}
         >
           <label htmlFor="emploiTypeContrat" className={labelClassName}>
-            Type de contrat
+            Type de contrat*
           </label>
           <select
             id="emploiTypeContrat"
             //className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsEmploi.emploiTypeContrat ? "border-red-500" : ""
+            // }`}
             className={`${inputClassName} ${
-              errorsEmploi.emploiTypeContrat ? "border-red-500" : ""
+              errorsEmploi.emploiTypeContrat && !formData.emploiTypeContrat
+                ? "border-red-500"
+                : formData.emploiTypeContrat &&
+                  errorsEmploi.emploiTypeContrat !== ""
+                ? "border-blue-500"
+                : ""
             }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiTypeContrat"
             value={formData.emploiTypeContrat}
             onChange={(e) => handelChangeInput(e)}
@@ -146,24 +129,19 @@ const StepB = ({
             <option value="CDI">CDI</option>
           </select>
         </div>
-        <div
-          className="lg:my-4 sm:my-2"
-          // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          // }`}
-        >
+        <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
             Canal utilisé
           </label>
           <select
             id="emploiCanaux"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              formData.emploiSituationProActuelle === "Chômeur"
-                ? "border-black"
-                : ""
-            }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   formData.emploiSituationProActuelle === "Chômeur"
+            //     ? "border-black"
+            //     : ""
+            // }`}
+            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiCanaux"
             value={formData.emploiCanaux}
             onChange={(e) => handelChangeInput(e)}
@@ -178,7 +156,7 @@ const StepB = ({
         <div
           className="lg:my-4 sm:my-2"
           // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle !== "Chômeur" ? "hidden" : ""
+          //   formData.emploiSituationProActuelle !== "" ? "hidden" : ""
           // }`}
         >
           <label htmlFor="emploiEmail" className={labelClassName}>
@@ -191,10 +169,10 @@ const StepB = ({
             value={formData.emploiEmail}
             onChange={(e) => handelChangeInput(e)}
             id="emploiEmail"
-            //className={inputClassName}
-            className={`${inputClassName} ${
-              errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            }`}
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsEmploi.emploiSecteur ? "border-red-500" : ""
+            // }`}
           />
         </div>
       </div>
@@ -269,100 +247,7 @@ const StepB = ({
         </ul>
       </div>
 
-      {/* </div> */}
-
-      {/* <div className="grid lg:grid-cols-2 sm:grid-cols-1 mb-8 gap-4">
-        <div className="relative mb-8 lg:my-4 sm:my-2">
-          <label
-            htmlFor="labels-range-input-emploiNiveauDifficulte"
-            className="sr-only"
-          >
-            Labels range
-          </label>
-          <div className="flex items-center space-x-4">
-            <input
-              id="labels-range-input-emploiNiveauDifficulte"
-              type="range"
-              name="emploiNiveauDifficulte"
-              value={formData.emploiNiveauDifficulte}
-              onChange={(e) => handelChangeInput(e)}
-              min="0"
-              max="10"
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-              style={{
-                background: `linear-gradient(to right, #3b82f6 ${
-                  formData.emploiNiveauDifficulte * 10
-                }%, #e5e7eb ${formData.emploiNiveauDifficulte * 10}%)`,
-              }}
-            />
-            <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">
-              {formData.emploiNiveauDifficulte}
-            </span>
-          </div>
-
-          <div className="flex justify-between">
-            <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
-              Facile (0)
-            </span>
-            <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-              Moyen (5)
-            </span>
-            <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-              Difficile (10)
-            </span>
-          </div>
-        </div>
-      </div> */}
-
-      {/* <div className="my-2">
-        <label htmlFor="">Business Name</label>
-        <input
-          type="text"
-          name="businessName"
-          value={formData.businessName}
-          onChange={(e) => handelChangeInput(e)}
-          className="w-full outline-none border-gray-400 px-2 rounded-lg focus:border-blue-600"
-        />
-      </div>
-      <div className="my-2">
-        <label htmlFor="">Business City</label>
-        <input
-          type="text"
-          name="businessCity"
-          value={formData.businessCity}
-          onChange={(e) => handelChangeInput(e)}
-          className="w-full outline-none border-gray-400 px-2 rounded-lg focus:border-blue-600"
-        />
-      </div>
-      <div className="my-2">
-        <label htmlFor="">Business Web Site</label>
-        <input
-          type="text"
-          name="businessWebSite"
-          value={formData.businessWebSite}
-          onChange={(e) => handelChangeInput(e)}
-          className="w-full outline-none border-gray-400 px-2 rounded-lg focus:border-blue-600"
-        />
-      </div>
-
-      <div className="my-2">
-        <label htmlFor="">Business Email</label>
-        <input
-          type="email"
-          name="businessEmail"
-          value={formData.businessEmail}
-          onChange={(e) => handelChangeInput(e)}
-          className="w-full outline-none border-gray-400 px-2 rounded-lg focus:border-blue-600"
-        />
-      </div> */}
-
       <div className="my-2 flex justify-between items-center">
-        {/* <button
-          className="bg-yellow-400 px-4 py-2 rounded-xl"
-          onClick={handelPrevStep}
-        >
-          Prev
-        </button> */}
         <PrevButton handelPrevStep={handelPrevStep} />
 
         {/* // Afficher le submit buton quand emploi est à true et les autre sont à false */}

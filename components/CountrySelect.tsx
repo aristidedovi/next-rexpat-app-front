@@ -54,7 +54,14 @@ const CountrySelect = ({
       <select
         id={inputId}
         //className={inputClassName}
-        className={`${inputClassName} ${formErrors ? "border-red-500" : ""}`}
+        //className={`${inputClassName} ${formErrors ? "border-red-500" : ""}`}
+        className={`${inputClassName} ${
+          formErrors && !inputValue
+            ? "border-red-500"
+            : inputValue && formErrors !== ""
+            ? "border-blue-500"
+            : ""
+        }`}
         name={inputName}
         value={inputValue}
         onChange={(e) => handelChangeInput(e)}
