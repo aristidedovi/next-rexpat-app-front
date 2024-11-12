@@ -314,7 +314,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   };
 
   const handelBlur = (e: any): void => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     let fieldValue: string | boolean;
 
     fieldValue = e.target.value;

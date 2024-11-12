@@ -1,5 +1,5 @@
 import CountrySelect from "@/components/CountrySelect";
-import CurrencyInput from "@/components/CurrencyInput";
+// import CurrencyInput from "@/components/CurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
 import React from "react";
