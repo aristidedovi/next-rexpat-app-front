@@ -23,6 +23,28 @@ const StepB = ({
         Step B: Information sur l'emploi
       </h1> */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+        <div
+          className="lg:my-4 sm:my-2"
+          // className={`lg:my-4 sm:my-2 ${
+          //   formData.emploiSituationProActuelle !== "" ? "hidden" : ""
+          // }`}
+        >
+          <label htmlFor="emploiEmail" className={labelClassName}>
+            Adresse email
+          </label>
+          <input
+            placeholder="Ex: nom@gmail.com"
+            type="text"
+            name="emploiEmail"
+            value={formData.emploiEmail}
+            onChange={(e) => handelChangeInput(e)}
+            id="emploiEmail"
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsEmploi.emploiSecteur ? "border-red-500" : ""
+            // }`}
+          />
+        </div>
         <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="emploiSituationProActuelle"
@@ -70,7 +92,8 @@ const StepB = ({
             handelChangeInput={handelChangeInput}
           />
         </div>
-
+      </div>
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
         <div
           className="lg:my-4 sm:my-2"
           // className={`lg:my-4 sm:my-2 ${
@@ -91,8 +114,6 @@ const StepB = ({
             // disabled={formData.emploiSituationProActuelle === "Chômeur"}
           />
         </div>
-      </div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div
           className="lg:my-4 sm:my-2"
           // className={`lg:my-4 sm:my-2 ${
@@ -129,9 +150,17 @@ const StepB = ({
             <option value="CDI">CDI</option>
           </select>
         </div>
+      </div>
+
+      {/* <div className="grid lg:grid-cols-2 sm:grid-cols-2 gap-4"> */}
+      {/* <h3 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
+          How much do you expect to use each month?
+        </h3> */}
+
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
-            Canal utilisé
+            Comment avez-vous trouver votre dernier emploi?
           </label>
           <select
             id="emploiCanaux"
@@ -153,98 +182,72 @@ const StepB = ({
             <option value="Autres">Autres</option>
           </select>
         </div>
-        <div
-          className="lg:my-4 sm:my-2"
-          // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle !== "" ? "hidden" : ""
-          // }`}
-        >
-          <label htmlFor="emploiEmail" className={labelClassName}>
-            Adresse email
+        <div className="lg:my-4 sm:my-2">
+          <label className={`${labelClassName}`}>
+            Niveau de difficulté pour trouver un emploi
           </label>
-          <input
-            placeholder="Ex: nom@gmail.com"
-            type="text"
-            name="emploiEmail"
-            value={formData.emploiEmail}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiEmail"
-            className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            // }`}
-          />
+          <div className=" grid lg:grid-cols-1">
+            <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                <div className="flex items-center ps-3">
+                  <input
+                    id="emploiNiveauDifficulte-facile"
+                    type="radio"
+                    name="emploiNiveauDifficulte"
+                    value="Facile"
+                    checked={formData.emploiNiveauDifficulte === "Facile"}
+                    onChange={(e) => handelChangeInput(e)}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    htmlFor="emploiNiveauDifficulte-facile"
+                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Facile
+                  </label>
+                </div>
+              </li>
+              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                <div className="flex items-center ps-3">
+                  <input
+                    id="emploiNiveauDifficulte-moyen"
+                    type="radio"
+                    name="emploiNiveauDifficulte"
+                    value="Moyen"
+                    checked={formData.emploiNiveauDifficulte === "Moyen"}
+                    onChange={(e) => handelChangeInput(e)}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    htmlFor="horizontal-list-radio-id"
+                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Moyen
+                  </label>
+                </div>
+              </li>
+              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                <div className="flex items-center ps-3">
+                  <input
+                    id="emploiNiveauDifficulte-difficile"
+                    type="radio"
+                    name="emploiNiveauDifficulte"
+                    value="Difficile"
+                    checked={formData.emploiNiveauDifficulte === "Difficile"}
+                    onChange={(e) => handelChangeInput(e)}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    htmlFor="emploiNiveauDifficulte-difficile"
+                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Difficile
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-
-      {/* <div className="grid lg:grid-cols-2 sm:grid-cols-2 gap-4"> */}
-      {/* <h3 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
-          How much do you expect to use each month?
-        </h3> */}
-
-      <label className={`${labelClassName} my-4`}>
-        Niveau de difficulté pour trouver un emploi
-      </label>
-      <div className=" grid lg:grid-cols-2">
-        <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-            <div className="flex items-center ps-3">
-              <input
-                id="emploiNiveauDifficulte-facile"
-                type="radio"
-                name="emploiNiveauDifficulte"
-                value="Facile"
-                checked={formData.emploiNiveauDifficulte === "Facile"}
-                onChange={(e) => handelChangeInput(e)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="emploiNiveauDifficulte-facile"
-                className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Facile
-              </label>
-            </div>
-          </li>
-          <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-            <div className="flex items-center ps-3">
-              <input
-                id="emploiNiveauDifficulte-moyen"
-                type="radio"
-                name="emploiNiveauDifficulte"
-                value="Moyen"
-                checked={formData.emploiNiveauDifficulte === "Moyen"}
-                onChange={(e) => handelChangeInput(e)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="horizontal-list-radio-id"
-                className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Moyen
-              </label>
-            </div>
-          </li>
-          <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-            <div className="flex items-center ps-3">
-              <input
-                id="emploiNiveauDifficulte-difficile"
-                type="radio"
-                name="emploiNiveauDifficulte"
-                value="Difficile"
-                checked={formData.emploiNiveauDifficulte === "Difficile"}
-                onChange={(e) => handelChangeInput(e)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="emploiNiveauDifficulte-difficile"
-                className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Difficile
-              </label>
-            </div>
-          </li>
-        </ul>
       </div>
 
       <div className="my-2 flex justify-between items-center">
