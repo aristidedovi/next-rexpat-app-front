@@ -127,9 +127,9 @@ const StepA = ({
           >
             <option value="">Sélectionnez</option>
             <option value="Célibataire">Célibataire</option>
-            <option value="Marié">Marié</option>
-            <option value="Divorcé">Divorcé</option>
-            <option value="Veuve">Veuve</option>
+            <option value="Marié">Marié(e)</option>
+            <option value="Divorcé">Divorcé(e)</option>
+            <option value="Veuve">Veuve / Veuf</option>
           </select>
           {/* {errors.situation_matrimoniale && (
             <p className="mt-2 text-pink-600 text-sm">
