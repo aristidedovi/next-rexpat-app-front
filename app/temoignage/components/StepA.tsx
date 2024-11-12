@@ -10,6 +10,7 @@ const StepA = ({
   handelNextStep,
   handelPrevStep,
   errors,
+  handelBlur,
 }: any) => {
   const inputClassName =
     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -33,7 +34,7 @@ const StepA = ({
         <div className="lg:my-4 sm:my-2">
           <CountrySelect
             handelChangeInput={handelChangeInput}
-            inputLabel="Votre nationalité"
+            inputLabel="Nationalité"
             inputName="nationalite"
             inputId="countries"
             inputValue={formData.nationalite}
@@ -62,7 +63,7 @@ const StepA = ({
             value={formData.genre}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="">Choisr son genre</option>
+            <option value="">Sélectionnez</option>
             <option value="Homme">Homme</option>
             <option value="Femme">Femme</option>
           </select>
@@ -70,7 +71,38 @@ const StepA = ({
             <p className="mt-2 text-pink-600 text-sm">{errors.genre}</p>
           )} */}
         </div>
+        <div className="lg:my-4 sm:my-2">
+          <label htmlFor="age" className={labelClassName}>
+            Age (ans)*
+          </label>
+          <input
+            placeholder=">= 16"
+            type="number"
+            min="16"
+            name="age"
+            value={formData.age}
+            onChange={(e) => handelChangeInput(e)}
+            onBlur={(e) => handelBlur(e)}
+            id="age"
+            // className={`${inputClassName} ${
+            //   errors.age ? "border-red-500" : ""
+            // }`}
+            className={`${inputClassName} ${
+              errors.age && !formData.age
+                ? "border-red-500"
+                : formData.age && errors.age !== ""
+                ? "border-blue-500"
+                : ""
+            }`}
+          />
+          {/* {errors.age && (
+            <p className="mt-2 text-pink-600 text-sm">{errors.age}</p>
+          )} */}
+        </div>
+      </div>
 
+      {/* // age / région / quatier */}
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1  gap-4">
         {/* // Situation matrimoniale */}
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="situation_matrimoniale" className={labelClassName}>
@@ -93,10 +125,11 @@ const StepA = ({
             value={formData.situation_matrimoniale}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="">Choisir sa situation matrimoniale</option>
+            <option value="">Sélectionnez</option>
             <option value="Célibataire">Célibataire</option>
             <option value="Marié">Marié</option>
             <option value="Divorcé">Divorcé</option>
+            <option value="Veuve">Veuve</option>
           </select>
           {/* {errors.situation_matrimoniale && (
             <p className="mt-2 text-pink-600 text-sm">
@@ -104,36 +137,7 @@ const StepA = ({
             </p>
           )} */}
         </div>
-      </div>
 
-      {/* // age / région / quatier */}
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1  gap-4">
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="age" className={labelClassName}>
-            Votre Age (ans)*
-          </label>
-          <input
-            placeholder="40"
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={(e) => handelChangeInput(e)}
-            id="age"
-            // className={`${inputClassName} ${
-            //   errors.age ? "border-red-500" : ""
-            // }`}
-            className={`${inputClassName} ${
-              errors.age && !formData.age
-                ? "border-red-500"
-                : formData.age && errors.age !== ""
-                ? "border-blue-500"
-                : ""
-            }`}
-          />
-          {/* {errors.age && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.age}</p>
-          )} */}
-        </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="nombre_enfants" className={labelClassName}>
             Nombre d'enfants*
@@ -144,6 +148,7 @@ const StepA = ({
             name="nombre_enfants"
             value={formData.nombre_enfants}
             onChange={(e) => handelChangeInput(e)}
+            onBlur={(e) => handelBlur(e)}
             // id="nombre_enfants"
             // className={`${inputClassName} ${
             //   errors.nombre_enfants ? "border-red-500" : ""
@@ -162,7 +167,7 @@ const StepA = ({
             </p>
           )} */}
         </div>
-        <div className="lg:my-4 sm:my-2">
+        {/* <div className="lg:my-4 sm:my-2">
           <CurrencyInput
             handelChangeInput={handelChangeInput}
             inputLabel="Revenu mensuel"
@@ -173,7 +178,7 @@ const StepA = ({
             inputDeviseValue={formData.devise_revenu}
             inputDeviseName="devise_revenu"
           />
-        </div>
+        </div> */}
         {/* <div className="lg:my-4 sm:my-2">
           <label htmlFor="revenu_mensuel" className={labelClassName}>
             Revenu mensuel (FCFA)*
@@ -234,7 +239,7 @@ const StepA = ({
                 : ""
             }`}
           >
-            <option value="">Choisir la durée</option>
+            <option value="">Sélectionnez</option>
             <option value="moins de 3 mois">moins de 3 mois</option>
             <option value="3 à 12 mois">3 à 12 mois</option>
             <option value="2plus de 12 mois">plus de 12 mois</option>
@@ -347,7 +352,7 @@ const StepA = ({
                 : ""
             }`}
           >
-            <option value="">Choisir la durée</option>
+            <option value="">Sélectionnez</option>
             <option value="moins de 3 mois">moins de 3 mois</option>
             <option value="3 à 12 mois">3 à 12 mois</option>
             <option value="2plus de 12 mois">plus de 12 mois</option>

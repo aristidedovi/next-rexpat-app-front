@@ -66,7 +66,7 @@ const CountrySelect = ({
         value={inputValue}
         onChange={(e) => handelChangeInput(e)}
       >
-        <option value="">Sélectionnez {inputLabel} </option>
+        <option value="">Sélectionnez</option>
         {countries.map((country) => (
           <option key={country.cca3} value={country.name.common}>
             {/* <img

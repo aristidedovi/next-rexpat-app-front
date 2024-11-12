@@ -302,6 +302,34 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       fieldValue = event.target.value;
     }
 
+    // if (name === "age" && Number(fieldValue) < 16) {
+    //   console.log("moins de 16 ans");
+    //   fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
+    // }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: fieldValue,
+    }));
+  };
+
+  const handelBlur = (e: any): void => {
+    const { name, value } = e.target;
+    let fieldValue: string | boolean;
+
+    fieldValue = e.target.value;
+
+    // Vérifie si la valeur est inférieure à 16 et la corrige
+    if (name === "age" && Number(fieldValue) < 16) {
+      //console.log("moins de 16 ans");
+      fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
+    }
+
+    // Vérifie si la valeur est inférieure à 0 et la corrige
+    if (name === "nombre_enfants" && Number(fieldValue) < 0) {
+      fieldValue = "";
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: fieldValue,
@@ -387,6 +415,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelChangeInput={handelChangeInput}
             handelNextStep={handelNextStep}
             handelPrevStep={handelPrevStep}
+            handelBlur={handelBlur}
             errors={errorsIG}
           />
         ) : null}
