@@ -63,7 +63,7 @@ const SecteurActivites = ({
           value={inputValue}
           onChange={(e) => handelChangeInput(e)}
         >
-          <option value=""> Sélectionner un secteur d'activité</option>
+          <option value="">Sélectionnez</option>
           {secteurs.map((secteur) => (
             <option key={secteur.code} value={secteur.libelle}>
               {secteur.libelle}

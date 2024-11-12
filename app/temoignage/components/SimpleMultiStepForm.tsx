@@ -19,8 +19,8 @@ interface InitialFormData {
   duree_pays_provenance: number;
   pays_accueil: string;
   duree_pays_accueil: number;
-  revenu_mensuel: string;
-  devise_revenu: string;
+  // revenu_mensuel: string;
+  // devise_revenu: string;
   nombre_enfants: number;
   agreeToTerms: boolean;
   isEmploi: boolean;
@@ -30,6 +30,8 @@ interface InitialFormData {
   emploiSecteur: string;
   emploiEmployeur: string;
   emploiTypeContrat: string;
+  emploiRevenu_mensuel: string;
+  emploiDevise_revenu: string;
   emploiCanaux: string;
   emploiSituationProActuelle: string;
   emploiEmail: string;
@@ -47,8 +49,7 @@ const initialFormDataRexpat: InitialFormData = {
   duree_pays_provenance: 0,
   pays_accueil: "",
   duree_pays_accueil: 0,
-  revenu_mensuel: "",
-  devise_revenu: "USD",
+  // revenu_mensuel: "",
   nombre_enfants: 0,
   agreeToTerms: true,
   isEmploi: false,
@@ -58,6 +59,8 @@ const initialFormDataRexpat: InitialFormData = {
   emploiSecteur: "",
   emploiEmployeur: "",
   emploiTypeContrat: "",
+  emploiRevenu_mensuel: "",
+  emploiDevise_revenu: "USD",
   emploiCanaux: "",
   emploiSituationProActuelle: "",
   emploiEmail: "",
@@ -133,8 +136,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       duree_pays_accueil: "",
       pays_provenance: "",
       duree_pays_provenance: "",
-      revenu_mensuel: "",
-      devise_revenu: "",
+      // revenu_mensuel: "",
+      // devise_revenu: "",
       nombre_enfants: "",
     };
     //console.log("Validate IG form");
@@ -171,14 +174,14 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       formErrors.region = "Veuillez indiquer une région.";
       isValid = false;
     }
-    if (!formData.revenu_mensuel) {
-      formErrors.revenu_mensuel = "Veuillez entrer un revenu mensuel valide.";
-      isValid = false;
-    }
-    if (!formData.devise_revenu) {
-      formErrors.devise_revenu = "Veuillez selectionner uen devise.";
-      isValid = false;
-    }
+    // if (!formData.revenu_mensuel) {
+    //   formErrors.revenu_mensuel = "Veuillez entrer un revenu mensuel valide.";
+    //   isValid = false;
+    // }
+    // if (!formData.devise_revenu) {
+    //   formErrors.devise_revenu = "Veuillez selectionner uen devise.";
+    //   isValid = false;
+    // }
     if (!formData.nombre_enfants || formData.nombre_enfants <= 0) {
       formErrors.nombre_enfants = "Veuillez entrer un nombre d'enfant valide.";
       isValid = false;
@@ -203,6 +206,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       emploiSecteur: "",
       emploiEmployeur: "",
       emploiTypeContrat: "",
+      emploiRevenu_mensuel: "",
+      emploiDevise_revenu: "",
       emploiCanaux: "",
       emploiSituationProActuelle: "",
       emploiEmail: "",
@@ -229,6 +234,17 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       formData.emploiSituationProActuelle !== "Chômeur"
     ) {
       formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
+      isValid = false;
+    }
+
+    if (!formData.emploiRevenu_mensuel) {
+      formErrors.emploiRevenu_mensuel =
+        "Veuillez entrer un revenu mensuel valide.";
+      isValid = false;
+    }
+
+    if (!formData.emploiDevise_revenu) {
+      formErrors.emploiDevise_revenu = "Veuillez selectionner uen devise.";
       isValid = false;
     }
 

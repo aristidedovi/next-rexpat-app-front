@@ -1,3 +1,4 @@
+import CurrencyInput from "@/components/CurrencyInput";
 import SecteurActivites from "@/components/SecteurActivites";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
@@ -72,7 +73,7 @@ const StepB = ({
             value={formData.emploiSituationProActuelle}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="">Choisir ma situation</option>
+            <option value="">Sélectionnez</option>
             <option value="Chômeur">Chômeur</option>
             <option value="Entrepruneur">Entrepreuneur</option>
             <option value="Salarie">Salarie</option>
@@ -93,7 +94,7 @@ const StepB = ({
           />
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div
           className="lg:my-4 sm:my-2"
           // className={`lg:my-4 sm:my-2 ${
@@ -142,13 +143,25 @@ const StepB = ({
             value={formData.emploiTypeContrat}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="">Choisir son type</option>
+            <option value="">Sélectionnez</option>
             <option value="Stage">Stage</option>
             <option value="Freelance">Freelance</option>
             <option value="Consultance">Consultance</option>
             <option value="CDD">CDD</option>
             <option value="CDI">CDI</option>
           </select>
+        </div>
+        <div className="lg:my-4 sm:my-2">
+          <CurrencyInput
+            handelChangeInput={handelChangeInput}
+            inputLabel="Revenu mensuel"
+            inputName="emploiRevenu_mensuel"
+            inputId="emploiRevenu_mensuel"
+            inputValue={formData.emploiRevenu_mensuel}
+            formErrors={errorsEmploi.emploiRevenu_mensuel}
+            inputDeviseValue={formData.emploiDevise_revenu}
+            inputDeviseName="emploiDevise_revenu"
+          />
         </div>
       </div>
 
@@ -175,7 +188,7 @@ const StepB = ({
             value={formData.emploiCanaux}
             onChange={(e) => handelChangeInput(e)}
           >
-            <option value="">Choisir un canal</option>
+            <option value="">Sélectionnez</option>
             <option value="Site web">Site web</option>
             <option value="Reseaux Sociaux">Reseaux sociaux</option>
             <option value="Recommandation">Recommandation</option>
