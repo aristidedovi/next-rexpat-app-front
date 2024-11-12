@@ -79,11 +79,12 @@ export function Header() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
+            {/* <img
               alt=""
               src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
               className="h-8 w-auto"
-            />
+            /> */}
+            <img alt="" src="/logo/rexpat-logo.png" className="h-14 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
