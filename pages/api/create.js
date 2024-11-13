@@ -29,7 +29,7 @@ export default async function handle (req, res) {
 
 
         try {
-                const ig = await prisma.informationGeneral.create({
+                const data = await prisma.informationGeneral.create({
                 data: {
                 genre,
                 situation_matrimoniale,
