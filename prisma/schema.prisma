@@ -22,8 +22,6 @@ model InformationGeneral {
   duree_pays_provenance  String
   pays_accueil           String
   duree_pays_accueil     String
-  // revenu_mensuel: string;
-  // devise_revenu: string;
   nombre_enfants         Int
   createdAt              DateTime @default(now())
   updateAt               DateTime @updatedAt
