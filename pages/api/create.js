@@ -57,7 +57,8 @@ export default async function handle (req, res) {
                 },
                 },
             });
-            res.status(201).json(ig)
+            //res.status(201).json(ig)
+            res.status(200).json({ message: 'Data created successfully', data });
         } catch (error) {
             console.error('Error creating record:', error);
             res.status(500).json({ error: 'Error creating recod' })
