@@ -1,4 +1,3 @@
-import Banner from "./Banner";
 import Section from "../sections/Section";
 
 const HomePage = () => {

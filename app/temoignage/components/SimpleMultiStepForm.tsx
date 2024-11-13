@@ -7,7 +7,6 @@ import StepC from "./StepC";
 import StepD from "./StepD";
 import StepFinal from "./StepFinal";
 import StepFirst from "./StepFirst";
-import { prisma } from "@/src/lib/prisma";
 
 interface InitialFormData {
   genre: string;
