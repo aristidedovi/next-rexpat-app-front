@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model InformationGeneral {
+  id                     Int      @id @default(autoincrement())
+  genre                  String
+  nationalite            String
+  situation_matrimoniale String
+  age                    Int
+  region                 String
+  quartier               String
+  pays_provenance        String
+  duree_pays_provenance  String
+  pays_accueil           String
+  duree_pays_accueil     String
+  // revenu_mensuel: string;
+  // devise_revenu: string;
+  nombre_enfants         Int
+  createdAt              DateTime @default(now())
+  updateAt               DateTime @updatedAt
+  emploi                 Emploi?
+}
+
+model Emploi {
+  id                         Int                @id @default(autoincrement())
+  emploiSecteur              String
+  emploiEmployeur            String
+  emploiTypeContrat          String
+  emploiRevenu_mensuel       String
+  emploiDevise_revenu        String
+  emploiCanaux               String
+  emploiSituationProActuelle String
+  emploiEmail                String
+  emploiNiveauDifficulte     String
+  createdAt                  DateTime           @default(now())
+  updateAt                   DateTime           @updatedAt
+  informationGeneral         InformationGeneral @relation(fields: [informationGeneralId], references: [id])
+  informationGeneralId       Int                @unique
+}

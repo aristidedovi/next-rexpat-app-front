@@ -7,6 +7,7 @@ import StepC from "./StepC";
 import StepD from "./StepD";
 import StepFinal from "./StepFinal";
 import StepFirst from "./StepFirst";
+import { prisma } from "@/src/lib/prisma";
 
 interface InitialFormData {
   genre: string;
@@ -16,9 +17,9 @@ interface InitialFormData {
   region: string;
   quartier: string;
   pays_provenance: string;
-  duree_pays_provenance: number;
+  duree_pays_provenance: string;
   pays_accueil: string;
-  duree_pays_accueil: number;
+  duree_pays_accueil: string;
   // revenu_mensuel: string;
   // devise_revenu: string;
   nombre_enfants: number;
@@ -46,9 +47,9 @@ const initialFormDataRexpat: InitialFormData = {
   region: "",
   quartier: "",
   pays_provenance: "",
-  duree_pays_provenance: 0,
+  duree_pays_provenance: "",
   pays_accueil: "",
-  duree_pays_accueil: 0,
+  duree_pays_accueil: "",
   // revenu_mensuel: "",
   nombre_enfants: 0,
   agreeToTerms: true,
@@ -124,6 +125,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     D: formData.isLogement,
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const validateFormIG = (): boolean => {
     const formErrors: Record<string, string> = {
       genre: "",
@@ -182,7 +185,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     //   formErrors.devise_revenu = "Veuillez selectionner uen devise.";
     //   isValid = false;
     // }
-    if (!formData.nombre_enfants || formData.nombre_enfants <= 0) {
+    if (!formData.nombre_enfants || formData.nombre_enfants < 0) {
       formErrors.nombre_enfants = "Veuillez entrer un nombre d'enfant valide.";
       isValid = false;
     }
@@ -352,12 +355,40 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }));
   };
 
-  const handleSubmitFormData = (): void => {
+  const handleSubmitFormData = async () => {
     if (!formData.agreeToTerms) {
       alert("Error!!!!!! You must agree to Terms of Services!!!");
     } else {
       if (validateFormEmploi()) {
-        setStep("Final");
+        setIsLoading(true);
+
+        try {
+          const response = await fetch("/api/create", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+          const newIg = await response.json();
+          console.log("Ingomation created", newIg);
+          //alert("Data created successfully");
+          setStep("Final");
+
+          // if (response.ok) {
+          //   const newIg = await response.json();
+          //   console.log("Ingomation created", newIg);
+          //   setStep("Final");
+          // }
+          // else {
+          //   console.error("Failde to create user");
+          // }
+        } catch (error) {
+          console.error("Error during submission:", error);
+          alert("Something went wrong");
+        } finally {
+          setIsLoading(false);
+        }
       }
     }
   };
@@ -433,6 +464,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelPrevStep={handelPrevStep}
             handelBlur={handelBlur}
             errors={errorsIG}
+            isLoading={isLoading}
           />
         ) : null}
         {step === "B" && formData.isEmploi === true ? (
@@ -443,6 +475,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelPrevStep={handelPrevStep}
             handleSubmitFormData={handleSubmitFormData}
             errorsEmploi={errorsEmploi}
+            isLoading={isLoading}
           />
         ) : null}
         {step === "C" && formData.isEducation === true ? (

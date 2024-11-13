@@ -1,11 +1,13 @@
 import Banner from "./Banner";
+import Section from "../sections/Section";
 
 const HomePage = () => {
   return (
     <div>
       {/* // Home section */}
       <div>
-        <Banner />
+        {/* <Banner /> */}
+        <Section />
         {/* <div
           className="relative bg-cover bg-center h-screen"
           //style="background-image: url('images/background-images.jpg');"
