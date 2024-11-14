@@ -174,7 +174,7 @@ const StepB = ({
       <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
-            Comment avez-vous trouver votre dernier emploi?
+            Comment avez-vous trouvé votre dernier emploi?
           </label>
           <select
             id="emploiCanaux"
@@ -201,7 +201,7 @@ const StepB = ({
             Niveau de difficulté pour trouver un emploi
           </label>
           <div className=" grid lg:grid-cols-1">
-            <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <ul className="items-center h-10 w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
               <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                 <div className="flex items-center ps-3">
                   <input
@@ -233,7 +233,7 @@ const StepB = ({
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                   />
                   <label
-                    htmlFor="horizontal-list-radio-id"
+                    htmlFor="emploiNiveauDifficulte-moyen"
                     className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Moyen
