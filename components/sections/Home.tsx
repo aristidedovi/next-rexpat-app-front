@@ -1,5 +1,3 @@
-import React from "react";
-
 const HomePage = () => {
   // Please use 'useState()' to implement Navbar functionality
   return (
@@ -106,7 +104,7 @@ const HomePage = () => {
             </defs>
           </svg>
           <div className="mx-auto justify-center max-w-2xl">
-            <p className="text-center text-gray-500 font-medium tracking-wide  uppercase">
+            <p className="text-center text-gray-500 font-medium tracking-wide uppercase uppercase">
               REXPAT ASSISTANCE
             </p>
             <p className="mt-2 text-center text-4xl md:text-6xl font-bold tracking-tight text-black">
@@ -157,20 +155,20 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-        <section className="h-auto bg-green-700 w-auto">
-          <div className="h-auto flex items-center justify-center container">
-            <p className="text-white text-center text-2xl pr-60 pl-60 pt-8">
+        {/* <section className="h-auto p-4 bg-green-700 w-auto">
+          <div className="h-auto flex items-center justify-center container max-w-2xl mx-auto">
+            <p className="text-white text-center mt-8 text-lg">
               Facilitez votre retour avec des données concrètes:
             </p>
           </div>
-          <div className="h-auto flex items-center justify-center container">
-            <p className="text-white text-center text-2xl pr-60 pl-60 pb-8 font-semibold">
+          <div className="h-auto flex items-center justify-center container max-w-2xl mx-auto">
+            <p className="text-white text-center font-semibold text-2xl md:text-xl">
               l’application qui accompagne la diaspora dans sa reconnexion
             </p>
           </div>
-        </section>
-        <section className="h-auto w-full flex bg-green-700 w-auto">
-          <div className="m-auto flex w-full pb-16 pt-16 pl-16 pr-16">
+        </section> */}
+        {/* <section className="h-auto w-full flex p-6 bg-green-700 w-auto">
+          <div className="flex w-full grid grap-20 place-items-center mt-10 mx-auto lg:grid-cols-3 grid-col-3">
             <div className="w-full h-full flex items-center justify-center md:w-1/3">
               <img
                 src="https://imgur.com/AsYT4fJ.png"
@@ -191,19 +189,104 @@ const HomePage = () => {
               />
             </div>
           </div>
+        </section> */}
+        <section className="text-black mx-auto max-w-screen-2xl relative isolate overflow-hidden bg-green-700 p-10 h-auto">
+          {/* <svg
+            className="h-[610px] w-[200px] absolute -z-10 transform-gpu overflow-hidden blur-2xl -top-32 right-0"
+            viewBox="0 0
+468 788"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            id="Windframe_sP5P2N3hszP"
+          >
+            <circle
+              cx="44.5105"
+              cy="378.637"
+              r="156.383"
+              fill="#15803d"
+            ></circle>
+            <circle
+              cx="119.803"
+              cy="529.24"
+              r="156.383"
+              fill="#15803d"
+            ></circle>
+            <circle
+              cx="173.364"
+              cy="372.857"
+              r="156.383"
+              fill="#15803d"
+            ></circle>
+            <g filter="url(#filter0_b_1410_520)">
+              <circle
+                cx="73.5409"
+                cy="394.049"
+                r="393.819"
+                fill="white"
+                fillOpacity="0.79"
+              ></circle>
+            </g>
+            <defs>
+              <filter
+                x="-460.404"
+                y="-139.896"
+                width="1067.89"
+                height="1067.89"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+                <feGaussianBlur
+                  in="BackgroundImageFix"
+                  stdDeviation="70.063"
+                ></feGaussianBlur>
+                <feComposite
+                  in2="SourceAlpha"
+                  operator="in"
+                  result="effect1_backgroundBlur_1410_520"
+                ></feComposite>
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_backgroundBlur_1410_520"
+                  result="shape"
+                ></feBlend>
+              </filter>
+            </defs>
+          </svg> */}
+          <p className="lg:text-xl tracking-tight text-center text-white">
+            Facilitez votre retour avec des données concrètes:
+          </p>
+          <p className="lg:text-3xl tracking-tight text-center text-white text-xl">
+            l’application qui accompagne la diaspora dans sa reconnexion
+          </p>
+          <div className="lg:grid-cols-3 mt-10 mx-auto grid place-items-center gap-20 max-w-screen-2xl">
+            <div className="w-full rounded-xl shadow-lg p-12 space-y-3 border border-gray-100">
+              <img
+                src="https://imgur.com/8Bqi6Ls.png"
+                className="object-contain object-top w-full h-auto lg:w-auto"
+              />
+            </div>
+            <div className="w-full rounded-xl shadow-lg p-12 space-y-3 border border-gray-100">
+              <img
+                src="https://imgur.com/d8NtJEb.png"
+                className="object-contain object-top w-full h-auto lg:w-auto"
+              />
+            </div>
+            <div className="w-full rounded-xl shadow-lg p-12 space-y-3 border border-gray-100">
+              <img
+                src="https://imgur.com/8Bqi6Ls.png"
+                className="object-contain object-top w-full h-auto lg:w-auto"
+              />
+            </div>
+          </div>
         </section>
         <section
           style={{ backgroundImage: "url(https://imgur.com/QETsBkJ.png)" }}
-          className="h-screen w-full flex w-auto"
         >
-          <div className="flex items-center justify-center container pl-28 pr-28">
-            <div
-              className="flex items-center bg-gray-200 bg-opacity-50 h-screen justify-center w-1/2 pl-14 pr-14 flex-col mt-10
-  mb-10"
-            >
-              <p className="text-2xl font-semibold pb-10">
-                Choix du témoignage
-              </p>
+          <div className="grid mx-auto place-items-start p-10">
+            <div className="items-center bg-gray-200 bg-opacity-50 justify-center p-10 h-auto">
+              <p className="text-2xl font-semibold">Choix du témoignage</p>
               <p className="text-xl text-left mt-7">
                 <span className="font-bold">Logement</span>: Difficultés et
                 succès dans la recherche d'un logement.
@@ -227,7 +310,7 @@ const HomePage = () => {
                 Témoigner
               </button>
             </div>
-            <div className="w-full h-full flex items-center justify-center md:w-2/3">
+            <div className="w-full h-full flex items-center justify-center">
               <p></p>
             </div>
           </div>
@@ -239,7 +322,7 @@ const HomePage = () => {
 468 788"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            id="Windframe_sP5P2N3hszP"
+            id="Windframe_NU945YbeQK"
           >
             <circle
               cx="44.5105"
@@ -333,8 +416,8 @@ const HomePage = () => {
           style={{ backgroundImage: "url(#)" }}
           className="w-full flex w-auto bg-green-700"
         >
-          <div className="h-80 flex items-center justify-center container flex-col pl-28 pr-28">
-            <p className="text-white text-2xl text-center mb-10">
+          <div className="h-80 flex items-center justify-center container flex-col lg:pl-28 lg:pr-28">
+            <p className="text-white text-center mb-10 lg:text-2xl">
               Partagez votre expérience et inspirez d'autres membres de la
               diaspora ! Votre témoignage peut faire la différence pour ceux qui
               envisagent le retour.
@@ -349,8 +432,8 @@ const HomePage = () => {
         style={{ backgroundImage: "url(https://imgur.com/HtlXCcw.png)" }}
         className="h-screen w-full flex w-auto"
       >
-        <div className="flex items-center justify-center container pl-28 pr-28">
-          <div className="flex bg-gray-200 bg-opacity-50 h-screen justify-center w-1/2 pl-14 pr-14 flex-col mt-10 mb-10">
+        <div className="grid mx-auto pt-10 place-items-start items-center">
+          <div className="bg-gray-200 bg-opacity-50 p-10">
             <p className="text-2xl font-semibold">
               Statistiques sur le logement
             </p>
@@ -362,25 +445,22 @@ const HomePage = () => {
             <p className="text-9xl text-left mt-7 text-yellow-500">60%</p>
             <p className="text-xl text-left">préfèrent la location.</p>
           </div>
-          <div className="w-full h-full flex items-center justify-center md:w-2/3">
-            <p></p>
-          </div>
         </div>
       </section>
       <section
         style={{ backgroundImage: "url(#)" }}
         className="w-full flex w-auto bg-green-700"
       >
-        <div className="h-80 flex items-center justify-center mt-0 mr-auto mb-0 ml-auto flex-wrap container pl-10 pr-10">
-          <div className="w-full h-full flex items-center justify-center md:w-2/3">
-            <p className="text-white text-xl">
+        <div className="h-80 items-center justify-center grid p-10 lg:grid-cols-3">
+          <div className="col-span-2">
+            <p className="text-white lg:text-xl">
               Vous avez des questions ou souhaitez en savoir plus sur nos
               services ? Nous sommes là pour vous aider ! Contactez-nous dès
               aujourd'hui, et notre équipe vous répondra dans les plus brefs
               délais. Ensemble, faisons de votre retour une réussite.
             </p>
           </div>
-          <div className="w-full h-full flex items-center justify-center md:w-1/3">
+          <div className="flex items-center justify-center">
             <button className="bg-white text-black h-12 rounded-md shadow-md pr-6 pl-6 text-center font-semibold">
               Nous contacter
             </button>
@@ -419,6 +499,7 @@ const HomePage = () => {
                 <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
                   <button
                     type="submit"
+                
                     className="flex hover:bg-black focus-visible:outline
         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black w-full items-center
         justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white
