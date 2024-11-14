@@ -224,16 +224,16 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       isValid = false;
     }
     if (
-      !formData.emploiTypeContrat &&
-      formData.emploiSituationProActuelle !== "Chômeur"
+      !formData.emploiTypeContrat
+      // &&formData.emploiSituationProActuelle !== "Chômeur"
     ) {
       formErrors.emploiTypeContrat =
         "Veuillez sélectionner votre type de contrat";
       isValid = false;
     }
     if (
-      !formData.emploiSecteur &&
-      formData.emploiSituationProActuelle !== "Chômeur"
+      !formData.emploiSecteur
+      // && formData.emploiSituationProActuelle !== "Chômeur"
     ) {
       formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
       isValid = false;

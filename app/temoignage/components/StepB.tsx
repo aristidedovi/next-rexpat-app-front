@@ -75,10 +75,10 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
           >
             <option value="">Sélectionnez</option>
-            <option value="Chômeur">Chômeur</option>
-            <option value="Entrepruneur">Entrepreuneur</option>
-            <option value="Salarie">Salarie</option>
-            <option value="Etudiant">Etudiant</option>
+            <option value="Chômeur">Chômeur / chômeuse</option>
+            <option value="Entrepruneur">Entrepreuneur / entrepreneuse</option>
+            <option value="Salarie">Salarié(e)</option>
+            <option value="Etudiant">Etudiant(e)</option>
           </select>
         </div>
 
@@ -155,7 +155,7 @@ const StepB = ({
         <div className="lg:my-4 sm:my-2">
           <CurrencyInput
             handelChangeInput={handelChangeInput}
-            inputLabel="Revenu mensuel"
+            inputLabel="Revenu mensuel*"
             inputName="emploiRevenu_mensuel"
             inputId="emploiRevenu_mensuel"
             inputValue={formData.emploiRevenu_mensuel}
