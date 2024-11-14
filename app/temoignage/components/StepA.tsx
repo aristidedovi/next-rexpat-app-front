@@ -80,7 +80,8 @@ const StepA = ({
             type="number"
             min="16"
             name="age"
-            value={formData.age}
+            //value={formData.age}
+            value={formData.age !== null ? formData.age : ""}
             onChange={(e) => handelChangeInput(e)}
             onBlur={(e) => handelBlur(e)}
             id="age"
@@ -146,7 +147,10 @@ const StepA = ({
             placeholder="3"
             type="number"
             name="nombre_enfants"
-            value={formData.nombre_enfants}
+            //value={formData.nombre_enfants}
+            value={
+              formData.nombre_enfants !== null ? formData.nombre_enfants : ""
+            }
             onChange={(e) => handelChangeInput(e)}
             onBlur={(e) => handelBlur(e)}
             // id="nombre_enfants"

@@ -12,7 +12,7 @@ interface InitialFormData {
   genre: string;
   nationalite: string;
   situation_matrimoniale: string;
-  age: number;
+  age: number | null;
   region: string;
   quartier: string;
   pays_provenance: string;
@@ -21,7 +21,7 @@ interface InitialFormData {
   duree_pays_accueil: string;
   // revenu_mensuel: string;
   // devise_revenu: string;
-  nombre_enfants: number;
+  nombre_enfants: number | null;
   agreeToTerms: boolean;
   isEmploi: boolean;
   isEducation: boolean;
@@ -42,7 +42,7 @@ const initialFormDataRexpat: InitialFormData = {
   genre: "",
   nationalite: "",
   situation_matrimoniale: "",
-  age: 0,
+  age: null,
   region: "",
   quartier: "",
   pays_provenance: "",
@@ -50,7 +50,7 @@ const initialFormDataRexpat: InitialFormData = {
   pays_accueil: "",
   duree_pays_accueil: "",
   // revenu_mensuel: "",
-  nombre_enfants: 0,
+  nombre_enfants: null,
   agreeToTerms: true,
   isEmploi: false,
   isEducation: false,
