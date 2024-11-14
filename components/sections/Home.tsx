@@ -190,7 +190,10 @@ const HomePage = () => {
             </div>
           </div>
         </section> */}
-        <section className="text-black mx-auto max-w-screen-2xl relative isolate overflow-hidden bg-green-700 p-10 h-auto">
+        <section
+          //className="text-black mx-auto max-w-screen-2xl relative isolate overflow-hidden bg-green-700 p-10 h-auto"
+          className="w-full bg-green-700 text-black mx-auto  relative isolate overflow-hidden p-10 h-auto"
+        >
           {/* <svg
             className="h-[610px] w-[200px] absolute -z-10 transform-gpu overflow-hidden blur-2xl -top-32 right-0"
             viewBox="0 0
@@ -282,7 +285,12 @@ const HomePage = () => {
           </div>
         </section>
         <section
-          style={{ backgroundImage: "url(https://imgur.com/QETsBkJ.png)" }}
+          style={{
+            backgroundImage: "url(https://imgur.com/QETsBkJ.png)",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
           <div className="grid mx-auto place-items-start p-10">
             <div className="items-center bg-gray-200 bg-opacity-50 justify-center p-10 h-auto">
@@ -414,7 +422,7 @@ const HomePage = () => {
         </section>
         <section
           style={{ backgroundImage: "url(#)" }}
-          className="w-full flex w-auto bg-green-700"
+          className="w-full flex bg-green-700"
         >
           <div className="h-80 flex items-center justify-center container flex-col lg:pl-28 lg:pr-28">
             <p className="text-white text-center mb-10 lg:text-2xl">
@@ -429,8 +437,13 @@ const HomePage = () => {
         </section>
       </div>
       <section
-        style={{ backgroundImage: "url(https://imgur.com/HtlXCcw.png)" }}
-        className="h-screen w-full flex w-auto"
+        style={{
+          backgroundImage: "url(https://imgur.com/HtlXCcw.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+        }}
+        className="h-screen w-full flex"
       >
         <div className="grid mx-auto pt-10 place-items-start items-center">
           <div className="bg-gray-200 bg-opacity-50 p-10">
@@ -449,7 +462,7 @@ const HomePage = () => {
       </section>
       <section
         style={{ backgroundImage: "url(#)" }}
-        className="w-full flex w-auto bg-green-700"
+        className="w-full flex bg-green-700"
       >
         <div className="h-80 items-center justify-center grid p-10 lg:grid-cols-3">
           <div className="col-span-2">
