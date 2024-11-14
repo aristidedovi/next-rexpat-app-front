@@ -207,7 +207,7 @@ const HomePage = () => {
         </section> */}
         <section
           //className="text-black mx-auto max-w-screen-2xl relative isolate overflow-hidden bg-green-700 p-10 h-auto"
-          className="w-full bg-green-700 text-black mx-auto  relative isolate overflow-hidden p-10 h-auto"
+          className="w-full bg-green-700 text-black mx-auto relative isolate overflow-hidden p-20 h-auto"
         >
           {/* <svg
             className="h-[610px] w-[200px] absolute -z-10 transform-gpu overflow-hidden blur-2xl -top-32 right-0"
@@ -278,7 +278,7 @@ const HomePage = () => {
           <p className="lg:text-3xl tracking-tight text-center text-white text-xl">
             l’application qui accompagne la diaspora dans sa reconnexion
           </p>
-          <div className="lg:grid-cols-3 mt-10 mx-auto grid place-items-center gap-20 max-w-screen-2xl">
+          <div className="lg:grid-cols-3 mt-1 py-5 px-20 mx-auto grid place-items-center gap-10 max-w-screen-2xl">
             <div className="w-full rounded-xl shadow-lg p-12 space-y-3 border border-gray-100">
               <img
                 src="https://imgur.com/8Bqi6Ls.png"
