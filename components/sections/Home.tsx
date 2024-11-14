@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "motion/react";
+
 const HomePage = () => {
   // Please use 'useState()' to implement Navbar functionality
   return (
@@ -103,8 +107,18 @@ const HomePage = () => {
               </filter>
             </defs>
           </svg>
-          <div className="mx-auto justify-center max-w-2xl">
-            <p className="text-center text-gray-500 font-medium tracking-wide uppercase uppercase">
+          <motion.div
+            initial={{ y: -100, opacity: 0 }} // Commence hors de l'écran, en haut
+            animate={{ y: 0, opacity: 1 }} // Descend jusqu'à sa position finale
+            transition={{
+              type: "spring",
+              stiffness: 50,
+              damping: 10,
+              duration: 1,
+            }}
+            className="mx-auto justify-center max-w-2xl"
+          >
+            <p className="text-center text-gray-500 font-medium tracking-wide uppercase">
               REXPAT ASSISTANCE
             </p>
             <p className="mt-2 text-center text-4xl md:text-6xl font-bold tracking-tight text-black">
@@ -113,6 +127,7 @@ const HomePage = () => {
             <p className="mt-6 text-lg text-gray-600 text-center">
               Découvrez l'Impact du Retour de la Diaspora !
             </p>
+
             <div className="mt-24 bg-white rounded-lg drop-shadow-xl p-2.5 flex border border-gray-300">
               <input
                 type="email"
@@ -153,7 +168,7 @@ const HomePage = () => {
                 par mois
               </p>
             </div>
-          </div>
+          </motion.div>
         </section>
         {/* <section className="h-auto p-4 bg-green-700 w-auto">
           <div className="h-auto flex items-center justify-center container max-w-2xl mx-auto">
