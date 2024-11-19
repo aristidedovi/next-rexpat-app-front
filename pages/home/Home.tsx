@@ -1,6 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
+import { FirstSection } from "./FirstSection";
+import { FeatureSection } from "./FeatureSection";
+import { StatsSection } from "./StatsSection";
+import { ContactSection } from "./ContactSection";
+import { HeroSection } from "./HeroSection";
 
 const HomePage = () => {
   // Please use 'useState()' to implement Navbar functionality
@@ -43,133 +48,10 @@ const HomePage = () => {
             </div>
           </nav>
         </header> */}
-        <section className="mx-auto mt-16 pt-24 pb-28 max-w-screen-2xl p-4 relative isolate">
-          <svg
-            className="w-[468px] h-[788px] top-1 transform-gpu overflow-hidden blur-2xl absolute left-0 -z-10 -my-48"
-            viewBox="0 0
-468 788"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            id="Windframe_xxuj2tMc-h"
-          >
-            <circle
-              cx="44.5105"
-              cy="378.637"
-              r="156.383"
-              fill="#15803d"
-            ></circle>
-            <circle
-              cx="119.803"
-              cy="529.24"
-              r="156.383"
-              fill="#15803d"
-            ></circle>
-            <circle
-              cx="173.364"
-              cy="372.857"
-              r="156.383"
-              fill="#15803d"
-            ></circle>
-            <g filter="url(#filter0_b_1410_520)">
-              <circle
-                cx="73.5409"
-                cy="394.049"
-                r="393.819"
-                fill="white"
-                fillOpacity="0.79"
-              ></circle>
-            </g>
-            <defs>
-              <filter
-                x="-460.404"
-                y="-139.896"
-                width="1067.89"
-                height="1067.89"
-                filterUnits="userSpaceOnUse"
-                colorInterpolationFilters="sRGB"
-              >
-                <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-                <feGaussianBlur
-                  in="BackgroundImageFix"
-                  stdDeviation="70.063"
-                ></feGaussianBlur>
-                <feComposite
-                  in2="SourceAlpha"
-                  operator="in"
-                  result="effect1_backgroundBlur_1410_520"
-                ></feComposite>
-                <feBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="effect1_backgroundBlur_1410_520"
-                  result="shape"
-                ></feBlend>
-              </filter>
-            </defs>
-          </svg>
-          <motion.div
-            initial={{ y: -100, opacity: 0 }} // Commence hors de l'écran, en haut
-            animate={{ y: 0, opacity: 1 }} // Descend jusqu'à sa position finale
-            transition={{
-              type: "spring",
-              stiffness: 50,
-              damping: 10,
-              duration: 1,
-            }}
-            className="mx-auto justify-center max-w-2xl"
-          >
-            <p className="text-center text-gray-500 font-medium tracking-wide uppercase">
-              REXPAT ASSISTANCE
-            </p>
-            <p className="mt-2 text-center text-4xl md:text-6xl font-bold tracking-tight text-black">
-              Retour aux Sources!
-            </p>
-            <p className="mt-6 text-lg text-gray-600 text-center">
-              Découvrez l'Impact du Retour de la Diaspora !
-            </p>
-
-            <div className="mt-24 bg-white rounded-lg drop-shadow-xl p-2.5 flex border border-gray-300">
-              <input
-                type="email"
-                className="border-none focus:outline-none p-2.5 flex-1 flex-shrink-0 w-full text-lg"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 rounded-md bg-black text-white"
-              >
-                S'abonner
-              </button>
-            </div>
-            <div className="items-center justify-center mt-6 flex gap-3">
-              <svg
-                className="w-6 h-6"
-                viewBox="0 0 23 23"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                id="Windframe_Tah5SlXh7oi"
-              >
-                <path
-                  d="M11.0527 22.0752C17.128 22.0752 22.0527 17.1505 22.0527 11.0752C22.0527
-    4.9999 17.128 0.0751953 11.0527 0.0751953C4.97743 0.0751953 0.0527344 4.9999 0.0527344 11.0752C0.0527344
-    17.1505 4.97743 22.0752 11.0527 22.0752Z"
-                  fill="currentColor"
-                ></path>
-                <path
-                  d="M5.55273 11.6251L8.85273
-    14.9251L16.5527 7.2251"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-              </svg>
-              <p className="text-center text-gray-600">
-                C'est 100% gratuit et nous n'enverrons jamais plus d'un email
-                par mois
-              </p>
-            </div>
-          </motion.div>
-        </section>
+        <HeroSection />
+        {/* <FirstSection /> */}
+        <FeatureSection />
+        <StatsSection />
         {/* <section className="h-auto p-4 bg-green-700 w-auto">
           <div className="h-auto flex items-center justify-center container max-w-2xl mx-auto">
             <p className="text-white text-center mt-8 text-lg">
@@ -205,11 +87,10 @@ const HomePage = () => {
             </div>
           </div>
         </section> */}
-        <section
-          //className="text-black mx-auto max-w-screen-2xl relative isolate overflow-hidden bg-green-700 p-10 h-auto"
+        {/* <section
           className="w-full bg-green-700 text-black mx-auto relative isolate overflow-hidden p-20 h-auto"
         >
-          {/* <svg
+          <svg
             className="h-[610px] w-[200px] absolute -z-10 transform-gpu overflow-hidden blur-2xl -top-32 right-0"
             viewBox="0 0
 468 788"
@@ -271,7 +152,7 @@ const HomePage = () => {
                 ></feBlend>
               </filter>
             </defs>
-          </svg> */}
+          </svg>
           <p className="lg:text-xl tracking-tight text-center text-white">
             Facilitez votre retour avec des données concrètes:
           </p>
@@ -298,7 +179,7 @@ const HomePage = () => {
               />
             </div>
           </div>
-        </section>
+        </section> */}
         <section
           style={{
             backgroundImage: "url(https://imgur.com/QETsBkJ.png)",
@@ -475,7 +356,120 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section
+      {/* <section className="mx-auto mt-16 pt-24 pb-28 max-w-screen-2xl p-4 relative isolate">
+        <svg
+          className="w-[468px] h-[788px] top-1 transform-gpu overflow-hidden blur-2xl absolute left-0 -z-10 -my-48"
+          viewBox="0 0
+468 788"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          id="Windframe_xxuj2tMc-h"
+        >
+          <circle cx="44.5105" cy="378.637" r="156.383" fill="#15803d"></circle>
+          <circle cx="119.803" cy="529.24" r="156.383" fill="#15803d"></circle>
+          <circle cx="173.364" cy="372.857" r="156.383" fill="#15803d"></circle>
+          <g filter="url(#filter0_b_1410_520)">
+            <circle
+              cx="73.5409"
+              cy="394.049"
+              r="393.819"
+              fill="white"
+              fillOpacity="0.79"
+            ></circle>
+          </g>
+          <defs>
+            <filter
+              x="-460.404"
+              y="-139.896"
+              width="1067.89"
+              height="1067.89"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+              <feGaussianBlur
+                in="BackgroundImageFix"
+                stdDeviation="70.063"
+              ></feGaussianBlur>
+              <feComposite
+                in2="SourceAlpha"
+                operator="in"
+                result="effect1_backgroundBlur_1410_520"
+              ></feComposite>
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="effect1_backgroundBlur_1410_520"
+                result="shape"
+              ></feBlend>
+            </filter>
+          </defs>
+        </svg>
+        <motion.div
+          initial={{ y: -100, opacity: 0 }} // Commence hors de l'écran, en haut
+          animate={{ y: 0, opacity: 1 }} // Descend jusqu'à sa position finale
+          transition={{
+            type: "spring",
+            stiffness: 50,
+            damping: 10,
+            duration: 1,
+          }}
+          className="mx-auto justify-center max-w-2xl"
+        >
+          <p className="text-center text-gray-500 font-medium tracking-wide uppercase">
+            REXPAT ASSISTANCE
+          </p>
+          <p className="mt-2 text-center text-4xl md:text-6xl font-bold tracking-tight text-black">
+            Retour aux Sources!
+          </p>
+          <p className="mt-6 text-lg text-gray-600 text-center">
+            Découvrez l'Impact du Retour de la Diaspora !
+          </p>
+
+          <div className="mt-24 bg-white rounded-lg drop-shadow-xl p-2.5 flex border border-gray-300">
+            <input
+              type="email"
+              className="border-none focus:outline-none p-2.5 flex-1 flex-shrink-0 w-full text-lg"
+            />
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-md bg-black text-white"
+            >
+              S'abonner
+            </button>
+          </div>
+          <div className="items-center justify-center mt-6 flex gap-3">
+            <svg
+              className="w-6 h-6"
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              id="Windframe_Tah5SlXh7oi"
+            >
+              <path
+                d="M11.0527 22.0752C17.128 22.0752 22.0527 17.1505 22.0527 11.0752C22.0527
+    4.9999 17.128 0.0751953 11.0527 0.0751953C4.97743 0.0751953 0.0527344 4.9999 0.0527344 11.0752C0.0527344
+    17.1505 4.97743 22.0752 11.0527 22.0752Z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M5.55273 11.6251L8.85273
+    14.9251L16.5527 7.2251"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+            <p className="text-center text-gray-600">
+              C'est 100% gratuit et nous n'enverrons jamais plus d'un email par
+              mois
+            </p>
+          </div>
+        </motion.div>
+      </section> */}
+      <ContactSection />
+      {/* <section
         style={{ backgroundImage: "url(#)" }}
         className="w-full flex bg-green-700"
       >
@@ -494,7 +488,7 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <footer aria-labelledby="footer-heading" className="bg-white">
         <p className="sr-only" id="footer-heading">
           Footer

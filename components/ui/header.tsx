@@ -67,19 +67,19 @@ const presentation = [
   {
     name: "Missions",
     description: "Get a better understanding of your traffic",
-    href: "#",
+    href: "/mission",
     icon: ChartPieIcon,
   },
   {
     name: "Services",
     description: "Speak directly to your customers",
-    href: "#",
+    href: "/services",
     icon: CursorArrowRaysIcon,
   },
   {
     name: "Equipe",
     description: "Your customers’ data will be safe and secure",
-    href: "#",
+    href: "/equipe",
     icon: FingerPrintIcon,
   },
 ];
@@ -177,6 +177,9 @@ export function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <a href="/" className="text-sm/6 font-semibold text-gray-900">
+            Accueil
+          </a>
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
               Présentation
