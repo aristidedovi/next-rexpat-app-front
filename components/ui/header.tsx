@@ -177,9 +177,9 @@ export function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="/" className="text-sm/6 font-semibold text-gray-900">
+          <Link href="/" className="text-sm/6 font-semibold text-gray-900">
             Accueil
-          </a>
+          </Link>
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
               Présentation

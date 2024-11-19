@@ -1,7 +1,7 @@
-import { useState } from "react";
+//import { useState } from "react";
 
 export const HeroSection = () => {
-  const [state, setState] = useState(false);
+  //const [state, setState] = useState(false);
 
   // Replace javascript:void(0) path with your path
   //   const navigation = [

@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import { FirstSection } from "./FirstSection";
+//import { motion } from "motion/react";
+//import { FirstSection } from "./FirstSection";
 import { FeatureSection } from "./FeatureSection";
 import { StatsSection } from "./StatsSection";
 import { ContactSection } from "./ContactSection";
