@@ -25,8 +25,8 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
+  //PhoneIcon,
+  //PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import Button from "./Button";
 
