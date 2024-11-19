@@ -15,12 +15,12 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 import {
-  ArrowPathIcon,
+  // ArrowPathIcon,
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
   FingerPrintIcon,
-  SquaresPlusIcon,
+  //SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -116,10 +116,10 @@ const domaines = [
     icon: FingerPrintIcon,
   },
 ];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
+// const callsToAction = [
+//   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+//   { name: "Contact sales", href: "#", icon: PhoneIcon },
+// ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
