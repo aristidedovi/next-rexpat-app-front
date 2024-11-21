@@ -11,7 +11,7 @@ generator client {
 // }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -43,7 +43,9 @@ model Emploi {
   emploiCanaux               String
   emploiSituationProActuelle String
   emploiEmail                String
-  emploiNiveauDifficulte     String
+  //emploiNiveauDifficulte     String
+  emploiAvantApres           String
+  emploiDelai                String
   createdAt                  DateTime           @default(now())
   updateAt                   DateTime           @updatedAt
   informationGeneral         InformationGeneral @relation(fields: [informationGeneralId], references: [id])

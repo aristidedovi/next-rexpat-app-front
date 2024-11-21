@@ -35,7 +35,9 @@ interface InitialFormData {
   emploiCanaux: string;
   emploiSituationProActuelle: string;
   emploiEmail: string;
-  emploiNiveauDifficulte: string;
+  //emploiNiveauDifficulte: string;
+  emploiAvantApres: string;
+  emploiDelai: string;
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -64,7 +66,9 @@ const initialFormDataRexpat: InitialFormData = {
   emploiCanaux: "",
   emploiSituationProActuelle: "",
   emploiEmail: "",
-  emploiNiveauDifficulte: "",
+  //emploiNiveauDifficulte: "",
+  emploiAvantApres: "",
+  emploiDelai: "",
 };
 
 const stepsArray: string[] = ["I", "A", "B", "C", "D"];
@@ -213,7 +217,9 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       emploiCanaux: "",
       emploiSituationProActuelle: "",
       emploiEmail: "",
-      emploiNiveauDifficulte: "",
+      //emploiNiveauDifficulte: "",
+      emploiAvantApres: "",
+      emploiDelai: "",
     };
 
     let isValid: boolean = true;
@@ -224,29 +230,45 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       isValid = false;
     }
     if (
-      !formData.emploiTypeContrat
-      // &&formData.emploiSituationProActuelle !== "Chômeur"
+      !formData.emploiTypeContrat &&
+      formData.emploiSituationProActuelle !== "Chômeur"
     ) {
       formErrors.emploiTypeContrat =
         "Veuillez sélectionner votre type de contrat";
       isValid = false;
     }
     if (
-      !formData.emploiSecteur
-      // && formData.emploiSituationProActuelle !== "Chômeur"
+      !formData.emploiSecteur &&
+      formData.emploiSituationProActuelle !== "Chômeur"
     ) {
       formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
       isValid = false;
     }
 
-    if (!formData.emploiRevenu_mensuel) {
+    if (
+      !formData.emploiRevenu_mensuel &&
+      formData.emploiSituationProActuelle !== "Chômeur"
+    ) {
       formErrors.emploiRevenu_mensuel =
         "Veuillez entrer un revenu mensuel valide.";
       isValid = false;
     }
 
-    if (!formData.emploiDevise_revenu) {
-      formErrors.emploiDevise_revenu = "Veuillez selectionner uen devise.";
+    if (
+      !formData.emploiDevise_revenu &&
+      formData.emploiSituationProActuelle !== "Chômeur"
+    ) {
+      formErrors.emploiDevise_revenu = "Veuillez selectionner une devise.";
+      isValid = false;
+    }
+
+    if (!formData.emploiAvantApres) {
+      formErrors.emploiAvantApres = "Veuillez selectionner une option.";
+      isValid = false;
+    }
+
+    if (!formData.emploiDelai) {
+      formErrors.emploiDelai = "Veuillez selectionner une option.";
       isValid = false;
     }
 

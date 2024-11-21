@@ -113,7 +113,7 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
             id="emploiEmployeur"
             className={inputClassName}
-            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            disabled={formData.emploiSituationProActuelle === "Chômeur"}
           />
         </div>
         <div
@@ -123,7 +123,8 @@ const StepB = ({
           // }`}
         >
           <label htmlFor="emploiTypeContrat" className={labelClassName}>
-            Type de contrat*
+            Type de contrat{" "}
+            {formData.emploiSituationProActuelle === "Chômeur" ? "" : "*"}
           </label>
           <select
             id="emploiTypeContrat"
@@ -132,14 +133,16 @@ const StepB = ({
             //   errorsEmploi.emploiTypeContrat ? "border-red-500" : ""
             // }`}
             className={`${inputClassName} ${
-              errorsEmploi.emploiTypeContrat && !formData.emploiTypeContrat
+              errorsEmploi.emploiTypeContrat &&
+              !formData.emploiTypeContrat &&
+              formData.emploiSituationProActuelle !== "Chômeur"
                 ? "border-red-500"
                 : formData.emploiTypeContrat &&
                   errorsEmploi.emploiTypeContrat !== ""
                 ? "border-blue-500"
                 : ""
             }`}
-            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiTypeContrat"
             value={formData.emploiTypeContrat}
             onChange={(e) => handelChangeInput(e)}
@@ -155,13 +158,14 @@ const StepB = ({
         <div className="lg:my-4 sm:my-2">
           <CurrencyInput
             handelChangeInput={handelChangeInput}
-            inputLabel="Revenu mensuel*"
+            inputLabel="Revenu mensuel"
             inputName="emploiRevenu_mensuel"
             inputId="emploiRevenu_mensuel"
             inputValue={formData.emploiRevenu_mensuel}
             formErrors={errorsEmploi.emploiRevenu_mensuel}
             inputDeviseValue={formData.emploiDevise_revenu}
             inputDeviseName="emploiDevise_revenu"
+            inputSituationProActuelle={formData.emploiSituationProActuelle}
           />
         </div>
       </div>
@@ -171,7 +175,7 @@ const StepB = ({
           How much do you expect to use each month?
         </h3> */}
 
-      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
             Comment avez-vous trouvé votre dernier emploi?
@@ -197,6 +201,58 @@ const StepB = ({
           </select>
         </div>
         <div className="lg:my-4 sm:my-2">
+          <label htmlFor="emploiAvantApres" className={labelClassName}>
+            Avez vous trouver un emploi avant ou après votre arriver ?
+          </label>
+          <select
+            id="emploiAvantApres"
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   formData.emploiSituationProActuelle === "Chômeur"
+            //     ? "border-black"
+            //     : ""
+            // }`}
+            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            name="emploiAvantApres"
+            value={formData.emploiAvantApres}
+            onChange={(e) => handelChangeInput(e)}
+          >
+            <option value="">Sélectionnez</option>
+            <option value="oui">Oui</option>
+            <option value="non">Non</option>
+          </select>
+        </div>
+        <div className="lg:my-4 sm:my-2">
+          <label htmlFor="emploiDelai" className={labelClassName}>
+            Sur quel délai avez vous trouver un emploi (mois)
+          </label>
+          <select
+            id="emploiDelai"
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   formData.emploiSituationProActuelle === "Chômeur"
+            //     ? "border-black"
+            //     : ""
+            // }`}
+            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            name="emploiDelai"
+            value={formData.emploiDelai}
+            onChange={(e) => handelChangeInput(e)}
+          >
+            <option value="">Sélectionnez</option>
+            <option value="-3">moins 3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+        {/* <div className="lg:my-4 sm:my-2">
           <label className={`${labelClassName}`}>
             Niveau de difficulté pour trouver un emploi
           </label>
@@ -261,7 +317,7 @@ const StepB = ({
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="my-2 flex justify-between items-center">
