@@ -380,7 +380,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     if (!formData.agreeToTerms) {
       alert("Error!!!!!! You must agree to Terms of Services!!!");
     } else {
-      if (validateFormEmploi()) {
+      if (validateFormEmploi() && validateFormIG()) {
         setIsLoading(true);
 
         try {
@@ -392,7 +392,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             body: JSON.stringify(formData),
           });
           const newIg = await response.json();
-          console.log("Ingomation created", newIg);
+          console.log("Information created", newIg);
           //alert("Data created successfully");
           setStep("Final");
 

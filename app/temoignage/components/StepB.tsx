@@ -202,7 +202,7 @@ const StepB = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiAvantApres" className={labelClassName}>
-            Avez vous trouver un emploi avant ou après votre arriver ?
+            Avez vous trouvé un emploi avant ou après votre arriver ?
           </label>
           <select
             id="emploiAvantApres"
@@ -218,13 +218,13 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
           >
             <option value="">Sélectionnez</option>
-            <option value="oui">Oui</option>
-            <option value="non">Non</option>
+            <option value="avant">Avant</option>
+            <option value="après">Après</option>
           </select>
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiDelai" className={labelClassName}>
-            Sur quel délai avez vous trouver un emploi (mois)
+            Sur quel délai avez vous trouvé un emploi (mois)
           </label>
           <select
             id="emploiDelai"
