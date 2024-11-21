@@ -224,7 +224,7 @@ const StepB = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiDelai" className={labelClassName}>
-            Sur quel délai avez vous trouvé un emploi (mois)
+            Sur quel délai avez vous trouvé un emploi &nbsp; (mois)
           </label>
           <select
             id="emploiDelai"
