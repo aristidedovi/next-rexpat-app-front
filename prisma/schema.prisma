@@ -43,7 +43,6 @@ model Emploi {
   emploiCanaux               String
   emploiSituationProActuelle String
   emploiEmail                String
-  //emploiNiveauDifficulte     String
   emploiAvantApres           String
   emploiDelai                String
   createdAt                  DateTime           @default(now())
