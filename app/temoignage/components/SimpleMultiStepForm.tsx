@@ -303,24 +303,24 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     return isValid;
   };
 
-  const validateFormEducation = (): boolean => {
-    const formErrors: Record<string, string> = {
-      educationNombreEnfant: "",
-      educationNiveauEtude: "",
-      educationTypeEcole: "",
-      educationLanguesEnseignes: "",
-      educationAvecOuSansUniforme: "",
-      educationAvecOuSansTransport: "",
-      educationBudgetScolaire: "",
-      educationNiveauSatisfaction: "",
-      educationProgrammes: "",
-      educationAutres: "",
-    };
-    let isValid: boolean = true;
+  // const validateFormEducation = (): boolean => {
+  //   const formErrors: Record<string, string> = {
+  //     educationNombreEnfant: "",
+  //     educationNiveauEtude: "",
+  //     educationTypeEcole: "",
+  //     educationLanguesEnseignes: "",
+  //     educationAvecOuSansUniforme: "",
+  //     educationAvecOuSansTransport: "",
+  //     educationBudgetScolaire: "",
+  //     educationNiveauSatisfaction: "",
+  //     educationProgrammes: "",
+  //     educationAutres: "",
+  //   };
+  //   let isValid: boolean = true;
 
-    setErrorsEducation(formErrors);
-    return isValid;
-  };
+  //   setErrorsEducation(formErrors);
+  //   return isValid;
+  // };
 
   const handelNextStep = (): void => {
     if (step === "I") {
