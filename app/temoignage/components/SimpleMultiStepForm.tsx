@@ -27,6 +27,7 @@ interface InitialFormData {
   isEducation: boolean;
   isLogement: boolean;
   isTransport: boolean;
+  // Emploi data
   emploiSecteur: string;
   emploiEmployeur: string;
   emploiTypeContrat: string;
@@ -38,6 +39,17 @@ interface InitialFormData {
   //emploiNiveauDifficulte: string;
   emploiAvantApres: string;
   emploiDelai: string;
+  // Education data
+  educationNombreEnfant: number | null;
+  educationNiveauEtude: string;
+  educationTypeEcole: string;
+  educationLanguesEnseignes: string;
+  educationAvecOuSansUniforme: string;
+  educationAvecOuSansTransport: string;
+  educationBudgetScolaire: string;
+  educationNiveauSatisfaction: string;
+  educationProgrammes: string;
+  educationAutres: string;
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -69,6 +81,18 @@ const initialFormDataRexpat: InitialFormData = {
   //emploiNiveauDifficulte: "",
   emploiAvantApres: "",
   emploiDelai: "",
+
+  // Education data initialisation
+  educationNombreEnfant: null,
+  educationNiveauEtude: "",
+  educationTypeEcole: "",
+  educationLanguesEnseignes: "",
+  educationAvecOuSansUniforme: "",
+  educationAvecOuSansTransport: "",
+  educationBudgetScolaire: "",
+  educationNiveauSatisfaction: "",
+  educationProgrammes: "",
+  educationAutres: "",
 };
 
 const stepsArray: string[] = ["I", "A", "B", "C", "D"];
@@ -120,6 +144,9 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   );
   const [errorsIG, setErrorsIG] = useState<Record<string, string>>({});
   const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
+  const [errorsEducation, setErrorsEducation] = useState<
+    Record<string, string>
+  >({});
 
   const stepConditions: Record<string, boolean> = {
     A: true,
@@ -273,6 +300,25 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }
 
     setErrorsEmploi(formErrors);
+    return isValid;
+  };
+
+  const validateFormEducation = (): boolean => {
+    const formErrors: Record<string, string> = {
+      educationNombreEnfant: "",
+      educationNiveauEtude: "",
+      educationTypeEcole: "",
+      educationLanguesEnseignes: "",
+      educationAvecOuSansUniforme: "",
+      educationAvecOuSansTransport: "",
+      educationBudgetScolaire: "",
+      educationNiveauSatisfaction: "",
+      educationProgrammes: "",
+      educationAutres: "",
+    };
+    let isValid: boolean = true;
+
+    setErrorsEducation(formErrors);
     return isValid;
   };
 
@@ -505,6 +551,10 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelChangeInput={handelChangeInput}
             handelNextStep={handelNextStep}
             handelPrevStep={handelPrevStep}
+            handelBlur={handelBlur}
+            handleSubmitFormData={handleSubmitFormData}
+            errorsEducation={errorsEducation}
+            isLoading={isLoading}
           />
         ) : null}
         {step === "D" && formData.isLogement === true ? (
