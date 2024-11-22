@@ -303,24 +303,29 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     return isValid;
   };
 
-  // const validateFormEducation = (): boolean => {
-  //   const formErrors: Record<string, string> = {
-  //     educationNombreEnfant: "",
-  //     educationNiveauEtude: "",
-  //     educationTypeEcole: "",
-  //     educationLanguesEnseignes: "",
-  //     educationAvecOuSansUniforme: "",
-  //     educationAvecOuSansTransport: "",
-  //     educationBudgetScolaire: "",
-  //     educationNiveauSatisfaction: "",
-  //     educationProgrammes: "",
-  //     educationAutres: "",
-  //   };
-  //   let isValid: boolean = true;
+  const validateFormEducation = (): boolean => {
+    const formErrors: Record<string, string> = {
+      educationNombreEnfant: "",
+      educationNiveauEtude: "",
+      educationTypeEcole: "",
+      educationLanguesEnseignes: "",
+      educationAvecOuSansUniforme: "",
+      educationAvecOuSansTransport: "",
+      educationBudgetScolaire: "",
+      educationNiveauSatisfaction: "",
+      educationProgrammes: "",
+      educationAutres: "",
+    };
+    let isValid: boolean = true;
 
-  //   setErrorsEducation(formErrors);
-  //   return isValid;
-  // };
+    if (!formData.educationNombreEnfant) {
+      formErrors.educationNombreEnfant = "Veuillez saisir un nombre d'enfant";
+      isValid = false;
+    }
+
+    setErrorsEducation(formErrors);
+    return isValid;
+  };
 
   const handelNextStep = (): void => {
     if (step === "I") {
@@ -426,7 +431,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     if (!formData.agreeToTerms) {
       alert("Error!!!!!! You must agree to Terms of Services!!!");
     } else {
-      if (validateFormEmploi() && validateFormIG()) {
+      if (validateFormEmploi() && validateFormIG() && validateFormEducation()) {
         setIsLoading(true);
 
         try {
