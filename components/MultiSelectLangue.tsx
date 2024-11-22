@@ -120,7 +120,7 @@ const MultiSelectLangue: React.FC<MultiSelectDropdownProps> = ({
                 </span>
               ))
             ) : (
-              <span className="text-gray-500">Sélectionnez les niveaux</span>
+              <span className="text-gray-500">Sélectionnez</span>
             )}
           </div>
 

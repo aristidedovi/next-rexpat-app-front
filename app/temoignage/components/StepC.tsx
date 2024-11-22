@@ -26,7 +26,7 @@ const StepC = ({
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="educationNombreEnfant" className={labelClassName}>
-            Nombre d'enfants*
+            Nombre d'enfants scolarises*
           </label>
           <input
             placeholder="3"
