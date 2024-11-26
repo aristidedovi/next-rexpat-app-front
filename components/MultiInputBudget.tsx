@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, X } from "lucide-react";
+//import { ChevronDown, X } from "lucide-react";
 
 interface MultiSelectDropdownProps {
   educationTypeEcole: string[];
@@ -23,7 +23,7 @@ const MultiInputBudget: React.FC<MultiSelectDropdownProps> = ({
   handelChangeInput,
   name,
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  //const [isOpen, setIsOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,18 +34,18 @@ const MultiInputBudget: React.FC<MultiSelectDropdownProps> = ({
     ? educationTypeEcole
     : [];
 
-  const toggleOption = (option: string): void => {
-    const newValues = selectedValues.includes(option)
-      ? selectedValues.filter((item) => item !== option)
-      : [...selectedValues, option];
+  // const toggleOption = (option: string): void => {
+  //   const newValues = selectedValues.includes(option)
+  //     ? selectedValues.filter((item) => item !== option)
+  //     : [...selectedValues, option];
 
-    handelChangeInput({
-      target: {
-        name,
-        value: newValues,
-      },
-    });
-  };
+  //   handelChangeInput({
+  //     target: {
+  //       name,
+  //       value: newValues,
+  //     },
+  //   });
+  // };
 
   const removeOption = (
     option: string,
@@ -81,7 +81,7 @@ const MultiInputBudget: React.FC<MultiSelectDropdownProps> = ({
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        // setIsOpen(false);
       }
     };
 
@@ -110,25 +110,26 @@ const MultiInputBudget: React.FC<MultiSelectDropdownProps> = ({
           className={`min-h-[41px] p-1.5 border rounded-md ${getBorderClassName()} hover:border-gray-400`}
         >
           <div className="flex flex-wrap gap-1">
-            {selectedValues.length > 0
-              ? selectedValues.map((value) => (
-                  <span
-                    key={value}
-                    className="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-0.5 rounded-md"
-                  >
-                    {value}
-                    <button
-                      type="button"
-                      onClick={(e) => removeOption(value, e)}
-                      className="ml-1 hover:text-blue-900"
-                      aria-label={`Supprimer ${value}`}
+            {
+              selectedValues.length > 0
+                ? selectedValues.map((value) => (
+                    <span
+                      key={value}
+                      className="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-0.5 rounded-md"
                     >
-                      <X size={14} />
-                    </button>
-                  </span>
-                ))
-              : ""
-                // <span className="text-sm text-gray-950">Sélectionnez</span>
+                      {value}
+                      <button
+                        type="button"
+                        onClick={(e) => removeOption(value, e)}
+                        className="ml-1 hover:text-blue-900"
+                        aria-label={`Supprimer ${value}`}
+                      >
+                        {/* <X size={14} /> */}
+                      </button>
+                    </span>
+                  ))
+                : ""
+              // <span className="text-sm text-gray-950">Sélectionnez</span>
             }
 
             <input
