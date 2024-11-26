@@ -8,28 +8,24 @@ interface MultiSelectDropdownProps {
   name: string;
 }
 
-const typeEcole = [
-  "Privée",
-  "Publique",
-  "Internationale",
-  "A domicile",
-] as const;
+// const typeEcole = [
+//   "Privée",
+//   "Publique",
+//   "Internationale",
+//   "A domicile",
+// ] as const;
 
-type TypeEcole = (typeof typeEcole)[number];
+//type TypeEcole = (typeof typeEcole)[number];
 
-const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
+const MultiInputBudget: React.FC<MultiSelectDropdownProps> = ({
   educationTypeEcole,
   errorsEducation,
   handelChangeInput,
   name,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-
-  //const labelClassName = "block text-sm font-medium text-gray-700 mb-1";
-
-  // const inputClassName =
-  //   "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
@@ -38,7 +34,7 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
     ? educationTypeEcole
     : [];
 
-  const toggleOption = (option: TypeEcole): void => {
+  const toggleOption = (option: string): void => {
     const newValues = selectedValues.includes(option)
       ? selectedValues.filter((item) => item !== option)
       : [...selectedValues, option];
@@ -63,6 +59,20 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
         value: newValues,
       },
     });
+  };
+
+  const addOption = () => {
+    const trimmedValue = inputValue.trim();
+    if (trimmedValue && !selectedValues.includes(trimmedValue)) {
+      const newValues = [...selectedValues, trimmedValue];
+      handelChangeInput({
+        target: {
+          name,
+          value: newValues,
+        },
+      });
+      setInputValue("");
+    }
   };
 
   useEffect(() => {
@@ -92,38 +102,52 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
   return (
     <div className="mb-4">
       <label htmlFor={name} className={labelClassName}>
-        Types d'écoles*
+        Budget scolaire*
       </label>
 
       <div className="relative" ref={dropdownRef}>
         <div
-          className={`min-h-[41px] p-1.5 border rounded-md cursor-pointer ${getBorderClassName()} hover:border-gray-400`}
-          onClick={() => setIsOpen(!isOpen)}
+          className={`min-h-[41px] p-1.5 border rounded-md ${getBorderClassName()} hover:border-gray-400`}
         >
           <div className="flex flex-wrap gap-1">
-            {selectedValues.length > 0 ? (
-              selectedValues.map((value) => (
-                <span
-                  key={value}
-                  className="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-0.5 rounded-md"
-                >
-                  {value}
-                  <button
-                    type="button"
-                    onClick={(e) => removeOption(value, e)}
-                    className="ml-1 hover:text-blue-900"
-                    aria-label={`Supprimer ${value}`}
+            {selectedValues.length > 0
+              ? selectedValues.map((value) => (
+                  <span
+                    key={value}
+                    className="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-0.5 rounded-md"
                   >
-                    <X size={14} />
-                  </button>
-                </span>
-              ))
-            ) : (
-              <span className="text-sm text-gray-950">Sélectionnez</span>
-            )}
+                    {value}
+                    <button
+                      type="button"
+                      onClick={(e) => removeOption(value, e)}
+                      className="ml-1 hover:text-blue-900"
+                      aria-label={`Supprimer ${value}`}
+                    >
+                      <X size={14} />
+                    </button>
+                  </span>
+                ))
+              : ""
+                // <span className="text-sm text-gray-950">Sélectionnez</span>
+            }
+
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  addOption();
+                }
+              }}
+              className="flex-grow outline-none bg-transparent ml-1 text-sm"
+              placeholder="Entrez les budgets"
+              list="ecole-types"
+            />
           </div>
 
-          <button
+          {/* <button
             type="button"
             className="absolute right-2 top-1/2 transform -translate-y-1/2"
             onClick={() => setIsOpen(!isOpen)}
@@ -135,10 +159,10 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
                 isOpen ? "rotate-180" : ""
               }`}
             />
-          </button>
+          </button> */}
         </div>
 
-        {isOpen && (
+        {/* {isOpen && (
           <div
             className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg"
             role="listbox"
@@ -160,7 +184,6 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
                     checked={selectedValues.includes(niveau)}
                     onChange={() => toggleOption(niveau)}
                     className="h-4 w-4 text-blue-600 rounded"
-                    //className={inputClassName}
                     aria-label={`Sélectionner ${niveau}`}
                   />
                   <span className="ml-2">{niveau}</span>
@@ -168,8 +191,14 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
               </div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
+
+      {/* <datalist id="ecole-types">
+        {typeEcole.map((type) => (
+          <option key={type} value={type} />
+        ))}
+      </datalist> */}
 
       {errorsEducation && (
         <p className="mt-1 text-xs text-red-500" role="alert">
@@ -180,4 +209,4 @@ const MultiSelectEcole: React.FC<MultiSelectDropdownProps> = ({
   );
 };
 
-export default MultiSelectEcole;
+export default MultiInputBudget;

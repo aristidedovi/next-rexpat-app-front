@@ -99,7 +99,7 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
 
       <div className="relative" ref={dropdownRef}>
         <div
-          className={`min-h-[42px] p-1.5 border rounded-md cursor-pointer ${getBorderClassName()} hover:border-gray-400`}
+          className={`min-h-[41px] p-1.5 border rounded-md cursor-pointer ${getBorderClassName()} hover:border-gray-400`}
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="flex flex-wrap gap-1">
@@ -121,7 +121,7 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
                 </span>
               ))
             ) : (
-              <span className="text-gray-500">Sélectionnez</span>
+              <span className="text-sm text-gray-950">Sélectionnez</span>
             )}
           </div>
 
