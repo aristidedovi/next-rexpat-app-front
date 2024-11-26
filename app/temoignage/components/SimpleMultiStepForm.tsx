@@ -50,6 +50,7 @@ interface InitialFormData {
   educationNiveauSatisfaction: string;
   educationProgrammes: string;
   educationAutres: string;
+  EducationDevise_scolaire: string;
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -93,6 +94,7 @@ const initialFormDataRexpat: InitialFormData = {
   educationNiveauSatisfaction: "",
   educationProgrammes: "",
   educationAutres: "",
+  EducationDevise_scolaire: "",
 };
 
 const stepsArray: string[] = ["I", "A", "B", "C", "D"];

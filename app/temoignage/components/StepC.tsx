@@ -1,8 +1,10 @@
+import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
 import MultiSelectEcole from "@/components/MultiSelectEcole";
 import MultiSelectEducation from "@/components/MultiSelectEducation";
 import MultiSelectLangue from "@/components/MultiSelectLangue";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
+//import { span } from "motion/react-client";
 import React from "react";
 
 const StepC = ({
@@ -61,12 +63,39 @@ const StepC = ({
         </div>
 
         <div className="lg:my-4 sm:my-2">
-          <MultiSelectEcole
-            educationTypeEcole={formData.educationTypeEcole}
-            errorsEducation={errorsEducation.educationTypeEcole}
-            handelChangeInput={handelChangeInput}
-            name="educationTypeEcole"
-          />
+          <label
+            htmlFor="educationAvecOuSansTransport"
+            className={labelClassName}
+          >
+            Budget scolaire par enfant*
+          </label>
+          {formData.educationNiveauEtude.length > 0 ? (
+            formData.educationNiveauEtude.map((niveau: any) => (
+              <div
+                key={niveau}
+                className="flex items-center space-x-2 justify-between"
+              >
+                <EducationBudgetCurrencyInput
+                  handelChangeInput={handelChangeInput}
+                  inputLabel="Education Niveau d'étude"
+                  inputplaceholder={`Budget ${niveau}`}
+                  inputName={`educationBudgetScolaire.${niveau}`}
+                  inputId={`educationBudgetScolaire_${niveau}`}
+                  inputValue={formData.educationBudgetScolaire?.[niveau]}
+                  formErrors={errorsEducation.educationBudgetScolaire?.[niveau]}
+                  inputDeviseValue={formData.educationBudgetScolaire[niveau]}
+                  inputDeviseName={`EducationDevise_scolaire.${niveau}`}
+                  inputSituationProActuelle={
+                    formData.emploiSituationProActuelle
+                  }
+                />
+              </div>
+            ))
+          ) : (
+            <span className={labelClassName}>
+              Veuillez selectionner au moins un niveau scolaire
+            </span>
+          )}
         </div>
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
@@ -133,6 +162,16 @@ const StepC = ({
             <option value="Avec">Avec</option>
             <option value="Sans">Sans</option>
           </select>
+        </div>
+      </div>
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+        <div className="lg:my-4 sm:my-2">
+          <MultiSelectEcole
+            educationTypeEcole={formData.educationTypeEcole}
+            errorsEducation={errorsEducation.educationTypeEcole}
+            handelChangeInput={handelChangeInput}
+            name="educationTypeEcole"
+          />
         </div>
       </div>
       <div className="my-2 flex justify-between items-center">
