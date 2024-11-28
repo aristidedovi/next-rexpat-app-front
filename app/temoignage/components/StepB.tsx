@@ -179,66 +179,74 @@ const StepB = ({
         </div>
       )}
 
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiCanaux" className={labelClassName}>
-            Comment avez-vous trouvé votre dernier emploi?
-          </label>
-          <select
-            id="emploiCanaux"
-            className={inputClassName}
-            name="emploiCanaux"
-            value={formData.emploiCanaux}
-            onChange={(e) => handelChangeInput(e)}
-          >
-            <option value="">Sélectionnez</option>
-            <option value="Site web">Site web</option>
-            <option value="Reseaux Sociaux">Reseaux sociaux</option>
-            <option value="Recommandation">Recommandation</option>
-            <option value="Autres">Autres</option>
-          </select>
-        </div>
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiAvantApres" className={labelClassName}>
-            Avez-vous trouvé un emploi avant ou après votre arrivée ?
-          </label>
-          <select
-            id="emploiAvantApres"
-            className={inputClassName}
-            name="emploiAvantApres"
-            value={formData.emploiAvantApres}
-            onChange={(e) => handelChangeInput(e)}
-          >
-            <option value="">Sélectionnez</option>
-            <option value="avant">Avant</option>
-            <option value="après">Après</option>
-          </select>
-        </div>
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiDelai" className={labelClassName}>
-            Sous quel délai avez vous trouvé un emploi ? &nbsp; (mois)
-          </label>
-          <select
-            id="emploiDelai"
-            className={inputClassName}
-            name="emploiDelai"
-            value={formData.emploiDelai}
-            onChange={(e) => handelChangeInput(e)}
-          >
-            <option value="">Sélectionnez</option>
-            <option value="-3">moins 3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-        </div>
-      </div>
+      {formData.emploiSituationProActuelle === "Entrepreneur" ||
+      formData.emploiSituationProActuelle === "Etudiant" ||
+      formData.emploiSituationProActuelle === "Chômeur" ? (
+        ""
+      ) : (
+        <>
+          <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+            <div className="lg:my-4 sm:my-2">
+              <label htmlFor="emploiCanaux" className={labelClassName}>
+                Comment avez-vous trouvé votre dernier emploi?
+              </label>
+              <select
+                id="emploiCanaux"
+                className={inputClassName}
+                name="emploiCanaux"
+                value={formData.emploiCanaux}
+                onChange={(e) => handelChangeInput(e)}
+              >
+                <option value="">Sélectionnez</option>
+                <option value="Site web">Site web</option>
+                <option value="Reseaux Sociaux">Reseaux sociaux</option>
+                <option value="Recommandation">Recommandation</option>
+                <option value="Autres">Autres</option>
+              </select>
+            </div>
+            <div className="lg:my-4 sm:my-2">
+              <label htmlFor="emploiAvantApres" className={labelClassName}>
+                Avez-vous trouvé un emploi avant ou après votre arrivée ?
+              </label>
+              <select
+                id="emploiAvantApres"
+                className={inputClassName}
+                name="emploiAvantApres"
+                value={formData.emploiAvantApres}
+                onChange={(e) => handelChangeInput(e)}
+              >
+                <option value="">Sélectionnez</option>
+                <option value="avant">Avant</option>
+                <option value="après">Après</option>
+              </select>
+            </div>
+            <div className="lg:my-4 sm:my-2">
+              <label htmlFor="emploiDelai" className={labelClassName}>
+                Sous quel délai avez vous trouvé un emploi ? &nbsp; (mois)
+              </label>
+              <select
+                id="emploiDelai"
+                className={inputClassName}
+                name="emploiDelai"
+                value={formData.emploiDelai}
+                onChange={(e) => handelChangeInput(e)}
+              >
+                <option value="">Sélectionnez</option>
+                <option value="-3">moins 3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+        </>
+      )}
 
       <div className="my-2 flex justify-between items-center">
         <PrevButton handelPrevStep={handelPrevStep} />
