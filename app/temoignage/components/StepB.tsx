@@ -105,7 +105,8 @@ const StepB = ({
             className={inputClassName}
             disabled={
               formData.emploiSituationProActuelle === "Chômeur" ||
-              formData.emploiSituationProActuelle === "Entrepreneur"
+              formData.emploiSituationProActuelle === "Entrepreneur" ||
+              formData.emploiSituationProActuelle === "Etudiant"
             }
           />
         </div>
@@ -134,7 +135,8 @@ const StepB = ({
             }`}
             disabled={
               formData.emploiSituationProActuelle === "Chômeur" ||
-              formData.emploiSituationProActuelle === "Entrepreneur"
+              formData.emploiSituationProActuelle === "Entrepreneur" ||
+              formData.emploiSituationProActuelle === "Etudiant"
             }
             name="emploiTypeContrat"
             value={formData.emploiTypeContrat}
