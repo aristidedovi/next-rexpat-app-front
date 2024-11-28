@@ -21,16 +21,8 @@ const StepB = ({
 
   return (
     <div>
-      {/* <h1 className="mt-2 text-xl font-bold text-blue-900">
-        Step B: Information sur l'emploi
-      </h1> */}
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div
-          className="lg:my-4 sm:my-2"
-          // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle !== "" ? "hidden" : ""
-          // }`}
-        >
+      <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-4">
+        <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiEmail" className={labelClassName}>
             Adresse email
           </label>
@@ -42,9 +34,6 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
             id="emploiEmail"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsEmploi.emploiSecteur ? "border-red-500" : ""
-            // }`}
           />
         </div>
         <div className="lg:my-4 sm:my-2">
@@ -56,11 +45,6 @@ const StepB = ({
           </label>
           <select
             id="emploiSituationProActuelle"
-            //className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsEmploi.emploiSituationProActuelle ? "border-red-500" : ""
-            // }`}
-
             className={`${inputClassName} ${
               errorsEmploi.emploiSituationProActuelle &&
               !formData.emploiSituationProActuelle
@@ -76,32 +60,38 @@ const StepB = ({
           >
             <option value="">Sélectionnez</option>
             <option value="Chômeur">Chômeur / chômeuse</option>
-            <option value="Entrepruneur">Entrepreuneur / entrepreneuse</option>
+            <option value="Entrepreneur">Entrepreneur / entrepreneuse</option>
             <option value="Salarie">Salarié(e)</option>
             <option value="Etudiant">Etudiant(e)</option>
           </select>
         </div>
 
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiSecteur" className={labelClassName}>
+        {/* <div className="lg:my-4 sm:my-2"> */}
+        {/* <label htmlFor="emploiSecteur" className={labelClassName}>
             Secteur d'activité*
-          </label>
+          </label> */}
+        <div className="col-span-2">
           <SecteurActivites
             inputName="emploiSecteur"
             inputValue={formData.emploiSecteur}
+            inputPoste={formData.emploiPoste}
             inputId="emploiSecteur"
             errors={errorsEmploi.emploiSecteur}
+            errorsPoste={errorsEmploi.emploiPoste}
             handelChangeInput={handelChangeInput}
+            emploiSituationProActuelle={formData.emploiSituationProActuelle}
           />
         </div>
+
+        {/* </div> */}
+        {/* <div className="lg:my-4 sm:my-2">
+          <label htmlFor="emploiPoste" className={labelClassName}>
+            Poste actuel
+          </label>
+        </div> */}
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div
-          className="lg:my-4 sm:my-2"
-          // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          // }`}
-        >
+        <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiEmployeur" className={labelClassName}>
             Employeur actuel
           </label>
@@ -113,36 +103,39 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
             id="emploiEmployeur"
             className={inputClassName}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            disabled={
+              formData.emploiSituationProActuelle === "Chômeur" ||
+              formData.emploiSituationProActuelle === "Entrepreneur"
+            }
           />
         </div>
-        <div
-          className="lg:my-4 sm:my-2"
-          // className={`lg:my-4 sm:my-2 ${
-          //   formData.emploiSituationProActuelle === "Chômeur" ? "hidden" : ""
-          // }`}
-        >
+        <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiTypeContrat" className={labelClassName}>
             Type de contrat{" "}
-            {formData.emploiSituationProActuelle === "Chômeur" ? "" : "*"}
+            {formData.emploiSituationProActuelle === "Chômeur" ||
+            formData.emploiSituationProActuelle === "Entrepreneur" ||
+            formData.emploiSituationProActuelle === "Etudiant"
+              ? ""
+              : "*"}
           </label>
           <select
             id="emploiTypeContrat"
-            //className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsEmploi.emploiTypeContrat ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
               errorsEmploi.emploiTypeContrat &&
               !formData.emploiTypeContrat &&
-              formData.emploiSituationProActuelle !== "Chômeur"
+              formData.emploiSituationProActuelle !== "Chômeur" &&
+              formData.emploiSituationProActuelle !== "Entrepreneur" &&
+              formData.emploiSituationProActuelle !== "Etudiant"
                 ? "border-red-500"
                 : formData.emploiTypeContrat &&
                   errorsEmploi.emploiTypeContrat !== ""
                 ? "border-blue-500"
                 : ""
             }`}
-            disabled={formData.emploiSituationProActuelle === "Chômeur"}
+            disabled={
+              formData.emploiSituationProActuelle === "Chômeur" ||
+              formData.emploiSituationProActuelle === "Entrepreneur"
+            }
             name="emploiTypeContrat"
             value={formData.emploiTypeContrat}
             onChange={(e) => handelChangeInput(e)}
@@ -151,6 +144,7 @@ const StepB = ({
             <option value="Stage">Stage</option>
             <option value="Freelance">Freelance</option>
             <option value="Consultance">Consultance</option>
+            <option value="Prestation">Prestation</option>
             <option value="CDD">CDD</option>
             <option value="CDI">CDI</option>
           </select>
@@ -169,12 +163,6 @@ const StepB = ({
           />
         </div>
       </div>
-
-      {/* <div className="grid lg:grid-cols-2 sm:grid-cols-2 gap-4"> */}
-      {/* <h3 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
-          How much do you expect to use each month?
-        </h3> */}
-
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
@@ -183,12 +171,6 @@ const StepB = ({
           <select
             id="emploiCanaux"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   formData.emploiSituationProActuelle === "Chômeur"
-            //     ? "border-black"
-            //     : ""
-            // }`}
-            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiCanaux"
             value={formData.emploiCanaux}
             onChange={(e) => handelChangeInput(e)}
@@ -202,17 +184,11 @@ const StepB = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiAvantApres" className={labelClassName}>
-            Avez vous trouvé un emploi avant ou après votre arriver ?
+            Avez-vous trouvé un emploi avant ou après votre arrivée ?
           </label>
           <select
             id="emploiAvantApres"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   formData.emploiSituationProActuelle === "Chômeur"
-            //     ? "border-black"
-            //     : ""
-            // }`}
-            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiAvantApres"
             value={formData.emploiAvantApres}
             onChange={(e) => handelChangeInput(e)}
@@ -224,17 +200,11 @@ const StepB = ({
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiDelai" className={labelClassName}>
-            Sur quel délai avez vous trouvé un emploi &nbsp; (mois)
+            Sous quel délai avez vous trouvé un emploi ? &nbsp; (mois)
           </label>
           <select
             id="emploiDelai"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   formData.emploiSituationProActuelle === "Chômeur"
-            //     ? "border-black"
-            //     : ""
-            // }`}
-            // disabled={formData.emploiSituationProActuelle === "Chômeur"}
             name="emploiDelai"
             value={formData.emploiDelai}
             onChange={(e) => handelChangeInput(e)}
@@ -252,72 +222,6 @@ const StepB = ({
             <option value="12">12</option>
           </select>
         </div>
-        {/* <div className="lg:my-4 sm:my-2">
-          <label className={`${labelClassName}`}>
-            Niveau de difficulté pour trouver un emploi
-          </label>
-          <div className=" grid lg:grid-cols-1">
-            <ul className="items-center h-10 w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                <div className="flex items-center ps-3">
-                  <input
-                    id="emploiNiveauDifficulte-facile"
-                    type="radio"
-                    name="emploiNiveauDifficulte"
-                    value="Facile"
-                    checked={formData.emploiNiveauDifficulte === "Facile"}
-                    onChange={(e) => handelChangeInput(e)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  />
-                  <label
-                    htmlFor="emploiNiveauDifficulte-facile"
-                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    Facile
-                  </label>
-                </div>
-              </li>
-              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                <div className="flex items-center ps-3">
-                  <input
-                    id="emploiNiveauDifficulte-moyen"
-                    type="radio"
-                    name="emploiNiveauDifficulte"
-                    value="Moyen"
-                    checked={formData.emploiNiveauDifficulte === "Moyen"}
-                    onChange={(e) => handelChangeInput(e)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  />
-                  <label
-                    htmlFor="emploiNiveauDifficulte-moyen"
-                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    Moyen
-                  </label>
-                </div>
-              </li>
-              <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                <div className="flex items-center ps-3">
-                  <input
-                    id="emploiNiveauDifficulte-difficile"
-                    type="radio"
-                    name="emploiNiveauDifficulte"
-                    value="Difficile"
-                    checked={formData.emploiNiveauDifficulte === "Difficile"}
-                    onChange={(e) => handelChangeInput(e)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  />
-                  <label
-                    htmlFor="emploiNiveauDifficulte-difficile"
-                    className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    Difficile
-                  </label>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </div>
 
       <div className="my-2 flex justify-between items-center">
@@ -328,12 +232,6 @@ const StepB = ({
           formData.isEducation === false &&
           formData.isLogement === false &&
           !isLoading && (
-            // <button
-            //   className="bg-blue-400 px-4 py-2 rounded-xl"
-            //   onClick={handleSubmitFormData}
-            // >
-            //   Submit
-            // </button>
             <button
               type="button"
               disabled={isLoading}

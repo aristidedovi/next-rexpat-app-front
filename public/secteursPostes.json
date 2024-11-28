@@ -1,0 +1,336 @@
+[
+    {
+      "code": "A",
+      "libelle": "Agriculture, sylviculture et pêche",
+      "postes": [
+        "Agriculteur",
+        "Technicien forestier",
+        "Pêcheur professionnel",
+        "Responsable de ferme",
+        "Ingénieur agronome",
+        "Ouvrier agricole",
+        "Apiculteur",
+        "Éleveur",
+        "Vétérinaire rural",
+        "Inspecteur phytosanitaire",
+        "Technicien piscicole"
+      ]
+    },
+    {
+      "code": "B",
+      "libelle": "Industries extractives",
+      "postes": [
+        "Ingénieur minier",
+        "Opérateur de foreuse",
+        "Technicien géologue",
+        "Responsable d'extraction",
+        "Exploitant de carrière",
+        "Géophysicien",
+        "Superviseur de site d'extraction",
+        "Technicien en explosifs",
+        "Analyste des ressources minières"
+      ]
+    },
+    {
+      "code": "C",
+      "libelle": "Industrie manufacturière",
+      "postes": [
+        "Technicien en production",
+        "Ingénieur en fabrication",
+        "Responsable qualité",
+        "Opérateur machine",
+        "Technicien en maintenance industrielle",
+        "Soudeur",
+        "Assembleur",
+        "Planificateur de production",
+        "Responsable d'atelier",
+        "Emballeur",
+        "Contrôleur de ligne",
+        "Technicien en robotique industrielle"
+      ]
+    },
+    {
+      "code": "D",
+      "libelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné",
+      "postes": [
+        "Technicien en électricité",
+        "Ingénieur réseau gaz",
+        "Responsable maintenance",
+        "Chargé de distribution d'énergie",
+        "Électricien industriel",
+        "Ingénieur en énergies renouvelables",
+        "Opérateur de centrale électrique",
+        "Technicien en climatisation",
+        "Superviseur de pipeline",
+        "Technicien en stockage énergétique"
+      ]
+    },
+    {
+      "code": "E",
+      "libelle": "Distribution d'eau ; assainissement, gestion des déchets et dépollution",
+      "postes": [
+        "Technicien en assainissement",
+        "Ingénieur environnemental",
+        "Agent de collecte des déchets",
+        "Responsable de station d'épuration",
+        "Spécialiste en dépollution",
+        "Hydrologue",
+        "Agent de contrôle des réseaux d'eau",
+        "Technicien de traitement des eaux",
+        "Gestionnaire de projet environnemental"
+      ]
+    },
+    {
+      "code": "F",
+      "libelle": "Construction",
+      "postes": [
+        "Architecte",
+        "Chef de chantier",
+        "Ingénieur en génie civil",
+        "Maçon",
+        "Menuisier",
+        "Charpentier",
+        "Conducteur d'engins",
+        "Plombier",
+        "Électricien bâtiment",
+        "Peintre en bâtiment",
+        "Couvreur",
+        "Technicien en béton armé"
+      ]
+    },
+    {
+      "code": "G",
+      "libelle": "Commerce ; réparation d'automobiles et de motocycles",
+      "postes": [
+        "Vendeur",
+        "Responsable de magasin",
+        "Mécanicien automobile",
+        "Réparateur de motocycles",
+        "Technicien diagnostic auto",
+        "Carrossier",
+        "Conseiller commercial",
+        "Gestionnaire de stocks",
+        "Responsable service après-vente",
+        "Responsable d'atelier mécanique"
+      ]
+    },
+    {
+      "code": "H",
+      "libelle": "Transports et entreposage",
+      "postes": [
+        "Chauffeur routier",
+        "Responsable logistique",
+        "Magasinier",
+        "Planificateur de transport",
+        "Agent d'exploitation",
+        "Conducteur de train",
+        "Pilote d'avion",
+        "Technicien d'entreposage",
+        "Conducteur de bus",
+        "Agent de quai",
+        "Répartiteur de marchandises"
+      ]
+    },
+    {
+      "code": "I",
+      "libelle": "Hébergement et restauration",
+      "postes": [
+        "Chef cuisinier",
+        "Serveur",
+        "Réceptionniste",
+        "Gestionnaire d'hôtel",
+        "Commis de cuisine",
+        "Sommelier",
+        "Pâtissier",
+        "Barman",
+        "Directeur de restaurant",
+        "Plongeur en cuisine",
+        "Responsable événementiel"
+      ]
+    },
+    {
+      "code": "J",
+      "libelle": "Information et communication",
+      "postes": [
+        "Développeur web",
+        "Journaliste",
+        "Responsable marketing digital",
+        "Technicien audiovisuel",
+        "Community manager",
+        "Rédacteur web",
+        "Monteur vidéo",
+        "Photographe",
+        "Web designer",
+        "Chef de projet multimédia",
+        "Spécialiste SEO"
+      ]
+    },
+    {
+      "code": "K",
+      "libelle": "Activités financières et d'assurance",
+      "postes": [
+        "Analyste financier",
+        "Conseiller en assurance",
+        "Comptable",
+        "Gestionnaire de portefeuille",
+        "Auditeur interne",
+        "Expert-comptable",
+        "Trésorier d'entreprise",
+        "Consultant en fiscalité",
+        "Courtier en assurance",
+        "Analyste en risques"
+      ]
+    },
+    {
+      "code": "L",
+      "libelle": "Activités immobilières",
+      "postes": [
+        "Agent immobilier",
+        "Gestionnaire de copropriété",
+        "Expert en évaluation immobilière",
+        "Responsable des ventes",
+        "Négociateur immobilier",
+        "Promoteur immobilier",
+        "Gestionnaire locatif",
+        "Assistant immobilier",
+        "Chargé d'opérations immobilières"
+      ]
+    },
+    {
+      "code": "M",
+      "libelle": "Activités spécialisées, scientifiques et techniques",
+      "postes": [
+        "Chercheur scientifique",
+        "Consultant en stratégie",
+        "Ingénieur R&D",
+        "Avocat spécialisé",
+        "Architecte d'intérieur",
+        "Statisticien",
+        "Urbaniste",
+        "Responsable de laboratoire",
+        "Consultant en gestion de projet"
+      ]
+    },
+    {
+      "code": "N",
+      "libelle": "Activités de services administratifs et de soutien",
+      "postes": [
+        "Assistant administratif",
+        "Responsable des ressources humaines",
+        "Chargé de recrutement",
+        "Agent de support technique",
+        "Secrétaire de direction",
+        "Gestionnaire de paie",
+        "Responsable administratif",
+        "Opérateur de saisie",
+        "Technicien support informatique"
+      ]
+    },
+    {
+      "code": "O",
+      "libelle": "Administration publique",
+      "postes": [
+        "Inspecteur des impôts",
+        "Fonctionnaire territorial",
+        "Responsable administratif",
+        "Agent d'état civil",
+        "Chargé de mission",
+        "Inspecteur du travail",
+        "Technicien des services publics",
+        "Agent des douanes",
+        "Auditeur public"
+      ]
+    },
+    {
+      "code": "P",
+      "libelle": "Enseignement",
+      "postes": [
+        "Professeur des écoles",
+        "Chargé de cours universitaire",
+        "Directeur d'établissement",
+        "Conseiller pédagogique",
+        "Formateur professionnel",
+        "Professeur de lycée",
+        "Surveillant scolaire",
+        "Éducateur spécialisé",
+        "Coordinateur pédagogique"
+      ]
+    },
+    {
+      "code": "Q",
+      "libelle": "Santé humaine et action sociale",
+      "postes": [
+        "Médecin",
+        "Infirmier",
+        "Aide-soignant",
+        "Travailleur social",
+        "Sage-femme",
+        "Chirurgien",
+        "Psychologue",
+        "Kinésithérapeute",
+        "Orthophoniste",
+        "Ergothérapeute",
+        "Assistant social"
+      ]
+    },
+    {
+      "code": "R",
+      "libelle": "Arts, spectacles et activités récréatives",
+      "postes": [
+        "Acteur",
+        "Musicien",
+        "Organisateur d'événements",
+        "Directeur artistique",
+        "Danseur",
+        "Scénariste",
+        "Technicien lumière",
+        "Décorateur",
+        "Producteur audiovisuel",
+        "Animateur socioculturel"
+      ]
+    },
+    {
+      "code": "S",
+      "libelle": "Autres activités de services",
+      "postes": [
+        "Coiffeur",
+        "Esthéticien",
+        "Agent de maintenance",
+        "Responsable associatif",
+        "Tatoueur",
+        "Toiletteur pour animaux",
+        "Réparateur d'électroménager",
+        "Concierge",
+        "Gardien d'immeuble"
+      ]
+    },
+    {
+      "code": "T",
+      "libelle": "Activités des ménages en tant qu'employeurs",
+      "postes": [
+        "Employé de maison",
+        "Nounou",
+        "Jardinier",
+        "Aide à domicile",
+        "Cuisinier particulier",
+        "Gouvernante",
+        "Tuteur privé",
+        "Assistant personnel"
+      ]
+    },
+    {
+      "code": "U",
+      "libelle": "Activités des organisations et organismes extraterritoriaux",
+      "postes": [
+        "Diplomate",
+        "Représentant d'ONG",
+        "Consultant international",
+        "Responsable des relations internationales",
+        "Analyste politique",
+        "Attaché culturel",
+        "Chargé des affaires consulaires",
+        "Spécialiste en coopération internationale"
+      ]
+    }
+  ]
+  

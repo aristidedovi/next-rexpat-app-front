@@ -1,31 +1,226 @@
-import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
-import MultiSelectEcole from "@/components/MultiSelectEcole";
-import MultiSelectEducation from "@/components/MultiSelectEducation";
-import MultiSelectLangue from "@/components/MultiSelectLangue";
+//import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
+//import MultiSelectEcole from "@/components/MultiSelectEcole";
+//import MultiSelectEducation from "@/components/MultiSelectEducation";
+//import MultiSelectLangue from "@/components/MultiSelectLangue";
+import NombreEnfantInput from "@/components/NombreEnfantInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
+//import { div } from "motion/react-client";
 //import { span } from "motion/react-client";
-import React from "react";
+import React, { useState } from "react";
+
+// Types pour les informations de chaque enfant
+interface ChildEducationInfo {
+  niveau: string;
+  budget: number;
+  typeEcole: string;
+}
 
 const StepC = ({
   formData,
   handelChangeInput,
   handelNextStep,
   handelPrevStep,
-  handelBlur,
+  //handelBlur,
   handleSubmitFormData,
   errorsEducation,
   isLoading,
 }: any) => {
-  const inputClassName =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+  // const inputClassName =
+  //   "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
-  const labelClassName =
-    "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+  // const labelClassName =
+  //   "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
+
+  // Options pour les niveaux scolaires
+  const niveauxScolaires = [
+    "Maternelle",
+    "Primaire",
+    "Collège",
+    "Lycée",
+    "Études supérieures",
+  ];
+
+  // Options pour les types d'écoles
+  const typesEcoles = [
+    "Public",
+    "Privé",
+    "Privé sous contrat",
+    "Établissement spécialisé",
+  ];
+  // State pour le nombre total d'enfants
+  //const [nombreEnfants, setNombreEnfants] = useState(0);
+
+  // State pour stocker les informations de chaque enfant
+  const [childrenInfo, setChildrenInfo] = useState<ChildEducationInfo[]>([]);
+
+  // Gère le changement du nombre d'enfants
+  const handleNombreEnfantsChange = (e: {
+    target: { name: string; value: number };
+  }) => {
+    const nombre = e.target.value;
+    handelChangeInput(e);
+
+    // Mise à jour du nombre d'enfants
+    //setNombreEnfants(nombre);
+
+    // Initialisation ou réduction du tableau des informations des enfants
+    const newChildrenInfo = Array(nombre)
+      .fill(null)
+      .map(
+        (_, index) =>
+          childrenInfo[index] || {
+            niveau: "",
+            budget: 0,
+            typeEcole: "",
+          }
+      );
+
+    setChildrenInfo(newChildrenInfo);
+  };
+
+  // Gère les changements pour un enfant spécifique
+  const handleChildInfoChange = (
+    index: number,
+    field: keyof ChildEducationInfo,
+    value: string | number
+  ) => {
+    const updatedChildrenInfo = [...childrenInfo];
+    updatedChildrenInfo[index] = {
+      ...updatedChildrenInfo[index],
+      [field]: value,
+    };
+    setChildrenInfo(updatedChildrenInfo);
+  };
 
   return (
     <div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+      <div className="grid grid-cols-[auto_1fr] items-center gap-2">
+        <label
+          htmlFor=""
+          className="block text-sm font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Nombre d'enfants scolarisés (0 - 9999) :
+        </label>
+        <NombreEnfantInput
+          name="educationNombreEnfant"
+          educationNombreEnfant={formData.educationNombreEnfant}
+          errorsEducation={errorsEducation.educationNombreEnfant}
+          handelChangeInput={handleNombreEnfantsChange}
+        />
+      </div>
+      {/* <div className="grid lg:grid-cols-2 justify-end sm:grid-cols-1 gap-4">
+        <div className="lg:my-0 sm:my-0">
+          <label
+            htmlFor=""
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Nombre d'enfants scolarisés(0-9999) :
+          </label>
+        </div>
+        <div className="lg:my-0 sm:my-0">
+          <NombreEnfantInput
+            name="educationNombreEnfant"
+            educationNombreEnfant={formData.educationNombreEnfant}
+            errorsEducation={errorsEducation.educationNombreEnfant}
+            //handelChangeInput={handelChangeInput}
+            handelChangeInput={handleNombreEnfantsChange}
+          />
+        </div>
+      </div> */}
+      {/* Formulaires dynamiques pour chaque enfant */}
+      {childrenInfo.map((child, index) => (
+        <div key={`child-${index}`}>
+          <div className="grid lg:grid-cols-1 sm:grid-cols-1 gap-4">
+            <div className="lg:my-0 sm:my-0">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                Enfant {index + 1}
+              </h3>
+            </div>
+          </div>
+          <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+            <div className="lg:my-4 sm:my-2">
+              <label
+                htmlFor={`niveau-${index}`}
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Niveau scolaire
+              </label>
+              <select
+                id={`niveau-${index}`}
+                value={child.niveau}
+                onChange={(e) =>
+                  handleChildInfoChange(index, "niveau", e.target.value)
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="">Sélectionnez un niveau</option>
+                {niveauxScolaires.map((niveau) => (
+                  <option key={niveau} value={niveau}>
+                    {niveau}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="lg:my-4 sm:my-2">
+              <label
+                htmlFor={`typeEcole-${index}`}
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Type d'école
+              </label>
+              <select
+                id={`typeEcole-${index}`}
+                value={child.typeEcole}
+                onChange={(e) =>
+                  handleChildInfoChange(index, "typeEcole", e.target.value)
+                }
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="">Sélectionnez un type d'école</option>
+                {typesEcoles.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="lg:my-4 sm:my-2">
+              <label
+                htmlFor={`budget-${index}`}
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Budget annuel (€)
+              </label>
+              <input
+                type="number"
+                id={`budget-${index}`}
+                value={child.budget}
+                onChange={(e) =>
+                  handleChildInfoChange(index, "budget", Number(e.target.value))
+                }
+                min="0"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+
+      {/* Résumé (optionnel) */}
+      {/* {nombreEnfants > 0 && (
+        <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+            Résumé
+          </h3>
+          <pre className="text-sm text-gray-600 dark:text-gray-300">
+            {JSON.stringify(childrenInfo, null, 2)}
+          </pre>
+        </div>
+      )} */}
+      {/* <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="educationNombreEnfant" className={labelClassName}>
             Nombre d'enfants scolarises*
@@ -135,7 +330,6 @@ const StepC = ({
           </select>
         </div>
 
-        {/* transport */}
         <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="educationAvecOuSansTransport"
@@ -173,7 +367,7 @@ const StepC = ({
             name="educationTypeEcole"
           />
         </div>
-      </div>
+      </div> */}
       <div className="my-2 flex justify-between items-center">
         <PrevButton handelPrevStep={handelPrevStep} />
 
@@ -181,12 +375,6 @@ const StepC = ({
         {formData.isEducation === true &&
           formData.isLogement === false &&
           !isLoading && (
-            // <button
-            //   className="bg-blue-400 px-4 py-2 rounded-xl"
-            //   onClick={handleSubmitFormData}
-            // >
-            //   Submit
-            // </button>
             <button
               type="button"
               disabled={isLoading}

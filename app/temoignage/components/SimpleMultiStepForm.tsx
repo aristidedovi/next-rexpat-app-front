@@ -29,6 +29,7 @@ interface InitialFormData {
   isTransport: boolean;
   // Emploi data
   emploiSecteur: string;
+  emploiPoste: string;
   emploiEmployeur: string;
   emploiTypeContrat: string;
   emploiRevenu_mensuel: string;
@@ -72,6 +73,7 @@ const initialFormDataRexpat: InitialFormData = {
   isLogement: false,
   isTransport: false,
   emploiSecteur: "",
+  emploiPoste: "",
   emploiEmployeur: "",
   emploiTypeContrat: "",
   emploiRevenu_mensuel: "",
@@ -239,6 +241,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   const validateFormEmploi = (): boolean => {
     const formErrors: Record<string, string> = {
       emploiSecteur: "",
+      emploiPoste: "",
       emploiEmployeur: "",
       emploiTypeContrat: "",
       emploiRevenu_mensuel: "",
@@ -258,48 +261,80 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         "Veuillez sélectionner votre situation professionnelle";
       isValid = false;
     }
+
+    if (!formData.emploiSecteur) {
+      formErrors.emploiSecteur =
+        "Veuillez sélectionner votre secteur d'activite";
+      isValid = false;
+    }
+
+    if (
+      !formData.emploiPoste &&
+      formData.emploiSituationProActuelle !== "Chômeur" &&
+      formData.emploiSituationProActuelle !== "Entrepreneur" &&
+      formData.emploiSituationProActuelle !== "Etudiant"
+    ) {
+      formErrors.emploiPoste = "Veuillez sélectionner votre poste";
+      isValid = false;
+    }
+
     if (
       !formData.emploiTypeContrat &&
-      formData.emploiSituationProActuelle !== "Chômeur"
+      formData.emploiSituationProActuelle !== "Chômeur" &&
+      formData.emploiSituationProActuelle !== "Entrepreneur" &&
+      formData.emploiSituationProActuelle !== "Etudiant"
     ) {
       formErrors.emploiTypeContrat =
         "Veuillez sélectionner votre type de contrat";
       isValid = false;
+      //console.log("chômeur");
     }
-    if (
-      !formData.emploiSecteur &&
-      formData.emploiSituationProActuelle !== "Chômeur"
-    ) {
-      formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiSecteur &&
+    //   formData.emploiSituationProActuelle !== "Chômeur"
+    // ) {
+    //   formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
+    //   isValid = false;
+    // }
 
-    if (
-      !formData.emploiRevenu_mensuel &&
-      formData.emploiSituationProActuelle !== "Chômeur"
-    ) {
-      formErrors.emploiRevenu_mensuel =
-        "Veuillez entrer un revenu mensuel valide.";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiRevenu_mensuel &&
+    //   formData.emploiSituationProActuelle !== "Chômeur" &&
+    //   formData.emploiSituationProActuelle !== "Entrepreneur"
+    // ) {
+    //   formErrors.emploiRevenu_mensuel =
+    //     "Veuillez entrer un revenu mensuel valide.";
+    //   isValid = false;
+    // }
 
-    if (
-      !formData.emploiDevise_revenu &&
-      formData.emploiSituationProActuelle !== "Chômeur"
-    ) {
-      formErrors.emploiDevise_revenu = "Veuillez selectionner une devise.";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiDevise_revenu &&
+    //   formData.emploiSituationProActuelle !== "Chômeur" &&
+    //   formData.emploiSituationProActuelle !== "Entrepreneur"
+    // ) {
+    //   formErrors.emploiDevise_revenu = "Veuillez selectionner une devise.";
+    //   isValid = false;
+    // }
 
-    if (!formData.emploiAvantApres) {
-      formErrors.emploiAvantApres = "Veuillez selectionner une option.";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiAvantApres &&
+    //   formData.emploiSituationProActuelle !== "Chômeur" &&
+    //   formData.emploiSituationProActuelle !== "Entrepreneur"
+    // ) {
+    //   formErrors.emploiAvantApres = "Veuillez selectionner une option.";
+    //   isValid = false;
+    // }
 
-    if (!formData.emploiDelai) {
-      formErrors.emploiDelai = "Veuillez selectionner une option.";
-      isValid = false;
-    }
+    // if (
+    //   !formData.emploiDelai &&
+    //   formData.emploiSituationProActuelle !== "Chômeur" &&
+    //   formData.emploiSituationProActuelle !== "Entrepreneur"
+    // ) {
+    //   formErrors.emploiDelai = "Veuillez selectionner une option.";
+    //   isValid = false;
+    // }
+
+    console.log(formErrors);
 
     setErrorsEmploi(formErrors);
     return isValid;
