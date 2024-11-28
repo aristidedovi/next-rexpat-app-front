@@ -84,6 +84,7 @@ const SecteurActivites = ({
         value: "",
       },
     });
+    handelChangeInput(e);
   };
 
   const handlePosteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
