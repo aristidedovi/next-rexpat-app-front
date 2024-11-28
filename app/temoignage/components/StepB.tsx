@@ -90,81 +90,95 @@ const StepB = ({
           </label>
         </div> */}
       </div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiEmployeur" className={labelClassName}>
-            Employeur actuel
-          </label>
-          <input
-            placeholder="Ex: Sonatel"
-            type="text"
-            name="emploiEmployeur"
-            value={formData.emploiEmployeur}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiEmployeur"
-            className={inputClassName}
-            disabled={
-              formData.emploiSituationProActuelle === "Chômeur" ||
-              formData.emploiSituationProActuelle === "Entrepreneur" ||
-              formData.emploiSituationProActuelle === "Etudiant"
-            }
-          />
+      {formData.emploiSituationProActuelle === "Chômeur" ||
+      formData.emploiSituationProActuelle === "Etudiant" ? (
+        ""
+      ) : (
+        <div>
+          <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+            {formData.emploiSituationProActuelle === "Entrepreneur" ? (
+              ""
+            ) : (
+              <>
+                <div className="lg:my-4 sm:my-2">
+                  <label htmlFor="emploiEmployeur" className={labelClassName}>
+                    Employeur actuel
+                  </label>
+                  <input
+                    placeholder="Ex: Sonatel"
+                    type="text"
+                    name="emploiEmployeur"
+                    value={formData.emploiEmployeur}
+                    onChange={(e) => handelChangeInput(e)}
+                    id="emploiEmployeur"
+                    className={inputClassName}
+                    disabled={
+                      formData.emploiSituationProActuelle === "Chômeur" ||
+                      formData.emploiSituationProActuelle === "Entrepreneur" ||
+                      formData.emploiSituationProActuelle === "Etudiant"
+                    }
+                  />
+                </div>
+                <div className="lg:my-4 sm:my-2">
+                  <label htmlFor="emploiTypeContrat" className={labelClassName}>
+                    Type de contrat{" "}
+                    {formData.emploiSituationProActuelle === "Chômeur" ||
+                    formData.emploiSituationProActuelle === "Entrepreneur" ||
+                    formData.emploiSituationProActuelle === "Etudiant"
+                      ? ""
+                      : "*"}
+                  </label>
+                  <select
+                    id="emploiTypeContrat"
+                    className={`${inputClassName} ${
+                      errorsEmploi.emploiTypeContrat &&
+                      !formData.emploiTypeContrat &&
+                      formData.emploiSituationProActuelle !== "Chômeur" &&
+                      formData.emploiSituationProActuelle !== "Entrepreneur" &&
+                      formData.emploiSituationProActuelle !== "Etudiant"
+                        ? "border-red-500"
+                        : formData.emploiTypeContrat &&
+                          errorsEmploi.emploiTypeContrat !== ""
+                        ? "border-blue-500"
+                        : ""
+                    }`}
+                    disabled={
+                      formData.emploiSituationProActuelle === "Chômeur" ||
+                      formData.emploiSituationProActuelle === "Entrepreneur" ||
+                      formData.emploiSituationProActuelle === "Etudiant"
+                    }
+                    name="emploiTypeContrat"
+                    value={formData.emploiTypeContrat}
+                    onChange={(e) => handelChangeInput(e)}
+                  >
+                    <option value="">Sélectionnez</option>
+                    <option value="Stage">Stage</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Consultance">Consultance</option>
+                    <option value="Prestation">Prestation</option>
+                    <option value="CDD">CDD</option>
+                    <option value="CDI">CDI</option>
+                  </select>
+                </div>
+              </>
+            )}
+            <div className="lg:my-4 sm:my-2">
+              <CurrencyInput
+                handelChangeInput={handelChangeInput}
+                inputLabel="Revenu mensuel"
+                inputName="emploiRevenu_mensuel"
+                inputId="emploiRevenu_mensuel"
+                inputValue={formData.emploiRevenu_mensuel}
+                formErrors={errorsEmploi.emploiRevenu_mensuel}
+                inputDeviseValue={formData.emploiDevise_revenu}
+                inputDeviseName="emploiDevise_revenu"
+                inputSituationProActuelle={formData.emploiSituationProActuelle}
+              />
+            </div>
+          </div>
         </div>
-        <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiTypeContrat" className={labelClassName}>
-            Type de contrat{" "}
-            {formData.emploiSituationProActuelle === "Chômeur" ||
-            formData.emploiSituationProActuelle === "Entrepreneur" ||
-            formData.emploiSituationProActuelle === "Etudiant"
-              ? ""
-              : "*"}
-          </label>
-          <select
-            id="emploiTypeContrat"
-            className={`${inputClassName} ${
-              errorsEmploi.emploiTypeContrat &&
-              !formData.emploiTypeContrat &&
-              formData.emploiSituationProActuelle !== "Chômeur" &&
-              formData.emploiSituationProActuelle !== "Entrepreneur" &&
-              formData.emploiSituationProActuelle !== "Etudiant"
-                ? "border-red-500"
-                : formData.emploiTypeContrat &&
-                  errorsEmploi.emploiTypeContrat !== ""
-                ? "border-blue-500"
-                : ""
-            }`}
-            disabled={
-              formData.emploiSituationProActuelle === "Chômeur" ||
-              formData.emploiSituationProActuelle === "Entrepreneur" ||
-              formData.emploiSituationProActuelle === "Etudiant"
-            }
-            name="emploiTypeContrat"
-            value={formData.emploiTypeContrat}
-            onChange={(e) => handelChangeInput(e)}
-          >
-            <option value="">Sélectionnez</option>
-            <option value="Stage">Stage</option>
-            <option value="Freelance">Freelance</option>
-            <option value="Consultance">Consultance</option>
-            <option value="Prestation">Prestation</option>
-            <option value="CDD">CDD</option>
-            <option value="CDI">CDI</option>
-          </select>
-        </div>
-        <div className="lg:my-4 sm:my-2">
-          <CurrencyInput
-            handelChangeInput={handelChangeInput}
-            inputLabel="Revenu mensuel"
-            inputName="emploiRevenu_mensuel"
-            inputId="emploiRevenu_mensuel"
-            inputValue={formData.emploiRevenu_mensuel}
-            formErrors={errorsEmploi.emploiRevenu_mensuel}
-            inputDeviseValue={formData.emploiDevise_revenu}
-            inputDeviseName="emploiDevise_revenu"
-            inputSituationProActuelle={formData.emploiSituationProActuelle}
-          />
-        </div>
-      </div>
+      )}
+
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiCanaux" className={labelClassName}>
