@@ -1,4 +1,5 @@
 import CurrencyInput from "@/components/CurrencyInput";
+import EmailInput from "@/components/EmailInput";
 import SecteurActivites from "@/components/SecteurActivites";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
@@ -21,8 +22,22 @@ const StepB = ({
 
   return (
     <div>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-4">
-        <div className="lg:my-4 sm:my-2">
+      <div
+        className={`grid lg:grid-cols-${
+          formData.emploiSituationProActuelle !== "Entrepreneur" ? 4 : 3
+        } sm:grid-cols-1 gap-4`}
+      >
+        {formData.emploiSituationProActuelle !== "Entrepreneur" ? (
+          <>
+            <EmailInput
+              emploiEmai={formData.emploiEmail}
+              handelChangeInput={handelChangeInput}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        {/* <div className="lg:my-4 sm:my-2">
           <label htmlFor="emploiEmail" className={labelClassName}>
             Adresse email
           </label>
@@ -35,7 +50,7 @@ const StepB = ({
             id="emploiEmail"
             className={inputClassName}
           />
-        </div>
+        </div> */}
         <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="emploiSituationProActuelle"
@@ -175,6 +190,16 @@ const StepB = ({
                 inputSituationProActuelle={formData.emploiSituationProActuelle}
               />
             </div>
+            {formData.emploiSituationProActuelle === "Entrepreneur" ? (
+              <>
+                <EmailInput
+                  emploiEmai={formData.emploiEmail}
+                  handelChangeInput={handelChangeInput}
+                />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       )}
