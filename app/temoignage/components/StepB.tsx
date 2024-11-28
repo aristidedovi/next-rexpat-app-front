@@ -59,10 +59,10 @@ const StepB = ({
             onChange={(e) => handelChangeInput(e)}
           >
             <option value="">Sélectionnez</option>
+            <option value="Etudiant">Etudiant(e)</option>
             <option value="Chômeur">Chômeur / chômeuse</option>
             <option value="Entrepreneur">Entrepreneur / entrepreneuse</option>
             <option value="Salarie">Salarié(e)</option>
-            <option value="Etudiant">Etudiant(e)</option>
           </select>
         </div>
 
