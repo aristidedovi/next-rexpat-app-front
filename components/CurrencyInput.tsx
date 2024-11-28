@@ -37,7 +37,8 @@ export default function CurrencyInput({
           onChange={handelChangeInput}
           disabled={
             inputSituationProActuelle === "Chômeur" ||
-            inputSituationProActuelle === "Entrepruneur"
+            inputSituationProActuelle === "Entrepruneur" ||
+            inputSituationProActuelle === "Etudiant"
           }
           //className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           //className={inputClassName}
@@ -57,7 +58,8 @@ export default function CurrencyInput({
           className={inputClassNameSelect}
           disabled={
             inputSituationProActuelle === "Chômeur" ||
-            inputSituationProActuelle === "Entrepruneur"
+            inputSituationProActuelle === "Entrepruneur" ||
+            inputSituationProActuelle === "Etudiant"
           }
           //className="p-2 border border-gray-300 bg-white rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
