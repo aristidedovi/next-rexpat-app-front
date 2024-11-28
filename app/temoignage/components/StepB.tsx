@@ -27,30 +27,6 @@ const StepB = ({
           formData.emploiSituationProActuelle !== "Entrepreneur" ? 4 : 3
         } sm:grid-cols-1 gap-4`}
       >
-        {formData.emploiSituationProActuelle !== "Entrepreneur" ? (
-          <>
-            <EmailInput
-              emploiEmai={formData.emploiEmail}
-              handelChangeInput={handelChangeInput}
-            />
-          </>
-        ) : (
-          ""
-        )}
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiEmail" className={labelClassName}>
-            Adresse email
-          </label>
-          <input
-            placeholder="Ex: nom@gmail.com"
-            type="text"
-            name="emploiEmail"
-            value={formData.emploiEmail}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiEmail"
-            className={inputClassName}
-          />
-        </div> */}
         <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="emploiSituationProActuelle"
@@ -80,6 +56,30 @@ const StepB = ({
             <option value="Salarie">Salarié(e)</option>
           </select>
         </div>
+        {formData.emploiSituationProActuelle !== "Entrepreneur" ? (
+          <>
+            <EmailInput
+              emploiEmai={formData.emploiEmail}
+              handelChangeInput={handelChangeInput}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        {/* <div className="lg:my-4 sm:my-2">
+          <label htmlFor="emploiEmail" className={labelClassName}>
+            Adresse email
+          </label>
+          <input
+            placeholder="Ex: nom@gmail.com"
+            type="text"
+            name="emploiEmail"
+            value={formData.emploiEmail}
+            onChange={(e) => handelChangeInput(e)}
+            id="emploiEmail"
+            className={inputClassName}
+          />
+        </div> */}
 
         {/* <div className="lg:my-4 sm:my-2"> */}
         {/* <label htmlFor="emploiSecteur" className={labelClassName}>
