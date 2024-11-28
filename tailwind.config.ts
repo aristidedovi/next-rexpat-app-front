@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+const flowbite = require("flowbite-react/tailwind");
+
 
 const config: Config = {
   content: [
@@ -6,6 +8,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     './node_modules/preline/preline.js',
+    flowbite.content(),
   ],
   theme: {
     extend: {
@@ -17,6 +20,7 @@ const config: Config = {
   },
   plugins: [
     require('preline/plugin'),
+    flowbite.plugin(),
   ],
 };
 export default config;
