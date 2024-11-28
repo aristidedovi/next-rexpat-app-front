@@ -117,6 +117,7 @@ const SecteurActivites = ({
                   {secteur.libelle}
                 </option>
               ))}
+              <option value="autres">Autres</option>
             </Select>
           </div>
         )}
@@ -133,35 +134,52 @@ const SecteurActivites = ({
           <p>{error}</p>
         ) : (
           <div>
-            <Select
-              className={`${inputClassName} ${
-                errorsPoste &&
-                !inputPoste &&
-                emploiSituationProActuelle !== "Entrepreneur" &&
-                emploiSituationProActuelle !== "Chômeur" &&
-                emploiSituationProActuelle !== "Etudiant"
-                  ? "border-red-500"
-                  : inputValue && errors !== ""
-                  ? "border-blue-500"
-                  : ""
-              }`}
-              name="emploiPoste"
-              id="emploiPoste"
-              value={inputPoste}
-              disabled={!selectedSecteur && inputPoste === ""}
-              onChange={handlePosteChange}
-            >
-              <option value="">
-                {selectedSecteur && inputPoste === ""
-                  ? "Sélectionnez un poste"
-                  : "Sélectionnez d'abord un secteur"}
-              </option>
-              {postes.map((poste, index) => (
-                <option key={index} value={poste}>
-                  {poste}
-                </option>
-              ))}
-            </Select>
+            {inputValue === "autres" ? (
+              <div>
+                <input
+                  placeholder="Ex: Chauffeur"
+                  type="text"
+                  name="emploiPoste"
+                  value={inputPoste}
+                  onChange={(e) => handelChangeInput(e)}
+                  id="emploiPoste"
+                  className={inputClassName}
+                />
+              </div>
+            ) : (
+              <div>
+                {" "}
+                <Select
+                  className={`${inputClassName} ${
+                    errorsPoste &&
+                    !inputPoste &&
+                    emploiSituationProActuelle !== "Entrepreneur" &&
+                    emploiSituationProActuelle !== "Chômeur" &&
+                    emploiSituationProActuelle !== "Etudiant"
+                      ? "border-red-500"
+                      : inputValue && errors !== ""
+                      ? "border-blue-500"
+                      : ""
+                  }`}
+                  name="emploiPoste"
+                  id="emploiPoste"
+                  value={inputPoste}
+                  disabled={!selectedSecteur && inputPoste === ""}
+                  onChange={handlePosteChange}
+                >
+                  <option value="">
+                    {selectedSecteur && inputPoste === ""
+                      ? "Sélectionnez un poste"
+                      : "Sélectionnez d'abord un secteur"}
+                  </option>
+                  {postes.map((poste, index) => (
+                    <option key={index} value={poste}>
+                      {poste}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+            )}
           </div>
         )}
       </div>
