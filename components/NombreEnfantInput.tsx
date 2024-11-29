@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface SelectNombreEnfant {
   educationNombreEnfant: string;
@@ -10,9 +10,14 @@ interface SelectNombreEnfant {
 const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
   name,
   handelChangeInput,
+  educationNombreEnfant,
 }) => {
   const [quantity, setQuantity] = useState(0);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setQuantity(parseInt(educationNombreEnfant));
+  });
 
   const updateQuantity = (newQuantity: number) => {
     setQuantity(newQuantity);
