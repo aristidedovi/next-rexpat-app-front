@@ -41,6 +41,7 @@ interface InitialFormData {
   emploiAvantApres: string;
   emploiDelai: string;
   // Education data
+  educationEnfant: [];
   educationNombreEnfant: number | null;
   educationNiveauEtude: string;
   educationTypeEcole: string;
@@ -86,7 +87,8 @@ const initialFormDataRexpat: InitialFormData = {
   emploiDelai: "",
 
   // Education data initialisation
-  educationNombreEnfant: null,
+  educationEnfant: [],
+  educationNombreEnfant: 1,
   educationNiveauEtude: "",
   educationTypeEcole: "",
   educationLanguesEnseignes: "",
