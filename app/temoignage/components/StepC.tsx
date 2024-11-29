@@ -70,7 +70,7 @@ const StepC = ({
             uniforme: "",
             transport: "",
             satisfaction: "",
-            devise: "",
+            devise: "USD",
           }));
   });
 
@@ -109,7 +109,7 @@ const StepC = ({
             uniforme: "",
             transport: "",
             satisfaction: "",
-            devise: "",
+            devise: "USD",
           }
       );
 
@@ -471,7 +471,7 @@ const StepC = ({
       </div>
 
       {/* Résumé (optionnel) */}
-      {nombreEnfants > 0 && (
+      {/* {nombreEnfants > 0 && (
         <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
           <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
             Résumé
@@ -480,7 +480,7 @@ const StepC = ({
             {JSON.stringify(childrenInfo, null, 2)}
           </pre>
         </div>
-      )}
+      )} */}
       {/* <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="educationNombreEnfant" className={labelClassName}>
