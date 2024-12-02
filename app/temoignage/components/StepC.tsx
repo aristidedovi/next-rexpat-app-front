@@ -148,6 +148,38 @@ const StepC = ({
           handelChangeInput={handleNombreEnfantsChange}
         />
       </div>
+      {/* <div>
+        <label
+          //htmlFor={`satisfaction-${index}`}
+          className={labelClassName}
+        >
+          Niveau de satisfaction
+        </label>
+        <select
+          //id={`satisfaction-${index}`}
+          className={`${inputClassName} ${
+            errorsEducation.educationNiveauSatisfaction &&
+            !formData.educationNiveauSatisfaction
+              ? "border-red-500"
+              : formData.educationNiveauSatisfaction &&
+                errorsEducation.educationNiveauSatisfaction !== ""
+              ? "border-blue-500"
+              : ""
+          }`}
+          //value={child.satisfaction}
+          // onChange={(e) =>
+          //   handleChildInfoChange(index, "satisfaction", e.target.value)
+          // }
+          // name="educationNiveauSatisfaction"
+          // value={formData.educationNiveauSatisfaction}
+          // onChange={(e) => handelChangeInput(e)}
+        >
+          <option value="">Sélectionnez</option>
+          <option value="Pas satisfait">Pas satisfait</option>
+          <option value="Satisfait">Satisfait</option>
+          <option value="Très satisfait">Très satisfait</option>
+        </select>
+      </div> */}
       {/* <div className="grid lg:grid-cols-2 justify-end sm:grid-cols-1 gap-4">
         <div className="lg:my-0 sm:my-0">
           <label
@@ -349,13 +381,15 @@ const StepC = ({
                   Budget annuel
                 </label>
                 <EducationBudgetCurrencyInput
-                  handelChangeInput={(e: any) =>
-                    handleChildInfoChange(
-                      index,
-                      "budget",
-                      Number(e.target.value)
-                    )
-                  }
+                  handelChangeInput={(e: any) => {
+                    const value = e.target.value.trim();
+                    const numericValue = Number(value);
+
+                    // If input is not a valid number, set budget to 0
+                    const budgetValue = isNaN(numericValue) ? 0 : numericValue;
+
+                    handleChildInfoChange(index, "budget", Number(budgetValue));
+                  }}
                   handelSelectInput={(e: any) =>
                     handleChildInfoChange(
                       index,
@@ -439,7 +473,7 @@ const StepC = ({
                   <option value="Sans">Sans</option>
                 </select>
               </div>
-              <div>
+              {/* <div>
                 <label
                   htmlFor={`satisfaction-${index}`}
                   className={labelClassName}
@@ -470,7 +504,7 @@ const StepC = ({
                   <option value="Satisfait">Satisfait</option>
                   <option value="Très satisfait">Très satisfait</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
