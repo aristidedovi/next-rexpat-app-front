@@ -3,6 +3,7 @@
 //import MultiSelectEducation from "@/components/MultiSelectEducation";
 //import MultiSelectLangue from "@/components/MultiSelectLangue";
 import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
+import EducationTypeEcoleSelect from "@/components/EducationTypeEcoleSelect";
 import NombreEnfantInput from "@/components/NombreEnfantInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
@@ -49,7 +50,7 @@ const StepC = ({
   ];
 
   // Options pour les types d'écoles
-  const typesEcoles = ["Privée", "Publique", "Internationale", "A domicile"];
+  //const typesEcoles = ["Privée", "Publique", "Internationale", "A domicile"];
 
   // State initialization with default or existing data
   const [nombreEnfants, setNombreEnfants] = useState(
@@ -309,13 +310,18 @@ const StepC = ({
 
               {/* Type d'école */}
               <div>
-                <label
+                {/* <label
                   htmlFor={`typeEcole-${index}`}
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Type d'école
-                </label>
-                <select
+                </label> */}
+                <EducationTypeEcoleSelect
+                  index={index}
+                  child={child}
+                  handleChildInfoChange={handleChildInfoChange}
+                />
+                {/* <select
                   id={`typeEcole-${index}`}
                   value={child.typeEcole}
                   onChange={(e) =>
@@ -331,7 +337,7 @@ const StepC = ({
                       {type}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </div>
 
               {/* Budget annuel */}
