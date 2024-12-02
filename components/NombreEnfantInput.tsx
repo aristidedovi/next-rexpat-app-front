@@ -126,7 +126,7 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
         </button>
       </div>
 
-      {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+      {/* {error && <p className="mt-2 text-sm text-red-500">{error}</p>} */}
 
       {/* <p
         id="helper-text-explanation"
