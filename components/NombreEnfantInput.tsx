@@ -13,7 +13,7 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
   educationNombreEnfant,
 }) => {
   const [quantity, setQuantity] = useState(0);
-  const [error, setError] = useState("");
+  //const [error, setError] = useState("");
 
   useEffect(() => {
     setQuantity(parseInt(educationNombreEnfant));
@@ -27,14 +27,14 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
         value: newQuantity,
       },
     });
-    setError("");
+    //setError("");
   };
 
   const handleIncrement = () => {
     if (quantity < 99999) {
       updateQuantity(quantity + 1);
     } else {
-      setError("La quantité maximale est de 99999");
+      //setError("La quantité maximale est de 99999");
     }
   };
 
@@ -42,7 +42,7 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
     if (quantity > 0) {
       updateQuantity(quantity - 1);
     } else {
-      setError("La quantité minimale est de 0");
+      //setError("La quantité minimale est de 0");
     }
   };
 
@@ -56,7 +56,7 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
     ) {
       updateQuantity(numValue);
     } else {
-      setError("Veuillez saisir un nombre entre 0 et 99999");
+      //setError("Veuillez saisir un nombre entre 0 et 99999");
     }
   };
 
