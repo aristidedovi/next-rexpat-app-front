@@ -66,7 +66,7 @@ const StepC = ({
           .fill(null)
           .map(() => ({
             niveau: "",
-            budget: 0,
+            budget: "",
             typeEcole: "",
             uniforme: "",
             transport: "",
@@ -386,9 +386,9 @@ const StepC = ({
                     const numericValue = Number(value);
 
                     // If input is not a valid number, set budget to 0
-                    const budgetValue = isNaN(numericValue) ? 0 : numericValue;
+                    const budgetValue = isNaN(numericValue) ? "" : numericValue;
 
-                    handleChildInfoChange(index, "budget", Number(budgetValue));
+                    handleChildInfoChange(index, "budget", budgetValue);
                   }}
                   handelSelectInput={(e: any) =>
                     handleChildInfoChange(
@@ -399,7 +399,7 @@ const StepC = ({
                   }
                   //inputClassName={inputClassName}
                   //inputLabel="Budget d'éducation"
-                  //inputplaceholder="Budget"
+                  inputplaceholder="Ex: 8000"
                   //inputName={`educationBudgetScolaire`}
                   //inputId={`educationBudgetScolaire`}
                   inputValue={child.budget}

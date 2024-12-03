@@ -29,7 +29,8 @@ export default function EducationBudgetCurrencyInput({
           name={inputName}
           id={inputId}
           type="text"
-          placeholder={inputplaceholder}
+          placeholder="Ex: 8000"
+          //placeholder={inputplaceholder}
           value={inputValue}
           onChange={handelChangeInput}
           className={inputClassName}
