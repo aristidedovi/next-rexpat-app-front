@@ -7,9 +7,9 @@ export default function EducationBudgetCurrencyInput({
   //formErrors,
   inputDeviseValue,
   inputDeviseName,
-  //inputSituationProActuelle,
-  inputplaceholder,
-}: any) {
+}: //inputSituationProActuelle,
+//inputplaceholder,
+any) {
   // const inputClassName =
   //   "w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-md focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
@@ -29,7 +29,8 @@ export default function EducationBudgetCurrencyInput({
           name={inputName}
           id={inputId}
           type="text"
-          placeholder={inputplaceholder}
+          placeholder="Ex: 8000"
+          //placeholder={inputplaceholder}
           value={inputValue}
           onChange={handelChangeInput}
           className={inputClassName}
