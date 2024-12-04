@@ -16,16 +16,16 @@ interface Logement {
 
 const StepE = ({
   formData,
-  handelChangeInput,
+  //handelChangeInput,
   //errorsLogement,
   handleSubmitFormData,
   handelPrevStep,
   handelNextStep,
   isLoading,
 }: any) => {
-  const [logement, setLogement] = useState<Logement>(
-    () => formData.logement || 0
-  );
+  // const [logement, setLogement] = useState<Logement>(
+  //   () => formData.logement || 0
+  // );
 
   // const inputClassName =
   //   "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -44,18 +44,18 @@ const StepE = ({
   // };
 
   // Synchronize child info with form data whenever it changes
-  useEffect(() => {
-    if (!logement.devise) {
-      logement.devise = "USD";
-    }
-    // Update form data when child info changes
-    handelChangeInput({
-      target: {
-        name: "logement",
-        value: logement,
-      },
-    });
-  }, [logement]);
+  // useEffect(() => {
+  //   if (!logement.devise) {
+  //     logement.devise = "USD";
+  //   }
+  // Update form data when child info changes
+  //   handelChangeInput({
+  //     target: {
+  //       name: "logement",
+  //       value: logement,
+  //     },
+  //   });
+  // }, [logement]);
 
   // const handelChangeLogementInput = (e: {
   //   target: { name: string; value: string };
