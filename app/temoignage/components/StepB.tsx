@@ -3,22 +3,22 @@ import EmailInput from "@/components/EmailInput";
 import SecteurActivites from "@/components/SecteurActivites";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import { div } from "motion/react-client";
-import React, { useEffect, useState } from "react";
+//import { div } from "motion/react-client";
+import React from "react";
 
-interface EmploiData {
-  emploiSecteur: string;
-  emploiPoste: string;
-  emploiEmployeur: string;
-  emploiTypeContrat: string;
-  emploiRevenu_mensuel: string;
-  emploiDevise_revenu: string;
-  emploiCanaux: string;
-  emploiSituationProActuelle: string;
-  emploiEmail: string;
-  emploiMotif: string;
-  emploiDureChomage: string;
-}
+// interface EmploiData {
+//   emploiSecteur: string;
+//   emploiPoste: string;
+//   emploiEmployeur: string;
+//   emploiTypeContrat: string;
+//   emploiRevenu_mensuel: string;
+//   emploiDevise_revenu: string;
+//   emploiCanaux: string;
+//   emploiSituationProActuelle: string;
+//   emploiEmail: string;
+//   emploiMotif: string;
+//   emploiDureChomage: string;
+// }
 
 const StepB = ({
   formData,

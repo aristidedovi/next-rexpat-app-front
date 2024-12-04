@@ -3,7 +3,7 @@ import EmailInput from "@/components/EmailInput";
 import SecteurActivites from "@/components/SecteurActivites";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import { div } from "motion/react-client";
+//import { div } from "motion/react-client";
 import React, { useEffect, useState } from "react";
 
 interface EmploiData {

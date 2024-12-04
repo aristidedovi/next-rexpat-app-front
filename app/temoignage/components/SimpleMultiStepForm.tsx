@@ -28,7 +28,7 @@ interface InitialFormData {
   isLogement: boolean;
   isTransport: boolean;
   // Emploi data
-  emploiData: {};
+  //emploiData: {};
   emploiSecteur: string;
   emploiPoste: string;
   emploiEmployeur: string;
@@ -76,7 +76,7 @@ const initialFormDataRexpat: InitialFormData = {
   isEducation: false,
   isLogement: false,
   isTransport: false,
-  emploiData: {},
+  //emploiData: {},
   emploiSecteur: "",
   emploiPoste: "",
   emploiEmployeur: "",
