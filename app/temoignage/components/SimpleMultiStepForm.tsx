@@ -375,58 +375,56 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }
 
     // Parcourir chaque enfant et valider ses informations
-    formData.educationEnfant.forEach(
-      (enfant: ChildEducationInfo, index: number) => {
-        // Créer un objet d'erreurs pour cet enfant
-        const enfantErrors = {
-          niveau: "",
-          typeEcole: "",
-          transport: "",
-          uniforme: "",
-          internat: "",
-          //languesEnseignes: "",
-        };
+    formData.educationEnfant.forEach((enfant: ChildEducationInfo) => {
+      // Créer un objet d'erreurs pour cet enfant
+      const enfantErrors = {
+        niveau: "",
+        typeEcole: "",
+        transport: "",
+        uniforme: "",
+        internat: "",
+        //languesEnseignes: "",
+      };
 
-        // Validation du niveau d'étude
-        if (!enfant.niveau) {
-          enfantErrors.niveau = "Veuillez sélectionner un niveau d'étude";
-          isValid = false;
-        }
-
-        // Validation du type d'école
-        if (!enfant.typeEcole) {
-          enfantErrors.typeEcole = "Veuillez sélectionner le type d'école";
-          isValid = false;
-        }
-
-        // Validation du transport
-        if (!enfant.transport) {
-          enfantErrors.transport = "Veuillez sélectionner";
-          isValid = false;
-        }
-
-        // Validation de l'uniforme
-        if (!enfant.uniforme) {
-          enfantErrors.uniforme = "Veuillez sélectionner";
-          isValid = false;
-        }
-
-        // Validation de internat
-        if (!enfant.internat) {
-          enfantErrors.internat = "Veuillez sélectionner ";
-          isValid = false;
-        }
-
-        // Validation des langues enseignées (si nécessaire)
-        // if (!enfant.languesEnseignes || enfant.languesEnseignes.length === 0) {
-        //   enfantErrors.languesEnseignes = "Veuillez sélectionner au moins une langue";
-        //   isValid = false;
-        // }
-
-        // Ajouter les erreurs de cet enfant au tableau des erreurs
-        educationEnfantErrors.push(enfantErrors);
+      // Validation du niveau d'étude
+      if (!enfant.niveau) {
+        enfantErrors.niveau = "Veuillez sélectionner un niveau d'étude";
+        isValid = false;
       }
-    );
+
+      // Validation du type d'école
+      if (!enfant.typeEcole) {
+        enfantErrors.typeEcole = "Veuillez sélectionner le type d'école";
+        isValid = false;
+      }
+
+      // Validation du transport
+      if (!enfant.transport) {
+        enfantErrors.transport = "Veuillez sélectionner";
+        isValid = false;
+      }
+
+      // Validation de l'uniforme
+      if (!enfant.uniforme) {
+        enfantErrors.uniforme = "Veuillez sélectionner";
+        isValid = false;
+      }
+
+      // Validation de internat
+      if (!enfant.internat) {
+        enfantErrors.internat = "Veuillez sélectionner ";
+        isValid = false;
+      }
+
+      // Validation des langues enseignées (si nécessaire)
+      // if (!enfant.languesEnseignes || enfant.languesEnseignes.length === 0) {
+      //   enfantErrors.languesEnseignes = "Veuillez sélectionner au moins une langue";
+      //   isValid = false;
+      // }
+
+      // Ajouter les erreurs de cet enfant au tableau des erreurs
+      educationEnfantErrors.push(enfantErrors);
+    });
 
     // Mettre à jour l'état des erreurs
     console.log(educationEnfantErrors);

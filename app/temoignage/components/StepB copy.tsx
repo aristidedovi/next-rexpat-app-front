@@ -28,10 +28,10 @@ const StepB = ({
   handelNextStep,
   handelPrevStep,
   handleSubmitFormData,
-  //errorsEmploi,
+  errorsEmploi,
   isLoading,
 }: any) => {
-  const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
+  //const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
 
   const [emploiInfo, setEmploiInfo] = useState<EmploiData>(() => {
     // Use existing data or create empty array

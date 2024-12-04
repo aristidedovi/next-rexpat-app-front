@@ -9,7 +9,7 @@ interface SecteurActivite {
 
 const SecteurActivites = ({
   inputName,
-  inputPostName,
+  //inputPostName,
   inputValue,
   inputId,
   errors,
