@@ -470,10 +470,13 @@ const StepB = ({
         )}
 
         {/* // Ne pas afficher le button si education et logement sont à true */}
-        {formData.isEducation === false ||
+        {/* {formData.isEducation === true ||
           (formData.isLogement === false && (
             <NextButton handelNextStep={handelNextStep} />
-          ))}
+          ))} */}
+        {formData.isEducation === true && (
+          <NextButton handelNextStep={handelNextStep} />
+        )}
       </div>
     </div>
   );
