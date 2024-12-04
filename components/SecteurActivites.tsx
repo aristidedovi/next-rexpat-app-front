@@ -9,6 +9,7 @@ interface SecteurActivite {
 
 const SecteurActivites = ({
   inputName,
+  inputPostName,
   inputValue,
   inputId,
   errors,
@@ -85,11 +86,14 @@ const SecteurActivites = ({
       },
     });
     handelChangeInput(e);
+    // handelChangeInput(inputPostName, "");
+    // handelChangeInput(inputSecteurName, e.target.value);
   };
 
   const handlePosteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // Call the parent component's change handler
     handelChangeInput(e);
+    //handelChangeInput(inputPostName, e.target.value);
   };
 
   return (

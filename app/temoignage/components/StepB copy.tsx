@@ -18,6 +18,8 @@ interface EmploiData {
   emploiEmail: string;
   emploiMotif: string;
   emploiDureChomage: string;
+  emploiAvantApres: "";
+  emploiDelai: "";
 }
 
 const StepB = ({
@@ -26,49 +28,52 @@ const StepB = ({
   handelNextStep,
   handelPrevStep,
   handleSubmitFormData,
-  errorsEmploi,
+  //errorsEmploi,
   isLoading,
 }: any) => {
-  // const [emploiInfo, setEmploiInfo] = useState<EmploiData>(() => {
-  //   // Use existing data or create empty array
-  //   const existingEmploiData = formData.emploiData || {};
-  //   console.log(existingEmploiData);
+  const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
 
-  //   // const existingEmploiData: EmploiData = {
-  //   //   emploiSituationProActuelle: emploiInfo.emploiSituationProActuelle || '',
-  //   //   emploiSecteur: formData.emploiSecteur || '',
-  //   //   emploiPoste: formData.emploiPoste || '',
-  //   //   emploiEmployeur: formData.emploiEmployeur || '',
-  //   //   emploiTypeContrat: formData.emploiTypeContrat || '',
-  //   //   emploiRevenu_mensuel: formData.emploiRevenu_mensuel || '',
-  //   //   emploiDevise_revenu: formData.emploiDevise_revenu || 'USD',
-  //   //   emploiCanaux: formData.emploiCanaux || '',
-  //   //   emploiEmail: formData.emploiEmail || '',
-  //   //   emploiMotif: formData.emploiMotif || '',
-  //   //   emploiDureChomage: formData.emploiDureChomage || '',
-  //   //   emploiAvantApres: formData.emploiAvantApres || '',
-  //   //   emploiDelai: formData.emploiDelai || '',
-  //   // };
-  //   return existingEmploiData;
-  // });
+  const [emploiInfo, setEmploiInfo] = useState<EmploiData>(() => {
+    // Use existing data or create empty array
+    //const existingEmploiData = formData.emploiData || {};
+    //console.log(existingEmploiData);
 
-  // // Synchronize child info with form data whenever it changes
-  // useEffect(() => {
-  //   // Update form data when child info changes
-  //   handelChangeInput({
-  //     target: {
-  //       name: "emploiData",
-  //       value: emploiInfo,
-  //     },
-  //   });
-  // }, [emploiInfo]);
+    const existingEmploiData: EmploiData = {
+      emploiSituationProActuelle:
+        formData.emploiData.emploiSituationProActuelle || "",
+      emploiSecteur: formData.emploiData.emploiSecteur || "",
+      emploiPoste: formData.emploiData.emploiPoste || "",
+      emploiEmployeur: formData.emploiData.emploiEmployeur || "",
+      emploiTypeContrat: formData.emploiData.emploiTypeContrat || "",
+      emploiRevenu_mensuel: formData.emploiData.emploiRevenu_mensuel || "",
+      emploiDevise_revenu: formData.emploiData.emploiDevise_revenu || "USD",
+      emploiCanaux: formData.emploiData.emploiCanaux || "",
+      emploiEmail: formData.emploiData.emploiEmail || "",
+      emploiMotif: formData.emploiData.emploiMotif || "",
+      emploiDureChomage: formData.emploiData.emploiDureChomage || "",
+      emploiAvantApres: formData.emploiData.emploiAvantApres || "",
+      emploiDelai: formData.emploiData.emploiDelai || "",
+    };
+    return existingEmploiData;
+  });
 
-  // const handleChildInfoChange = (field: keyof EmploiData, value: string) => {
-  //   setEmploiInfo((prev) => ({
-  //     ...prev,
-  //     [field]: value,
-  //   }));
-  // };
+  // Synchronize child info with form data whenever it changes
+  useEffect(() => {
+    // Update form data when child info changes
+    handelChangeInput({
+      target: {
+        name: "emploiData",
+        value: emploiInfo,
+      },
+    });
+  }, [emploiInfo]);
+
+  const handleChildInfoChange = (field: keyof EmploiData, value: string) => {
+    setEmploiInfo((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   const inputClassName =
     "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -80,7 +85,7 @@ const StepB = ({
     <div>
       <div
         className={`grid lg:grid-cols-${
-          formData.emploiSituationProActuelle !== "Entrepreneur" ? 4 : 3
+          emploiInfo.emploiSituationProActuelle !== "Entrepreneur" ? 4 : 3
         } sm:grid-cols-1 gap-4`}
       >
         <div className="lg:my-4 sm:my-2">
@@ -94,23 +99,23 @@ const StepB = ({
             id="emploiSituationProActuelle"
             className={`${inputClassName} ${
               errorsEmploi.emploiSituationProActuelle &&
-              !formData.emploiSituationProActuelle
+              !emploiInfo.emploiSituationProActuelle
                 ? "border-red-500"
-                : formData.emploiSituationProActuelle &&
+                : emploiInfo.emploiSituationProActuelle &&
                   errorsEmploi.emploiSituationProActuelle !== ""
                 ? "border-blue-500"
                 : ""
             }`}
-            name="emploiSituationProActuelle"
-            value={formData.emploiSituationProActuelle}
-            onChange={(e) => handelChangeInput(e)}
-            // value={emploiInfo.emploiSituationProActuelle}
-            // onChange={(e) =>
-            //   handleChildInfoChange(
-            //     "emploiSituationProActuelle",
-            //     e.target.value
-            //   )
-            // }
+            //name="emploiSituationProActuelle"
+            //value={emploiInfo.emploiSituationProActuelle}
+            //onChange={(e) => handelChangeInput(e)}
+            value={emploiInfo.emploiSituationProActuelle}
+            onChange={(e) =>
+              handleChildInfoChange(
+                "emploiSituationProActuelle",
+                e.target.value
+              )
+            }
           >
             <option value="">Sélectionnez</option>
             <option value="Etudiant">Etudiant(e)</option>
@@ -119,73 +124,37 @@ const StepB = ({
             <option value="Salarie">Salarié(e)</option>
           </select>
         </div>
-        {formData.emploiSituationProActuelle !== "Entrepreneur" ? (
+        {emploiInfo.emploiSituationProActuelle !== "Entrepreneur" ? (
           <>
             <EmailInput
-              // emploiEmail={emploiInfo.emploiEmail}
-              // handelChangeInput={(e: any) =>
-              //   handleChildInfoChange("emploiEmail", e.target.value)
-              // }
-              emploiEmai={formData.emploiEmail}
-              handelChangeInput={handelChangeInput}
+              emploiEmail={emploiInfo.emploiEmail}
+              handelChangeInput={(e: any) =>
+                handleChildInfoChange("emploiEmail", e.target.value)
+              }
+              //emploiEmai={formData.emploiEmail}
+              //handelChangeInput={handelChangeInput}
             />
           </>
         ) : (
           ""
         )}
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiEmail" className={labelClassName}>
-            Adresse email
-          </label>
-          <input
-            placeholder="Ex: nom@gmail.com"
-            type="text"
-            name="emploiEmail"
-            value={formData.emploiEmail}
-            onChange={(e) => handelChangeInput(e)}
-            id="emploiEmail"
-            className={inputClassName}
-          />
-        </div> */}
 
-        {/* <div className="lg:my-4 sm:my-2"> */}
-        {/* <label htmlFor="emploiSecteur" className={labelClassName}>
-            Secteur d'activité*
-          </label> */}
         <div className="col-span-2">
           <SecteurActivites
-            inputName="emploiSecteur"
-            inputValue={formData.emploiSecteur}
-            inputPoste={formData.emploiPoste}
+            inputSecteurName="emploiSecteur"
+            inputPostName="emploiPoste"
+            inputValue={emploiInfo.emploiSecteur}
+            inputPoste={emploiInfo.emploiPoste}
             inputId="emploiSecteur"
             errors={errorsEmploi.emploiSecteur}
             errorsPoste={errorsEmploi.emploiPoste}
-            handelChangeInput={handelChangeInput}
-            emploiSituationProActuelle={formData.emploiSituationProActuelle}
-            // inputSecteurName="emploiSecteur"
-            // inputPostName="emploiPoste"
-            // inputValue={emploiInfo.emploiSecteur}
-            // inputPoste={emploiInfo.emploiPoste}
-            // inputId="emploiSecteur"
-            // errors={errorsEmploi.emploiSecteur}
-            // errorsPoste={errorsEmploi.emploiPoste}
-            // handelChangeInput={handleChildInfoChange}
-            // handelChangeInput={(e: any) =>
-            //   handleChildInfoChange("emploiSecteur", e.target.value)
-            // }
-            //emploiSituationProActuelle={emploiInfo.emploiSituationProActuelle}
+            handelChangeInput={handleChildInfoChange}
+            emploiSituationProActuelle={emploiInfo.emploiSituationProActuelle}
           />
         </div>
-
-        {/* </div> */}
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="emploiPoste" className={labelClassName}>
-            Poste actuel
-          </label>
-        </div> */}
       </div>
-      {formData.emploiSituationProActuelle === "Chômeur" ||
-      formData.emploiSituationProActuelle === "Etudiant" ? (
+      {emploiInfo.emploiSituationProActuelle === "Chômeur" ||
+      emploiInfo.emploiSituationProActuelle === "Etudiant" ? (
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
           <div>
             <label htmlFor="emploiMotif" className={labelClassName}>
@@ -196,9 +165,9 @@ const StepB = ({
               className={`${inputClassName} ${
                 errorsEmploi.emploiTypeContrat &&
                 !formData.emploiTypeContrat &&
-                formData.emploiSituationProActuelle !== "Chômeur" &&
+                emploiInfo.emploiSituationProActuelle !== "Chômeur" &&
                 //emploiInfo.emploiSituationProActuelle !== "Entrepreneur" &&
-                formData.emploiSituationProActuelle !== "Etudiant"
+                emploiInfo.emploiSituationProActuelle !== "Etudiant"
                   ? "border-red-500"
                   : formData.emploiTypeContrat &&
                     errorsEmploi.emploiTypeContrat !== ""
@@ -206,12 +175,12 @@ const StepB = ({
                   : ""
               }`}
               name="emploiMotif"
-              value={formData.emploiMotif}
-              onChange={(e) => handelChangeInput(e)}
-              // value={emploiInfo.emploiMotif}
-              // onChange={(e: any) =>
-              //   handleChildInfoChange("emploiMotif", e.target.value)
-              // }
+              // value={formData.emploiMotif}
+              // onChange={(e) => handelChangeInput(e)}
+              value={emploiInfo.emploiMotif}
+              onChange={(e: any) =>
+                handleChildInfoChange("emploiMotif", e.target.value)
+              }
             >
               <option value="">Sélectionnez</option>
               <option value="Rupture conventionnelle">
@@ -234,18 +203,18 @@ const StepB = ({
             </label>
             <select
               name="emploiDureChomage"
-              value={formData.emploiDureChomage}
-              onChange={(e) => handelChangeInput(e)}
-              // value={emploiInfo.emploiDureChomage}
-              // onChange={(e: any) =>
-              //   handleChildInfoChange("emploiDureChomage", e.target.value)
-              // }
+              // value={formData.emploiDureChomage}
+              // onChange={(e) => handelChangeInput(e)}
+              value={emploiInfo.emploiDureChomage}
+              onChange={(e: any) =>
+                handleChildInfoChange("emploiDureChomage", e.target.value)
+              }
               className={`${inputClassName} ${
                 errorsEmploi.emploiTypeContrat &&
                 !formData.emploiTypeContrat &&
-                formData.emploiSituationProActuelle !== "Chômeur" &&
+                emploiInfo.emploiSituationProActuelle !== "Chômeur" &&
                 //emploiInfo.emploiSituationProActuelle !== "Entrepreneur" &&
-                formData.emploiSituationProActuelle !== "Etudiant"
+                emploiInfo.emploiSituationProActuelle !== "Etudiant"
                   ? "border-red-500"
                   : formData.emploiTypeContrat &&
                     errorsEmploi.emploiTypeContrat !== ""
@@ -263,13 +232,13 @@ const StepB = ({
         ""
       )}
 
-      {formData.emploiSituationProActuelle === "Chômeur" ||
-      formData.emploiSituationProActuelle === "Etudiant" ? (
+      {emploiInfo.emploiSituationProActuelle === "Chômeur" ||
+      emploiInfo.emploiSituationProActuelle === "Etudiant" ? (
         ""
       ) : (
         <div>
           <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
-            {formData.emploiSituationProActuelle === "Entrepreneur" ? (
+            {emploiInfo.emploiSituationProActuelle === "Entrepreneur" ? (
               ""
             ) : (
               <>
@@ -281,27 +250,28 @@ const StepB = ({
                     placeholder="Ex: Sonatel"
                     type="text"
                     name="emploiEmployeur"
-                    value={formData.emploiEmployeur}
-                    onChange={(e) => handelChangeInput(e)}
-                    // value={emploiInfo.emploiEmployeur}
-                    // onChange={(e: any) =>
-                    //   handleChildInfoChange("emploiEmployeur", e.target.value)
-                    // }
+                    // value={formData.emploiEmployeur}
+                    // onChange={(e) => handelChangeInput(e)}
+                    value={emploiInfo.emploiEmployeur}
+                    onChange={(e: any) =>
+                      handleChildInfoChange("emploiEmployeur", e.target.value)
+                    }
                     id="emploiEmployeur"
                     className={inputClassName}
                     disabled={
-                      formData.emploiSituationProActuelle === "Chômeur" ||
-                      formData.emploiSituationProActuelle === "Entrepreneur" ||
-                      formData.emploiSituationProActuelle === "Etudiant"
+                      emploiInfo.emploiSituationProActuelle === "Chômeur" ||
+                      emploiInfo.emploiSituationProActuelle ===
+                        "Entrepreneur" ||
+                      emploiInfo.emploiSituationProActuelle === "Etudiant"
                     }
                   />
                 </div>
                 <div className="lg:my-4 sm:my-2">
                   <label htmlFor="emploiTypeContrat" className={labelClassName}>
                     Type de contrat{" "}
-                    {formData.emploiSituationProActuelle === "Chômeur" ||
-                    formData.emploiSituationProActuelle === "Entrepreneur" ||
-                    formData.emploiSituationProActuelle === "Etudiant"
+                    {emploiInfo.emploiSituationProActuelle === "Chômeur" ||
+                    emploiInfo.emploiSituationProActuelle === "Entrepreneur" ||
+                    emploiInfo.emploiSituationProActuelle === "Etudiant"
                       ? ""
                       : "*"}
                   </label>
@@ -310,9 +280,10 @@ const StepB = ({
                     className={`${inputClassName} ${
                       errorsEmploi.emploiTypeContrat &&
                       !formData.emploiTypeContrat &&
-                      formData.emploiSituationProActuelle !== "Chômeur" &&
-                      formData.emploiSituationProActuelle !== "Entrepreneur" &&
-                      formData.emploiSituationProActuelle !== "Etudiant"
+                      emploiInfo.emploiSituationProActuelle !== "Chômeur" &&
+                      emploiInfo.emploiSituationProActuelle !==
+                        "Entrepreneur" &&
+                      emploiInfo.emploiSituationProActuelle !== "Etudiant"
                         ? "border-red-500"
                         : formData.emploiTypeContrat &&
                           errorsEmploi.emploiTypeContrat !== ""
@@ -320,17 +291,18 @@ const StepB = ({
                         : ""
                     }`}
                     disabled={
-                      formData.emploiSituationProActuelle === "Chômeur" ||
-                      formData.emploiSituationProActuelle === "Entrepreneur" ||
-                      formData.emploiSituationProActuelle === "Etudiant"
+                      emploiInfo.emploiSituationProActuelle === "Chômeur" ||
+                      emploiInfo.emploiSituationProActuelle ===
+                        "Entrepreneur" ||
+                      emploiInfo.emploiSituationProActuelle === "Etudiant"
                     }
                     name="emploiTypeContrat"
-                    value={formData.emploiTypeContrat}
-                    onChange={(e) => handelChangeInput(e)}
-                    // value={emploiInfo.emploiTypeContrat}
-                    // onChange={(e: any) =>
-                    //   handleChildInfoChange("emploiTypeContrat", e.target.value)
-                    // }
+                    // value={formData.emploiTypeContrat}
+                    // onChange={(e) => handelChangeInput(e)}
+                    value={emploiInfo.emploiTypeContrat}
+                    onChange={(e: any) =>
+                      handleChildInfoChange("emploiTypeContrat", e.target.value)
+                    }
                   >
                     <option value="">Sélectionnez</option>
                     <option value="Stage">Stage</option>
@@ -345,26 +317,31 @@ const StepB = ({
             )}
             <div className="lg:my-4 sm:my-2">
               <CurrencyInput
-                handelChangeInput={handelChangeInput}
-                inputLabel="Revenu mensuel"
-                inputName="emploiRevenu_mensuel"
-                inputId="emploiRevenu_mensuel"
-                inputValue={formData.emploiRevenu_mensuel}
-                formErrors={errorsEmploi.emploiRevenu_mensuel}
-                inputDeviseValue={formData.emploiDevise_revenu}
+                handelChangeInput={(e: any) =>
+                  handleChildInfoChange("emploiRevenu_mensuel", e.target.value)
+                }
+                handelChangeInputDevise={(e: any) =>
+                  handleChildInfoChange("emploiDevise_revenu", e.target.value)
+                }
+                inputValue={emploiInfo.emploiRevenu_mensuel}
+                inputDeviseValue={emploiInfo.emploiDevise_revenu}
                 inputDeviseName="emploiDevise_revenu"
-                inputSituationProActuelle={formData.emploiSituationProActuelle}
+                inputName="emploiRevenu_mensuel"
+                inputLabel="Revenu mensuel"
+                inputSituationProActuelle={
+                  emploiInfo.emploiSituationProActuelle
+                }
               />
             </div>
-            {formData.emploiSituationProActuelle === "Entrepreneur" ? (
+            {emploiInfo.emploiSituationProActuelle === "Entrepreneur" ? (
               <>
                 <EmailInput
-                  emploiEmai={formData.emploiEmail}
-                  handelChangeInput={handelChangeInput}
-                  // emploiEmail={formData.emploiEmail}
-                  // handelChangeInput={(e: any) =>
-                  //   handleChildInfoChange("emploiEmail", e.target.value)
-                  // }
+                  // emploiEmai={formData.emploiEmail}
+                  // handelChangeInput={handelChangeInput}
+                  emploiEmail={emploiInfo.emploiEmail}
+                  handelChangeInput={(e: any) =>
+                    handleChildInfoChange("emploiEmail", e.target.value)
+                  }
                 />
               </>
             ) : (
@@ -374,9 +351,9 @@ const StepB = ({
         </div>
       )}
 
-      {formData.emploiSituationProActuelle === "Entrepreneur" ||
-      formData.emploiSituationProActuelle === "Etudiant" ||
-      formData.emploiSituationProActuelle === "Chômeur" ? (
+      {emploiInfo.emploiSituationProActuelle === "Entrepreneur" ||
+      emploiInfo.emploiSituationProActuelle === "Etudiant" ||
+      emploiInfo.emploiSituationProActuelle === "Chômeur" ? (
         ""
       ) : (
         <>
@@ -388,9 +365,12 @@ const StepB = ({
               <select
                 id="emploiCanaux"
                 className={inputClassName}
-                name="emploiCanaux"
-                value={formData.emploiCanaux}
-                onChange={(e) => handelChangeInput(e)}
+                //name="emploiCanaux"
+                value={emploiInfo.emploiCanaux}
+                //onChange={(e) => handelChangeInput(e)}
+                onChange={(e: any) =>
+                  handleChildInfoChange("emploiCanaux", e.target.value)
+                }
               >
                 <option value="">Sélectionnez</option>
                 <option value="Site web">Site web</option>
@@ -406,9 +386,12 @@ const StepB = ({
               <select
                 id="emploiAvantApres"
                 className={inputClassName}
-                name="emploiAvantApres"
-                value={formData.emploiAvantApres}
-                onChange={(e) => handelChangeInput(e)}
+                //name="emploiAvantApres"
+                value={emploiInfo.emploiAvantApres}
+                //onChange={(e) => handelChangeInput(e)}
+                onChange={(e: any) =>
+                  handleChildInfoChange("emploiAvantApres", e.target.value)
+                }
               >
                 <option value="">Sélectionnez</option>
                 <option value="avant">Avant</option>
@@ -422,9 +405,12 @@ const StepB = ({
               <select
                 id="emploiDelai"
                 className={inputClassName}
-                name="emploiDelai"
-                value={formData.emploiDelai}
-                onChange={(e) => handelChangeInput(e)}
+                //name="emploiDelai"
+                value={emploiInfo.emploiDelai}
+                //onChange={(e) => handelChangeInput(e)}
+                onChange={(e: any) =>
+                  handleChildInfoChange("emploiDelai", e.target.value)
+                }
               >
                 <option value="">Sélectionnez</option>
                 <option value="-3">moins 3</option>

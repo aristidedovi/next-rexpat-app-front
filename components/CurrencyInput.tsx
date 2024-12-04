@@ -1,5 +1,6 @@
 export default function CurrencyInput({
   handelChangeInput,
+  //handelChangeInputDevise,
   inputLabel,
   inputName,
   inputId,
@@ -33,8 +34,9 @@ export default function CurrencyInput({
           id={inputId}
           type="number"
           placeholder="Ex: 8000"
-          value={inputValue}
+          value={inputValue || ""}
           onChange={handelChangeInput}
+          // onChange={(e: any) => handelChangeInput(inputName, e.target.value)}
           disabled={
             inputSituationProActuelle === "Chômeur" ||
             inputSituationProActuelle === "Entrepruneur" ||
@@ -53,8 +55,12 @@ export default function CurrencyInput({
         />
         <select
           name={inputDeviseName}
-          value={inputDeviseValue}
+          value={inputDeviseValue || "USD"}
           onChange={handelChangeInput}
+          //onChange={handelChangeInputDevise}
+          // onChange={(e: any) =>
+          //   handelChangeInput(inputDeviseName, e.target.value)
+          // }
           className={inputClassNameSelect}
           disabled={
             inputSituationProActuelle === "Chômeur" ||

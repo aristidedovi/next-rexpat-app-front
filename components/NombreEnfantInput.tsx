@@ -12,6 +12,7 @@ const NombreEnfantInput: React.FC<SelectNombreEnfant> = ({
   handelChangeInput,
   educationNombreEnfant,
 }) => {
+  //const [quantity, setQuantity] = useState(0);
   const [quantity, setQuantity] = useState(0);
   //const [error, setError] = useState("");
 

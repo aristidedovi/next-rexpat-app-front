@@ -2,8 +2,9 @@ import React from "react";
 
 const EducationTypeEcoleSelect = ({
   index,
-  child,
+  typeEcole,
   handleChildInfoChange,
+  errorsEducation,
 }: any) => {
   //const [selectedValue, setSelectedValue] = useState("");
   const inputClassName =
@@ -19,21 +20,41 @@ const EducationTypeEcoleSelect = ({
         htmlFor={`typeEcole-${index}`}
         className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
       >
-        Type d'école
+        Type d'école*
       </label>
       <select
         //value={selectedValue}
         id={`typeEcole-${index}`}
-        value={child.typeEcole}
+        value={typeEcole}
         //onChange={handleChange}
         onChange={(e) =>
           handleChildInfoChange(index, "typeEcole", e.target.value)
         }
-        className={inputClassName}
+        className={`${inputClassName} ${
+          errorsEducation.educationEnfantErrors &&
+          errorsEducation.educationEnfantErrors[index] &&
+          errorsEducation.educationEnfantErrors[index].typeEcole &&
+          !typeEcole
+            ? "border-red-500"
+            : typeEcole &&
+              errorsEducation.educationEnfantErrors &&
+              errorsEducation.educationEnfantErrors[index] &&
+              errorsEducation.educationEnfantErrors[index].typeEcole !== ""
+            ? "border-blue-500"
+            : ""
+        }`}
+        //className={inputClassName}
+        // className={`${inputClassName} ${
+        //   errorsEducation.typeEcole && !child.typeEcole
+        //     ? "border-red-500"
+        //     : child.typeEcole && errorsEducation.typeEcole !== ""
+        //     ? "border-blue-500"
+        //     : ""
+        // }`}
         //className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
         <option value="">Sélectionnez une option</option>
-
+        <option value="Public">Public</option>
         <optgroup label="Privée">
           <option value="Privée Sénégalaise">Sénégalaise</option>
           <option value="Privée Franco-Arabe">Franco-Arabe</option>
