@@ -1,4 +1,4 @@
-import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
+//import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
 import React, { useEffect, useState } from "react";
@@ -63,12 +63,12 @@ const StepE = ({
   //   console.log(logement);
   // };
 
-  const handleChildInfoChange = (field: keyof Logement, value: string) => {
-    setLogement((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  // const handleChildInfoChange = (field: keyof Logement, value: string) => {
+  //   setLogement((prev) => ({
+  //     ...prev,
+  //     [field]: value,
+  //   }));
+  // };
 
   return (
     <div>

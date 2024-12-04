@@ -59,7 +59,16 @@ interface InitialFormData {
   EducationDevise_scolaire: string;
 
   // logement
-  logement: {};
+  logement: {
+    statut: string;
+    typeLogement: string;
+    nombreDePieces: string;
+    budget: string;
+    devise: string;
+    zoneGeographique: string;
+    canalAquisition: string;
+    siRecommandation: string;
+  };
 }
 
 const initialFormDataRexpat: InitialFormData = {

@@ -1,6 +1,6 @@
 export default function LogementBudgetCurrencyInput({
   handelChangeInput,
-  handelSelectInput,
+  //handelSelectInput,
   inputName,
   inputId,
   inputValue,
