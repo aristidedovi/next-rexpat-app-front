@@ -7,6 +7,7 @@ import StepC from "./StepC";
 import StepD from "./StepD";
 import StepFinal from "./StepFinal";
 import StepFirst from "./StepFirst";
+import StepE from "./StepE";
 
 interface InitialFormData {
   genre: string;
@@ -28,6 +29,7 @@ interface InitialFormData {
   isLogement: boolean;
   isTransport: boolean;
   // Emploi data
+  //emploiData: {};
   emploiSecteur: string;
   emploiPoste: string;
   emploiEmployeur: string;
@@ -37,6 +39,8 @@ interface InitialFormData {
   emploiCanaux: string;
   emploiSituationProActuelle: string;
   emploiEmail: string;
+  emploiMotif: string;
+  emploiDureChomage: string;
   //emploiNiveauDifficulte: string;
   emploiAvantApres: string;
   emploiDelai: string;
@@ -53,6 +57,18 @@ interface InitialFormData {
   educationProgrammes: string;
   educationAutres: string;
   EducationDevise_scolaire: string;
+
+  // logement
+  logement: {
+    statut: string;
+    typeLogement: string;
+    nombreDePieces: string;
+    budget: string;
+    devise: string;
+    zoneGeographique: string;
+    canalAquisition: string;
+    siRecommandation: string;
+  };
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -73,6 +89,7 @@ const initialFormDataRexpat: InitialFormData = {
   isEducation: false,
   isLogement: false,
   isTransport: false,
+  //emploiData: {},
   emploiSecteur: "",
   emploiPoste: "",
   emploiEmployeur: "",
@@ -82,6 +99,8 @@ const initialFormDataRexpat: InitialFormData = {
   emploiCanaux: "",
   emploiSituationProActuelle: "",
   emploiEmail: "",
+  emploiMotif: "",
+  emploiDureChomage: "",
   //emploiNiveauDifficulte: "",
   emploiAvantApres: "",
   emploiDelai: "",
@@ -99,9 +118,54 @@ const initialFormDataRexpat: InitialFormData = {
   educationProgrammes: "",
   educationAutres: "",
   EducationDevise_scolaire: "",
+
+  // logement
+  logement: {
+    statut: "",
+    typeLogement: "",
+    nombreDePieces: "",
+    budget: "",
+    devise: "",
+    zoneGeographique: "",
+    canalAquisition: "",
+    siRecommandation: "",
+  },
 };
 
-const stepsArray: string[] = ["I", "A", "B", "C", "D"];
+// Types pour les informations de chaque enfant
+interface ChildEducationInfo {
+  niveau: string;
+  budget: number;
+  devise: string;
+  typeEcole: string;
+  uniforme: string;
+  transport: string;
+  satisfaction: string;
+  internat: string;
+}
+
+interface EducationErrors {
+  educationNombreEnfant: string;
+  educationNiveauEtude: string;
+  educationTypeEcole: string;
+  educationLanguesEnseignes: string;
+  educationAvecOuSansUniforme: string;
+  educationAvecOuSansTransport: string;
+  educationBudgetScolaire: string;
+  educationNiveauSatisfaction: string;
+  educationProgrammes: string;
+  educationAutres: string;
+  educationEnfantErrors?: Array<{
+    niveau: string;
+    typeEcole: string;
+    transport: string;
+    uniforme: string;
+    internat: string;
+    //languesEnseignes: string;
+  }>;
+}
+
+const stepsArray: string[] = ["I", "A", "B", "C", "D", "E"];
 
 interface StepDetail {
   id: string;
@@ -135,6 +199,11 @@ const stepsArrayDetails: StepDetail[] = [
     label: "Logement",
     description: "Vos informations",
   },
+  {
+    id: "E",
+    label: "Transport",
+    description: "Vos informations",
+  },
 ];
 
 interface SimpleMultiStepFormProps {
@@ -150,8 +219,11 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   );
   const [errorsIG, setErrorsIG] = useState<Record<string, string>>({});
   const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
+  // const [errorsEducation, setErrorsEducation] = useState<
+  //   Record<string, string>
+  // >({});
   const [errorsEducation, setErrorsEducation] = useState<
-    Record<string, string>
+    Partial<EducationErrors>
   >({});
 
   const stepConditions: Record<string, boolean> = {
@@ -159,6 +231,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     B: formData.isEmploi,
     C: formData.isEducation,
     D: formData.isLogement,
+    E: formData.isTransport,
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -291,50 +364,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       isValid = false;
       //console.log("chômeur");
     }
-    // if (
-    //   !formData.emploiSecteur &&
-    //   formData.emploiSituationProActuelle !== "Chômeur"
-    // ) {
-    //   formErrors.emploiSecteur = "Veuillez saisir votre secteur d'activité";
-    //   isValid = false;
-    // }
-
-    // if (
-    //   !formData.emploiRevenu_mensuel &&
-    //   formData.emploiSituationProActuelle !== "Chômeur" &&
-    //   formData.emploiSituationProActuelle !== "Entrepreneur"
-    // ) {
-    //   formErrors.emploiRevenu_mensuel =
-    //     "Veuillez entrer un revenu mensuel valide.";
-    //   isValid = false;
-    // }
-
-    // if (
-    //   !formData.emploiDevise_revenu &&
-    //   formData.emploiSituationProActuelle !== "Chômeur" &&
-    //   formData.emploiSituationProActuelle !== "Entrepreneur"
-    // ) {
-    //   formErrors.emploiDevise_revenu = "Veuillez selectionner une devise.";
-    //   isValid = false;
-    // }
-
-    // if (
-    //   !formData.emploiAvantApres &&
-    //   formData.emploiSituationProActuelle !== "Chômeur" &&
-    //   formData.emploiSituationProActuelle !== "Entrepreneur"
-    // ) {
-    //   formErrors.emploiAvantApres = "Veuillez selectionner une option.";
-    //   isValid = false;
-    // }
-
-    // if (
-    //   !formData.emploiDelai &&
-    //   formData.emploiSituationProActuelle !== "Chômeur" &&
-    //   formData.emploiSituationProActuelle !== "Entrepreneur"
-    // ) {
-    //   formErrors.emploiDelai = "Veuillez selectionner une option.";
-    //   isValid = false;
-    // }
 
     console.log(formErrors);
 
@@ -343,6 +372,20 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   };
 
   const validateFormEducation = (): boolean => {
+    // Initialiser un tableau pour stocker les erreurs de chaque enfant
+    const educationEnfantErrors: Array<{
+      niveau: string;
+      typeEcole: string;
+      transport: string;
+      uniforme: string;
+      internat: string;
+      //languesEnseignes: string;
+    }> = [];
+
+    // Validation globale
+    let isValid = true;
+
+    // Valider le nombre d'enfants
     const formErrors: Record<string, string> = {
       educationNombreEnfant: "",
       educationNiveauEtude: "",
@@ -355,14 +398,72 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       educationProgrammes: "",
       educationAutres: "",
     };
-    let isValid: boolean = true;
 
+    // Vérifier si le nombre d'enfants est renseigné
     if (!formData.educationNombreEnfant) {
       formErrors.educationNombreEnfant = "Veuillez saisir un nombre d'enfant";
       isValid = false;
     }
 
-    setErrorsEducation(formErrors);
+    // Parcourir chaque enfant et valider ses informations
+    formData.educationEnfant.forEach((enfant: ChildEducationInfo) => {
+      // Créer un objet d'erreurs pour cet enfant
+      const enfantErrors = {
+        niveau: "",
+        typeEcole: "",
+        transport: "",
+        uniforme: "",
+        internat: "",
+        //languesEnseignes: "",
+      };
+
+      // Validation du niveau d'étude
+      if (!enfant.niveau) {
+        enfantErrors.niveau = "Veuillez sélectionner un niveau d'étude";
+        isValid = false;
+      }
+
+      // Validation du type d'école
+      if (!enfant.typeEcole) {
+        enfantErrors.typeEcole = "Veuillez sélectionner le type d'école";
+        isValid = false;
+      }
+
+      // Validation du transport
+      if (!enfant.transport) {
+        enfantErrors.transport = "Veuillez sélectionner";
+        isValid = false;
+      }
+
+      // Validation de l'uniforme
+      if (!enfant.uniforme) {
+        enfantErrors.uniforme = "Veuillez sélectionner";
+        isValid = false;
+      }
+
+      // Validation de internat
+      if (!enfant.internat) {
+        enfantErrors.internat = "Veuillez sélectionner ";
+        isValid = false;
+      }
+
+      // Validation des langues enseignées (si nécessaire)
+      // if (!enfant.languesEnseignes || enfant.languesEnseignes.length === 0) {
+      //   enfantErrors.languesEnseignes = "Veuillez sélectionner au moins une langue";
+      //   isValid = false;
+      // }
+
+      // Ajouter les erreurs de cet enfant au tableau des erreurs
+      educationEnfantErrors.push(enfantErrors);
+    });
+
+    // Mettre à jour l'état des erreurs
+    console.log(educationEnfantErrors);
+    setErrorsEducation({
+      ...formErrors,
+      educationEnfantErrors, // Ajouter le tableau des erreurs spécifiques aux enfants
+    });
+
     return isValid;
   };
 
@@ -376,22 +477,42 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         setStep("C");
       } else if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
       }
     } else if (step === "B" && validateFormEmploi()) {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
       }
-    } else if (step === "C") {
+    } else if (step === "C" && validateFormEducation()) {
       if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
+      }
+    } else if (step === "D") {
+      if (formData.isTransport) {
+        setStep("E");
       }
     }
   };
 
   const handelPrevStep = (): void => {
-    if (step === "D") {
+    if (step === "E") {
+      if (formData.isLogement) {
+        setStep("D");
+      } else if (formData.isEducation) {
+        setStep("C");
+      } else if (formData.isEmploi) {
+        setStep("B");
+      } else {
+        setStep("A");
+      }
+    } else if (step === "D") {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isEmploi) {
@@ -603,6 +724,15 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         ) : null}
         {step === "D" && formData.isLogement === true ? (
           <StepD
+            formData={formData}
+            handelChangeInput={handelChangeInput}
+            handelNextStep={handelNextStep}
+            handelPrevStep={handelPrevStep}
+            handleSubmitFormData={handleSubmitFormData}
+          />
+        ) : null}
+        {step === "E" && formData.isTransport === true ? (
+          <StepE
             formData={formData}
             handelChangeInput={handelChangeInput}
             handelPrevStep={handelPrevStep}

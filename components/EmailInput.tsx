@@ -16,7 +16,7 @@ const EmailInput = ({ emploiEmail, handelChangeInput }: any) => {
           placeholder="Ex: nom@gmail.com"
           type="text"
           name="emploiEmail"
-          value={emploiEmail}
+          value={emploiEmail || ""}
           onChange={handelChangeInput}
           id="emploiEmail"
           className={inputClassName}

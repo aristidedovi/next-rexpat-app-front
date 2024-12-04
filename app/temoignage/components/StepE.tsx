@@ -1,34 +1,33 @@
-import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
+//import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-interface Logement {
-  statut: string;
-  typeLogement: string;
-  nombreDePieces: string;
-  budget: string;
-  devise: string;
-  zoneGeographique: string;
-  canalAquisition: string;
-  siRecommandation: string;
-}
+// interface Logement {
+//   statut: string;
+//   typeLogement: string;
+//   nombreDePieces: string;
+//   budget: string;
+//   devise: string;
+//   zoneGeographique: string;
+//   canalAquisition: string;
+//   siRecommandation: string;
+// }
 
-const StepD = ({
+const StepE = ({
   formData,
-  handelChangeInput,
+  //handelChangeInput,
   //errorsLogement,
   handleSubmitFormData,
   handelPrevStep,
   handelNextStep,
   isLoading,
 }: any) => {
-  const [logement, setLogement] = useState<Logement>(
-    () => formData.logement || 0
-  );
-
-  const inputClassName =
-    "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+  // const [logement, setLogement] = useState<Logement>(
+  //   () => formData.logement || 0
+  // );
+  // const inputClassName =
+  //   "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
@@ -44,18 +43,18 @@ const StepD = ({
   // };
 
   // Synchronize child info with form data whenever it changes
-  useEffect(() => {
-    if (!logement.devise) {
-      logement.devise = "USD";
-    }
-    // Update form data when child info changes
-    handelChangeInput({
-      target: {
-        name: "logement",
-        value: logement,
-      },
-    });
-  }, [logement]);
+  // useEffect(() => {
+  //   if (!logement.devise) {
+  //     logement.devise = "USD";
+  //   }
+  // Update form data when child info changes
+  //   handelChangeInput({
+  //     target: {
+  //       name: "logement",
+  //       value: logement,
+  //     },
+  //   });
+  // }, [logement]);
 
   // const handelChangeLogementInput = (e: {
   //   target: { name: string; value: string };
@@ -63,21 +62,21 @@ const StepD = ({
   //   console.log(logement);
   // };
 
-  const handleChildInfoChange = (field: keyof Logement, value: string) => {
-    setLogement((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  // const handleChildInfoChange = (field: keyof Logement, value: string) => {
+  //   setLogement((prev) => ({
+  //     ...prev,
+  //     [field]: value,
+  //   }));
+  // };
 
   return (
     <div>
       <div className={`grid lg:grid-cols-3 sm:grid-cols-1 gap-4`}>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="status" className={labelClassName}>
-            Statut du logement*
+            Transport
           </label>
-          <select
+          {/* <select
             id="status"
             className={inputClassName}
             // className={`${inputClassName} ${
@@ -97,10 +96,10 @@ const StepD = ({
             <option value="Propriétaire">Propriétaire</option>
             <option value="Locataire">Locataire</option>
             <option value="Hébergé">Hébergé</option>
-          </select>
+          </select> */}
         </div>
 
-        <div className="lg:my-4 sm:my-2">
+        {/* <div className="lg:my-4 sm:my-2">
           <label htmlFor="typeLogement" className={labelClassName}>
             Type de logement*
           </label>
@@ -159,10 +158,10 @@ const StepD = ({
             <option value="F4">F4</option>
             <option value="F5+">F5+</option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className={`grid lg:grid-cols-3 sm:grid-cols-1 gap-4`}>
-        <div className="lg:my-4 sm:my-2">
+        {/* <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="budget"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
@@ -210,7 +209,7 @@ const StepD = ({
 
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="siRecommandation" className={labelClassName}>
-            Recommanderiez-vous votre logement ?
+            Recommandez-vous votre logement?
           </label>
           <select
             id="siRecommandation"
@@ -234,7 +233,7 @@ const StepD = ({
             <option value="Oui">Oui</option>
             <option value="Non">Non</option>
           </select>
-        </div>
+        </div> */}
       </div>
       {/* <DataConfirmRow label="First Name: " value={formData.firstname} />
       <DataConfirmRow label="Last Name: " value={formData.lastname} />
@@ -281,18 +280,16 @@ const StepD = ({
         <PrevButton handelPrevStep={handelPrevStep} />
 
         {/* // Afficher le submit buton quand emploi est à true et les autre sont à false */}
-        {formData.isLogement === true &&
-          formData.isTransport === false &&
-          !isLoading && (
-            <button
-              type="button"
-              disabled={isLoading}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={handleSubmitFormData}
-            >
-              {isLoading ? "En cours..." : "Soumettre"}
-            </button>
-          )}
+        {formData.isLogement === true && !isLoading && (
+          <button
+            type="button"
+            disabled={isLoading}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onClick={handleSubmitFormData}
+          >
+            {isLoading ? "En cours..." : "Soumettre"}
+          </button>
+        )}
 
         {/* Show loader */}
         {isLoading && (
@@ -310,7 +307,7 @@ const StepD = ({
   );
 };
 
-export default StepD;
+export default StepE;
 
 // // A separate component to sho data
 // const DataConfirmRow = ({ label, value }: any) => {
