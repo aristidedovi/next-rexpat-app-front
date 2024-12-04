@@ -7,6 +7,7 @@ import StepC from "./StepC";
 import StepD from "./StepD";
 import StepFinal from "./StepFinal";
 import StepFirst from "./StepFirst";
+import StepE from "./StepE";
 
 interface InitialFormData {
   genre: string;
@@ -56,6 +57,9 @@ interface InitialFormData {
   educationProgrammes: string;
   educationAutres: string;
   EducationDevise_scolaire: string;
+
+  // logement
+  logement: {};
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -105,6 +109,18 @@ const initialFormDataRexpat: InitialFormData = {
   educationProgrammes: "",
   educationAutres: "",
   EducationDevise_scolaire: "",
+
+  // logement
+  logement: {
+    statut: "",
+    typeLogement: "",
+    nombreDePieces: "",
+    budget: "",
+    devise: "",
+    zoneGeographique: "",
+    canalAquisition: "",
+    siRecommandation: "",
+  },
 };
 
 // Types pour les informations de chaque enfant
@@ -140,7 +156,7 @@ interface EducationErrors {
   }>;
 }
 
-const stepsArray: string[] = ["I", "A", "B", "C", "D"];
+const stepsArray: string[] = ["I", "A", "B", "C", "D", "E"];
 
 interface StepDetail {
   id: string;
@@ -174,6 +190,11 @@ const stepsArrayDetails: StepDetail[] = [
     label: "Logement",
     description: "Vos informations",
   },
+  {
+    id: "E",
+    label: "Transport",
+    description: "Vos informations",
+  },
 ];
 
 interface SimpleMultiStepFormProps {
@@ -201,6 +222,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     B: formData.isEmploi,
     C: formData.isEducation,
     D: formData.isLogement,
+    E: formData.isTransport,
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -446,22 +468,42 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         setStep("C");
       } else if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
       }
     } else if (step === "B" && validateFormEmploi()) {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
       }
     } else if (step === "C" && validateFormEducation()) {
       if (formData.isLogement) {
         setStep("D");
+      } else if (formData.isTransport) {
+        setStep("E");
+      }
+    } else if (step === "D") {
+      if (formData.isTransport) {
+        setStep("E");
       }
     }
   };
 
   const handelPrevStep = (): void => {
-    if (step === "D") {
+    if (step === "E") {
+      if (formData.isLogement) {
+        setStep("D");
+      } else if (formData.isEducation) {
+        setStep("C");
+      } else if (formData.isEmploi) {
+        setStep("B");
+      } else {
+        setStep("A");
+      }
+    } else if (step === "D") {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isEmploi) {
@@ -673,6 +715,15 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         ) : null}
         {step === "D" && formData.isLogement === true ? (
           <StepD
+            formData={formData}
+            handelChangeInput={handelChangeInput}
+            handelNextStep={handelNextStep}
+            handelPrevStep={handelPrevStep}
+            handleSubmitFormData={handleSubmitFormData}
+          />
+        ) : null}
+        {step === "E" && formData.isTransport === true ? (
+          <StepE
             formData={formData}
             handelChangeInput={handelChangeInput}
             handelPrevStep={handelPrevStep}
