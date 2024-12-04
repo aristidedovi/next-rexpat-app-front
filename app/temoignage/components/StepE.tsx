@@ -1,18 +1,18 @@
 //import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
 import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-interface Logement {
-  statut: string;
-  typeLogement: string;
-  nombreDePieces: string;
-  budget: string;
-  devise: string;
-  zoneGeographique: string;
-  canalAquisition: string;
-  siRecommandation: string;
-}
+// interface Logement {
+//   statut: string;
+//   typeLogement: string;
+//   nombreDePieces: string;
+//   budget: string;
+//   devise: string;
+//   zoneGeographique: string;
+//   canalAquisition: string;
+//   siRecommandation: string;
+// }
 
 const StepE = ({
   formData,
