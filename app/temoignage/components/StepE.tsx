@@ -1,33 +1,31 @@
 //import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
-import NextButton from "@/components/ui/NextButton";
+import TransportBudgetCurrencyInput from "@/components/TransportBudgetCurrencyInput";
+//import NextButton from "@/components/ui/NextButton";
 import PrevButton from "@/components/ui/PrevButton";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-// interface Logement {
-//   statut: string;
-//   typeLogement: string;
-//   nombreDePieces: string;
-//   budget: string;
-//   devise: string;
-//   zoneGeographique: string;
-//   canalAquisition: string;
-//   siRecommandation: string;
-// }
+interface Transport {
+  moyenUtilise: string;
+  proprietaire: string;
+  budget: string;
+  devise: string;
+  chauffeurPrive: string;
+}
 
 const StepE = ({
   formData,
-  //handelChangeInput,
+  handelChangeInput,
   //errorsLogement,
   handleSubmitFormData,
   handelPrevStep,
-  handelNextStep,
+  //handelNextStep,
   isLoading,
 }: any) => {
-  // const [logement, setLogement] = useState<Logement>(
-  //   () => formData.logement || 0
-  // );
-  // const inputClassName =
-  //   "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+  const [transport, setTransport] = useState<Transport>(
+    () => formData.transport || 0
+  );
+  const inputClassName =
+    "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
 
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
@@ -43,18 +41,18 @@ const StepE = ({
   // };
 
   // Synchronize child info with form data whenever it changes
-  // useEffect(() => {
-  //   if (!logement.devise) {
-  //     logement.devise = "USD";
-  //   }
-  // Update form data when child info changes
-  //   handelChangeInput({
-  //     target: {
-  //       name: "logement",
-  //       value: logement,
-  //     },
-  //   });
-  // }, [logement]);
+  useEffect(() => {
+    if (!transport.devise) {
+      transport.devise = "USD";
+    }
+    //Update form data when child info changes
+    handelChangeInput({
+      target: {
+        name: "transport",
+        value: transport,
+      },
+    });
+  }, [transport]);
 
   // const handelChangeLogementInput = (e: {
   //   target: { name: string; value: string };
@@ -69,15 +67,26 @@ const StepE = ({
   //   }));
   // };
 
+  const handleChildInfoChange = (
+    field: keyof Transport,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTransport((prev) => ({
+      ...prev,
+      [field]: e.target.value,
+    }));
+
+    //handelChangeInput(e);
+  };
   return (
     <div>
       <div className={`grid lg:grid-cols-3 sm:grid-cols-1 gap-4`}>
         <div className="lg:my-4 sm:my-2">
-          <label htmlFor="status" className={labelClassName}>
-            Transport
+          <label htmlFor="moyenUtilise" className={labelClassName}>
+            Moyen de Transport utilisé ?
           </label>
-          {/* <select
-            id="status"
+          <select
+            id="moyenUtilise"
             className={inputClassName}
             // className={`${inputClassName} ${
             //   errorsLogement.emploiSituationProActuelle &&
@@ -88,15 +97,62 @@ const StepE = ({
             //     ? "border-blue-500"
             //     : ""
             // }`}
-            name="status"
-            value={logement.statut}
-            onChange={(e) => handleChildInfoChange("statut", e.target.value)}
+            //name="moyenUtilise"
+            value={transport.moyenUtilise}
+            onChange={(e: any) => handleChildInfoChange("moyenUtilise", e)}
           >
             <option value="">Sélectionnez</option>
-            <option value="Propriétaire">Propriétaire</option>
-            <option value="Locataire">Locataire</option>
-            <option value="Hébergé">Hébergé</option>
-          </select> */}
+            <option value="Vélo">Vélo</option>
+            <option value="Bus">Bus</option>
+            <option value="Taxi">Taxi</option>
+            <option value="Voiture personnelle">Voiture personnelle</option>
+            <option value="VTC">VTC</option>
+            <option value="Moto">Moto</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div className="lg:my-4 sm:my-2">
+          <label htmlFor="proprietaire" className={labelClassName}>
+            Est vous proprietaire d'un véhicule ?
+          </label>
+          <select
+            id="proprietaire"
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsLogement.emploiSituationProActuelle &&
+            //   !formData.emploiSituationProActuelle
+            //     ? "border-red-500"
+            //     : formData.emploiSituationProActuelle &&
+            //       errorsLogement.emploiSituationProActuelle !== ""
+            //     ? "border-blue-500"
+            //     : ""
+            // }`}
+            //name="proprietaire"
+            value={transport.proprietaire}
+            onChange={(e: any) => handleChildInfoChange("proprietaire", e)}
+          >
+            <option value="">Sélectionnez</option>
+            <option value="Oui">Oui</option>
+            <option value="Non">Non</option>
+          </select>
+        </div>
+
+        <div className="lg:my-4 sm:my-2">
+          <label
+            htmlFor="budget"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          >
+            Budget mensuel transport / véhicule
+          </label>
+          <TransportBudgetCurrencyInput
+            handelChangeInput={handleChildInfoChange}
+            handelSelectInput={handleChildInfoChange}
+            inputName="budget"
+            inputId="budget"
+            inputValue={transport.budget}
+            inputDeviseValue={transport.devise}
+            inputDeviseName="devise"
+          />
         </div>
 
         {/* <div className="lg:my-4 sm:my-2">
@@ -161,6 +217,31 @@ const StepE = ({
         </div> */}
       </div>
       <div className={`grid lg:grid-cols-3 sm:grid-cols-1 gap-4`}>
+        <div className="lg:my-4 sm:my-2">
+          <label htmlFor="chauffeurPrive" className={labelClassName}>
+            Avez vous besoin d'un chauffeur privé ?
+          </label>
+          <select
+            id="chauffeurPrive"
+            className={inputClassName}
+            // className={`${inputClassName} ${
+            //   errorsLogement.emploiSituationProActuelle &&
+            //   !formData.emploiSituationProActuelle
+            //     ? "border-red-500"
+            //     : formData.emploiSituationProActuelle &&
+            //       errorsLogement.emploiSituationProActuelle !== ""
+            //     ? "border-blue-500"
+            //     : ""
+            // }`}
+            //name="proprietaire"
+            value={transport.chauffeurPrive}
+            onChange={(e: any) => handleChildInfoChange("chauffeurPrive", e)}
+          >
+            <option value="">Sélectionnez</option>
+            <option value="Oui">Oui</option>
+            <option value="Non">Non</option>
+          </select>
+        </div>
         {/* <div className="lg:my-4 sm:my-2">
           <label
             htmlFor="budget"
@@ -280,7 +361,7 @@ const StepE = ({
         <PrevButton handelPrevStep={handelPrevStep} />
 
         {/* // Afficher le submit buton quand emploi est à true et les autre sont à false */}
-        {formData.isLogement === true && !isLoading && (
+        {formData.isTransport === true && !isLoading && (
           <button
             type="button"
             disabled={isLoading}
@@ -299,9 +380,9 @@ const StepE = ({
         )}
 
         {/* // Ne pas afficher le button si education et logement sont à true */}
-        {formData.isLogement === true && (
+        {/* {formData.isLogement === true && (
           <NextButton handelNextStep={handelNextStep} />
-        )}
+        )} */}
       </div>
     </div>
   );

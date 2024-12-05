@@ -69,6 +69,15 @@ interface InitialFormData {
     canalAquisition: string;
     siRecommandation: string;
   };
+
+  // tranport
+  transport: {
+    moyenUtilise: string;
+    proprietaire: string;
+    budget: string;
+    devise: string;
+    chauffeurPrive: string;
+  };
 }
 
 const initialFormDataRexpat: InitialFormData = {
@@ -129,6 +138,15 @@ const initialFormDataRexpat: InitialFormData = {
     zoneGeographique: "",
     canalAquisition: "",
     siRecommandation: "",
+  },
+
+  // transport
+  transport: {
+    moyenUtilise: "",
+    proprietaire: "",
+    budget: "",
+    devise: "",
+    chauffeurPrive: "",
   },
 };
 
