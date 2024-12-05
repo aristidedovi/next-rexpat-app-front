@@ -328,7 +328,7 @@ const StepC = ({
               </div>
               <div>
                 <label htmlFor={`internat-${index}`} className={labelClassName}>
-                  Internat
+                  Internat*
                 </label>
                 <select
                   id={`internat-${index}`}

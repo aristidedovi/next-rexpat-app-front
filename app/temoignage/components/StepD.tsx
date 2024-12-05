@@ -81,7 +81,7 @@ const StepD = ({
       [field]: e.target.value,
     }));
 
-    handelChangeInput(e);
+    //handelChangeInput(e);
   };
   return (
     <div>
