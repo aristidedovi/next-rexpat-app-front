@@ -32,7 +32,7 @@ any) {
           placeholder="Ex: 8000"
           //placeholder={inputplaceholder}
           value={inputValue}
-          onChange={(e) => handelChangeInput(inputName, e.target.value)}
+          onChange={(e: any) => handelChangeInput(inputName, e)}
           className={inputClassName}
           //className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm/6"
         />
@@ -43,7 +43,7 @@ any) {
           <select
             name={inputDeviseName}
             value={inputDeviseValue}
-            onChange={(e) => handelChangeInput(inputDeviseName, e.target.value)}
+            onChange={(e: any) => handelChangeInput(inputDeviseName, e)}
             className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-900 focus:ring-2 sm:text-sm"
           >
             <option value="USD">USD</option>

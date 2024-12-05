@@ -219,6 +219,9 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   );
   const [errorsIG, setErrorsIG] = useState<Record<string, string>>({});
   const [errorsEmploi, setErrorsEmploi] = useState<Record<string, string>>({});
+  const [errorsLogement, setErrorsLogement] = useState<Record<string, string>>(
+    {}
+  );
   // const [errorsEducation, setErrorsEducation] = useState<
   //   Record<string, string>
   // >({});
@@ -467,6 +470,62 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     return isValid;
   };
 
+  const validateFormLogement = (): boolean => {
+    let isValid = true;
+
+    // const logementErrors: {
+    //   statut: string;
+    //   typeLogement: string;
+    //   nombreDePieces: string;
+    //   budget: string;
+    //   devise: string;
+    //   zoneGeographique: string;
+    //   canalAquisition: string;
+    //   siRecommandation: string;
+    // } = {
+    //   statut: "",
+    //   typeLogement: "",
+    //   nombreDePieces: "",
+    //   budget: "",
+    //   devise: "",
+    //   zoneGeographique: "",
+    //   canalAquisition: "",
+    //   siRecommandation: "",
+    // };
+
+    const formErrors: Record<string, string> = {
+      logementStatut: "",
+      logementTypeLogement: "",
+      logementNombreDePieces: "",
+      logementBudget: "",
+      logementDevise: "",
+      logementZoneGeographique: "",
+      logementCanalAquisition: "",
+      logementSiRecommandation: "",
+    };
+
+    if (!formData.logement.statut) {
+      formErrors.logementStatut = "Veuillez selectionner un statut du logement";
+      isValid = false;
+    }
+
+    if (!formData.logement.typeLogement) {
+      formErrors.logementTypeLogement =
+        "Veuillez selectionner un type de logement";
+      isValid = false;
+    }
+
+    // if (!formData.logement.typeLogement) {
+    //   formErrors.logementTypeLogement = "Veuillez selectionner un type de logement";
+    //   isValid = false;
+    // }
+
+    console.log(formErrors);
+    setErrorsLogement(formErrors);
+
+    return isValid;
+  };
+
   const handelNextStep = (): void => {
     if (step === "I") {
       setStep("A");
@@ -494,7 +553,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       } else if (formData.isTransport) {
         setStep("E");
       }
-    } else if (step === "D") {
+    } else if (step === "D" && validateFormLogement()) {
       if (formData.isTransport) {
         setStep("E");
       }
@@ -729,6 +788,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelNextStep={handelNextStep}
             handelPrevStep={handelPrevStep}
             handleSubmitFormData={handleSubmitFormData}
+            errorsLogement={errorsLogement}
           />
         ) : null}
         {step === "E" && formData.isTransport === true ? (
