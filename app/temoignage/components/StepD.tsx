@@ -17,7 +17,7 @@ interface Logement {
 const StepD = ({
   formData,
   handelChangeInput,
-  //errorsLogement,
+  errorsLogement,
   handleSubmitFormData,
   handelPrevStep,
   handelNextStep,
@@ -63,13 +63,26 @@ const StepD = ({
   //   console.log(logement);
   // };
 
-  const handleChildInfoChange = (field: keyof Logement, value: string) => {
+  // const handleChildInfoChange = (field: keyof Logement, value: string) => {
+  //   setLogement((prev) => ({
+  //     ...prev,
+  //     [field]: value,
+  //   }));
+
+  //   //handelChangeInput(e);
+  // };
+
+  const handleChildInfoChange = (
+    field: keyof Logement,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setLogement((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: e.target.value,
     }));
-  };
 
+    handelChangeInput(e);
+  };
   return (
     <div>
       <div className={`grid lg:grid-cols-3 sm:grid-cols-1 gap-4`}>
@@ -79,19 +92,19 @@ const StepD = ({
           </label>
           <select
             id="status"
-            className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsLogement.emploiSituationProActuelle &&
-            //   !formData.emploiSituationProActuelle
-            //     ? "border-red-500"
-            //     : formData.emploiSituationProActuelle &&
-            //       errorsLogement.emploiSituationProActuelle !== ""
-            //     ? "border-blue-500"
-            //     : ""
-            // }`}
+            //className={inputClassName}
+            className={`${inputClassName} ${
+              errorsLogement.logementStatut && !formData.logement.statut
+                ? "border-red-500"
+                : formData.logement.statut &&
+                  errorsLogement.logementStatut !== ""
+                ? "border-blue-500"
+                : ""
+            }`}
             name="status"
             value={logement.statut}
-            onChange={(e) => handleChildInfoChange("statut", e.target.value)}
+            onChange={(e: any) => handleChildInfoChange("statut", e)}
+            //onChange={(e) => handleChildInfoChange("statut", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Propriétaire">Propriétaire</option>
@@ -106,21 +119,19 @@ const StepD = ({
           </label>
           <select
             id="typeLogement"
-            className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsLogement.emploiSituationProActuelle &&
-            //   !formData.emploiSituationProActuelle
-            //     ? "border-red-500"
-            //     : formData.emploiSituationProActuelle &&
-            //       errorsLogement.emploiSituationProActuelle !== ""
-            //     ? "border-blue-500"
-            //     : ""
-            // }`}
+            //className={inputClassName}
+            className={`${inputClassName} ${
+              errorsLogement.logementTypeLogement &&
+              !formData.logement.typeLogement
+                ? "border-red-500"
+                : formData.logement.typeLogement &&
+                  errorsLogement.logementTypeLogement !== ""
+                ? "border-blue-500"
+                : ""
+            }`}
             name="typeLogement"
             value={logement.typeLogement}
-            onChange={(e) =>
-              handleChildInfoChange("typeLogement", e.target.value)
-            }
+            onChange={(e: any) => handleChildInfoChange("typeLogement", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Appartement">Appartement</option>
@@ -147,9 +158,7 @@ const StepD = ({
             // }`}
             name="nombreDePieces"
             value={logement.nombreDePieces}
-            onChange={(e) =>
-              handleChildInfoChange("nombreDePieces", e.target.value)
-            }
+            onChange={(e: any) => handleChildInfoChange("nombreDePieces", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Chambre">Chambre</option>
@@ -197,9 +206,7 @@ const StepD = ({
             // }`}
             name="canalAquisition"
             value={logement.canalAquisition}
-            onChange={(e) =>
-              handleChildInfoChange("canalAquisition", e.target.value)
-            }
+            onChange={(e: any) => handleChildInfoChange("canalAquisition", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Agence immobilière">Agence immobilière</option>
@@ -226,9 +233,7 @@ const StepD = ({
             // }`}
             name="siRecommandation"
             value={logement.siRecommandation}
-            onChange={(e) =>
-              handleChildInfoChange("siRecommandation", e.target.value)
-            }
+            onChange={(e: any) => handleChildInfoChange("siRecommandation", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Oui">Oui</option>
@@ -302,7 +307,7 @@ const StepD = ({
         )}
 
         {/* // Ne pas afficher le button si education et logement sont à true */}
-        {formData.isLogement === true && (
+        {formData.isLogement === true && formData.isTransport === true && (
           <NextButton handelNextStep={handelNextStep} />
         )}
       </div>
