@@ -1,7 +1,7 @@
-import CountrySelect from "@/components/CountrySelect";
+import CountrySelect from "@/components/temoignages/ui/CountrySelect";
 // import CurrencyInput from "@/components/CurrencyInput";
-import NextButton from "@/components/ui/NextButton";
-import PrevButton from "@/components/ui/PrevButton";
+import NextButton from "@/components/temoignages/button/NextButton";
+import PrevButton from "@/components/temoignages/button/PrevButton";
 import React from "react";
 
 const StepA = ({

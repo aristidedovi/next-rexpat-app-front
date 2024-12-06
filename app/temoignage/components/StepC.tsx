@@ -2,11 +2,12 @@
 //import MultiSelectEcole from "@/components/MultiSelectEcole";
 //import MultiSelectEducation from "@/components/MultiSelectEducation";
 //import MultiSelectLangue from "@/components/MultiSelectLangue";
-import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
-import EducationTypeEcoleSelect from "@/components/EducationTypeEcoleSelect";
-import NombreEnfantInput from "@/components/NombreEnfantInput";
-import NextButton from "@/components/ui/NextButton";
-import PrevButton from "@/components/ui/PrevButton";
+import EducationBudgetCurrencyInput from "@/components/temoignages/ui/EducationBudgetCurrencyInput";
+import EducationTypeEcoleSelect from "@/components/temoignages/ui/EducationTypeEcoleSelect";
+import NombreEnfantInput from "@/components/temoignages/ui/NombreEnfantInput";
+import NextButton from "@/components/temoignages/button/NextButton";
+import PrevButton from "@/components/temoignages/button/PrevButton";
+import SubmitButton from "@/components/temoignages/button/SubmitButton";
 //import { div } from "motion/react-client";
 //import { span } from "motion/react-client";
 import React, { useEffect, useState } from "react";
@@ -371,14 +372,18 @@ const StepC = ({
         {formData.isEducation === true &&
           formData.isLogement === false &&
           !isLoading && (
-            <button
-              type="button"
-              disabled={isLoading}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={handleSubmitFormData}
-            >
-              {isLoading ? "En cours..." : "Soumettre"}
-            </button>
+            // <button
+            //   type="button"
+            //   disabled={isLoading}
+            //   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            //   onClick={handleSubmitFormData}
+            // >
+            //   {isLoading ? "En cours..." : "Soumettre"}
+            // </button>
+            <SubmitButton
+              isLoading={isLoading}
+              handleSubmitFormData={handleSubmitFormData}
+            />
           )}
 
         {/* Show loader */}
