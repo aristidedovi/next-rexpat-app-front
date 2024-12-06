@@ -1,8 +1,9 @@
-import CurrencyInput from "@/components/CurrencyInput";
-import EmailInput from "@/components/EmailInput";
-import SecteurActivites from "@/components/SecteurActivites";
-import NextButton from "@/components/ui/NextButton";
-import PrevButton from "@/components/ui/PrevButton";
+import CurrencyInput from "@/components/temoignages/ui/CurrencyInput";
+import EmailInput from "@/components/temoignages/ui/EmailInput";
+import SecteurActivites from "@/components/temoignages/ui/SecteurActivites";
+import NextButton from "@/components/temoignages/button/NextButton";
+import PrevButton from "@/components/temoignages/button/PrevButton";
+import SubmitButton from "@/components/temoignages/button/SubmitButton";
 //import { div } from "motion/react-client";
 import React from "react";
 
@@ -126,7 +127,7 @@ const StepB = ({
               // handelChangeInput={(e: any) =>
               //   handleChildInfoChange("emploiEmail", e.target.value)
               // }
-              emploiEmai={formData.emploiEmail}
+              emploiEmail={formData.emploiEmail}
               handelChangeInput={handelChangeInput}
             />
           </>
@@ -359,7 +360,7 @@ const StepB = ({
             {formData.emploiSituationProActuelle === "Entrepreneur" ? (
               <>
                 <EmailInput
-                  emploiEmai={formData.emploiEmail}
+                  emploiEmail={formData.emploiEmail}
                   handelChangeInput={handelChangeInput}
                   // emploiEmail={formData.emploiEmail}
                   // handelChangeInput={(e: any) =>
@@ -452,14 +453,18 @@ const StepB = ({
           formData.isEducation === false &&
           formData.isLogement === false &&
           !isLoading && (
-            <button
-              type="button"
-              disabled={isLoading}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={handleSubmitFormData}
-            >
-              {isLoading ? "En cours..." : "Soumettre"}
-            </button>
+            // <button
+            //   type="button"
+            //   disabled={isLoading}
+            //   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            //   onClick={handleSubmitFormData}
+            // >
+            //   {isLoading ? "En cours..." : "Soumettre"}
+            // </button>
+            <SubmitButton
+              isLoading={isLoading}
+              handleSubmitFormData={handleSubmitFormData}
+            />
           )}
 
         {/* Show loader */}

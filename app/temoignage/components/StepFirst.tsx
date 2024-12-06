@@ -1,4 +1,4 @@
-import NextButton from "@/components/ui/NextButton";
+import NextButton from "@/components/temoignages/button/NextButton";
 import React from "react";
 
 const StepFirst = ({ formData, handelChangeInput, handelNextStep }: any) => {

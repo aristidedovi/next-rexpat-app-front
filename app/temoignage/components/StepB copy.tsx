@@ -1,8 +1,8 @@
-import CurrencyInput from "@/components/CurrencyInput";
-import EmailInput from "@/components/EmailInput";
-import SecteurActivites from "@/components/SecteurActivites";
-import NextButton from "@/components/ui/NextButton";
-import PrevButton from "@/components/ui/PrevButton";
+import CurrencyInput from "@/components/temoignages/ui/CurrencyInput";
+import EmailInput from "@/components/temoignages/ui/EmailInput";
+import SecteurActivites from "@/components/temoignages/ui/SecteurActivites";
+import NextButton from "@/components/temoignages/button/NextButton";
+import PrevButton from "@/components/temoignages/button/PrevButton";
 //import { div } from "motion/react-client";
 import React, { useEffect, useState } from "react";
 

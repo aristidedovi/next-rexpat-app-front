@@ -672,15 +672,15 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         setIsLoading(true);
 
         try {
-          const response = await fetch("/api/create", {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-          const newIg = await response.json();
-          console.log("Information created", newIg);
+          // const response = await fetch("/api/create", {
+          //   method: "POST",
+          //   headers: {
+          //     "Content-type": "application/json",
+          //   },
+          //   body: JSON.stringify(formData),
+          // });
+          // const newIg = await response.json();
+          //console.log("Information created", newIg);
           //alert("Data created successfully");
           setStep("Final");
 
@@ -698,6 +698,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         } finally {
           setIsLoading(false);
         }
+      } else if (!validateFormIG()) {
+        console.log("Information general form not validate!");
       }
     }
   };

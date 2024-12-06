@@ -1,7 +1,8 @@
 //import LogementBudgetCurrencyInput from "@/components/LogementBudgetCurrencyInput";
-import TransportBudgetCurrencyInput from "@/components/TransportBudgetCurrencyInput";
+import TransportBudgetCurrencyInput from "@/components/temoignages/ui/TransportBudgetCurrencyInput";
 //import NextButton from "@/components/ui/NextButton";
-import PrevButton from "@/components/ui/PrevButton";
+import PrevButton from "@/components/temoignages/button/PrevButton";
+import SubmitButton from "@/components/temoignages/button/SubmitButton";
 import React, { useEffect, useState } from "react";
 
 interface Transport {
@@ -362,14 +363,18 @@ const StepE = ({
 
         {/* // Afficher le submit buton quand emploi est à true et les autre sont à false */}
         {formData.isTransport === true && !isLoading && (
-          <button
-            type="button"
-            disabled={isLoading}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={handleSubmitFormData}
-          >
-            {isLoading ? "En cours..." : "Soumettre"}
-          </button>
+          // <button
+          //   type="button"
+          //   disabled={isLoading}
+          //   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          //   onClick={handleSubmitFormData}
+          // >
+          //   {isLoading ? "En cours..." : "Soumettre"}
+          // </button>
+          <SubmitButton
+            isLoading={isLoading}
+            handleSubmitFormData={handleSubmitFormData}
+          />
         )}
 
         {/* Show loader */}
