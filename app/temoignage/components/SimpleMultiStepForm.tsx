@@ -247,6 +247,16 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     Partial<EducationErrors>
   >({});
 
+  const [isIGFormValidate, setIsIGFormValidate] = useState<boolean>(true);
+  const [isEmploiFormValidate, setIsEmploiFormValidate] =
+    useState<boolean>(true);
+  const [isEducationFormValidate, setIsEducationFormValidate] =
+    useState<boolean>(true);
+  const [isLogementFormValidate, setIsLogementFormValidate] =
+    useState<boolean>(true);
+  const [istransportFormValidate, setIsTransportFormValidate] =
+    useState<boolean>(true);
+
   const stepConditions: Record<string, boolean> = {
     A: true,
     B: formData.isEmploi,
@@ -331,6 +341,12 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }
 
     setErrorsIG(formErrors);
+    if (isValid === false) {
+      setIsIGFormValidate(false);
+    } else {
+      setIsIGFormValidate(true);
+    }
+
     return isValid;
   };
 
@@ -387,6 +403,12 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }
 
     console.log(formErrors);
+
+    if (isValid === false) {
+      setIsEmploiFormValidate(false);
+    } else {
+      setIsEmploiFormValidate(true);
+    }
 
     setErrorsEmploi(formErrors);
     return isValid;
@@ -485,32 +507,16 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       educationEnfantErrors, // Ajouter le tableau des erreurs spécifiques aux enfants
     });
 
+    if (isValid === false) {
+      setIsEducationFormValidate(false);
+    } else {
+      setIsEducationFormValidate(true);
+    }
     return isValid;
   };
 
   const validateFormLogement = (): boolean => {
     let isValid = true;
-
-    // const logementErrors: {
-    //   statut: string;
-    //   typeLogement: string;
-    //   nombreDePieces: string;
-    //   budget: string;
-    //   devise: string;
-    //   zoneGeographique: string;
-    //   canalAquisition: string;
-    //   siRecommandation: string;
-    // } = {
-    //   statut: "",
-    //   typeLogement: "",
-    //   nombreDePieces: "",
-    //   budget: "",
-    //   devise: "",
-    //   zoneGeographique: "",
-    //   canalAquisition: "",
-    //   siRecommandation: "",
-    // };
-
     const formErrors: Record<string, string> = {
       logementStatut: "",
       logementTypeLogement: "",
@@ -540,6 +546,12 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
 
     console.log(formErrors);
     setErrorsLogement(formErrors);
+
+    if (isValid === false) {
+      setIsLogementFormValidate(false);
+    } else {
+      setIsLogementFormValidate(true);
+    }
 
     return isValid;
   };
@@ -668,7 +680,12 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     if (!formData.agreeToTerms) {
       alert("Error!!!!!! You must agree to Terms of Services!!!");
     } else {
-      if (validateFormEmploi() && validateFormIG() && validateFormEducation()) {
+      if (
+        validateFormEmploi() &&
+        validateFormIG() &&
+        validateFormEducation() &&
+        validateFormLogement()
+      ) {
         setIsLoading(true);
 
         try {
@@ -704,9 +721,66 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }
   };
 
+  const setStepForm = (item: any) => {
+    setStep(item);
+
+    if (item === "B" && validateFormIG() === true) {
+      setIsIGFormValidate(true);
+    }
+
+    if (item === "C" && validateFormEmploi() === true) {
+      setIsEmploiFormValidate(true);
+    }
+
+    if (item === "D" && validateFormEducation() === true) {
+      setIsEducationFormValidate(true);
+    }
+
+    if (item === "E" && validateFormLogement() === true) {
+      setIsLogementFormValidate(true);
+    }
+
+    // if (validateFormTransport() === true) {
+    //   setIsTransportFormValidate(true);
+    // }
+    // validateFormIG();
+    // validateFormEmploi();
+    // validateFormLogement();
+    // validateFormEducation();
+  };
+
   useEffect(() => {
     console.log(formData);
   }, [formData]);
+
+  const getBorderColor = (
+    item: string,
+    currentStep: string,
+    isIGValidate: boolean,
+    isEmploiValidate: boolean,
+    isEducationValidate: boolean,
+    isLogementValidate: boolean
+  ): string => {
+    // Couleur par défaut
+    let borderColor = "border-gray-500 dark:border-gray-400";
+
+    // Étape active
+    if (item === currentStep) {
+      borderColor = "border-blue-600 dark:border-blue-500";
+    }
+
+    // Validation des formulaires
+    if (
+      (item === "A" && !isIGValidate) ||
+      (item === "B" && !isEmploiValidate) ||
+      (item === "C" && !isEducationValidate) ||
+      (item === "D" && !isLogementValidate)
+    ) {
+      borderColor = "border-red-600 dark:border-red-500";
+    }
+
+    return borderColor;
+  };
 
   const renderTopStepNumbers = (): JSX.Element | null => {
     if (!showStepNumber || step === "Final" || step === "I") {
@@ -724,7 +798,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
               stepConditions[item] && (
                 <li
                   key={item}
-                  onClick={() => setStep(item)}
+                  //onClick={() => setStep(item)}
+                  onClick={() => setStepForm(item)}
                   className={`flex items-center space-x-2.5 rtl:space-x-reverse cursor-pointer ${
                     item === step
                       ? "text-blue-600 dark:text-blue-500"
@@ -732,11 +807,40 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
                   }`}
                 >
                   <span
-                    className={`flex items-center justify-center w-8 h-8 border rounded-full shrink-0 ${
-                      item === step
-                        ? "border-blue-600 dark:border-blue-500"
-                        : "border-gray-500 dark:border-gray-400"
-                    }`}
+                    className={`
+                    flex items-center justify-center 
+                    w-8 h-8 
+                    border rounded-full 
+                    shrink-0 
+                    ${getBorderColor(
+                      item,
+                      step,
+                      isIGFormValidate,
+                      isEmploiFormValidate,
+                      isEducationFormValidate,
+                      isLogementFormValidate
+                    )}
+                  `}
+                    // className={`flex items-center justify-center w-8 h-8 border rounded-full shrink-0 ${
+                    //   item === step
+                    //     ? "border-blue-600 dark:border-blue-500"
+                    //     : "border-gray-500 dark:border-gray-400"
+                    // } ${
+                    //   isIGFormValidate === false && item === "A"
+                    //     ?
+                    //       "border-red-600 dark:border-red-500"
+                    //     : "border-gray-500 dark:border-gray-400"
+                    // }${
+                    //   item === "B" && isEmploiFormValidate === false
+                    //     ?
+                    //       "border-red-600 dark:border-red-500"
+                    //     : "border-gray-500 dark:border-gray-400"
+                    // } ${
+                    //   item === "C" && isEducationFormValidate === false
+                    //     ?
+                    //       "border-red-600 dark:border-red-500"
+                    //     : "border-gray-500 dark:border-gray-400"
+                    // }`}
                   >
                     {item}
                   </span>
@@ -759,7 +863,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     <div className="w-[1000px] max-w-full px-6 py-1 mx-auto rounded-lg border-2 border-dotted border-sky-300">
       <form>
         {renderTopStepNumbers()}
-
+        {/* <p>dsfsddsd</p> */}
         {step === "I" ? (
           <StepFirst
             formData={formData}
