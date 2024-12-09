@@ -254,8 +254,8 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     useState<boolean>(true);
   const [isLogementFormValidate, setIsLogementFormValidate] =
     useState<boolean>(true);
-  const [istransportFormValidate, setIsTransportFormValidate] =
-    useState<boolean>(true);
+  // const [istransportFormValidate, setIsTransportFormValidate] =
+  //   useState<boolean>(true);
 
   const stepConditions: Record<string, boolean> = {
     A: true,
