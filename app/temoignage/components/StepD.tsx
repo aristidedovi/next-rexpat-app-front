@@ -3,17 +3,7 @@ import NextButton from "@/components/temoignages/button/NextButton";
 import PrevButton from "@/components/temoignages/button/PrevButton";
 import SubmitButton from "@/components/temoignages/button/SubmitButton";
 import React, { useEffect, useState } from "react";
-
-interface Logement {
-  statut: string;
-  typeLogement: string;
-  nombreDePieces: string;
-  budget: string;
-  devise: string;
-  zoneGeographique: string;
-  canalAquisition: string;
-  siRecommandation: string;
-}
+import { Logement } from "@/libs/temoignage/validateFormLogement";
 
 const StepD = ({
   formData,
@@ -34,16 +24,6 @@ const StepD = ({
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 
-  // const logementData: Logement = {
-  //   statut: formData.logement.statut || "",
-  //   typeLogement: formData.logement.typeLogement || "",
-  //   nombreDePieces: formData.logement.nombreDePieces || "",
-  //   budget: formData.logement.budget || "",
-  //   zoneGeographique: formData.logement.zoneGeographique || "",
-  //   canalAquisition: formData.logement.canalAquisition || "",
-  //   siRecommandation: formData.logement.siRecommandation || "",
-  // };
-
   // Synchronize child info with form data whenever it changes
   useEffect(() => {
     if (!logement.devise) {
@@ -57,21 +37,6 @@ const StepD = ({
       },
     });
   }, [logement]);
-
-  // const handelChangeLogementInput = (e: {
-  //   target: { name: string; value: string };
-  // }) => {
-  //   console.log(logement);
-  // };
-
-  // const handleChildInfoChange = (field: keyof Logement, value: string) => {
-  //   setLogement((prev) => ({
-  //     ...prev,
-  //     [field]: value,
-  //   }));
-
-  //   //handelChangeInput(e);
-  // };
 
   const handleChildInfoChange = (
     field: keyof Logement,
@@ -148,15 +113,6 @@ const StepD = ({
           <select
             id="nombreDePieces"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsLogement.emploiSituationProActuelle &&
-            //   !formData.emploiSituationProActuelle
-            //     ? "border-red-500"
-            //     : formData.emploiSituationProActuelle &&
-            //       errorsLogement.emploiSituationProActuelle !== ""
-            //     ? "border-blue-500"
-            //     : ""
-            // }`}
             name="nombreDePieces"
             value={logement.nombreDePieces}
             onChange={(e: any) => handleChildInfoChange("nombreDePieces", e)}
@@ -196,15 +152,6 @@ const StepD = ({
           <select
             id="canalAquisition"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsLogement.emploiSituationProActuelle &&
-            //   !formData.emploiSituationProActuelle
-            //     ? "border-red-500"
-            //     : formData.emploiSituationProActuelle &&
-            //       errorsLogement.emploiSituationProActuelle !== ""
-            //     ? "border-blue-500"
-            //     : ""
-            // }`}
             name="canalAquisition"
             value={logement.canalAquisition}
             onChange={(e: any) => handleChildInfoChange("canalAquisition", e)}
@@ -223,15 +170,6 @@ const StepD = ({
           <select
             id="siRecommandation"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errorsLogement.emploiSituationProActuelle &&
-            //   !formData.emploiSituationProActuelle
-            //     ? "border-red-500"
-            //     : formData.emploiSituationProActuelle &&
-            //       errorsLogement.emploiSituationProActuelle !== ""
-            //     ? "border-blue-500"
-            //     : ""
-            // }`}
             name="siRecommandation"
             value={logement.siRecommandation}
             onChange={(e: any) => handleChildInfoChange("siRecommandation", e)}
@@ -242,47 +180,6 @@ const StepD = ({
           </select>
         </div>
       </div>
-      {/* <DataConfirmRow label="First Name: " value={formData.firstname} />
-      <DataConfirmRow label="Last Name: " value={formData.lastname} />
-      <DataConfirmRow label="Business Name: " value={formData.businessName} />
-      <DataConfirmRow label="Business City: " value={formData.businessCity} />
-      <DataConfirmRow
-        label="Business Web Site: "
-        value={formData.businessWebSite}
-      />
-      <DataConfirmRow label="Business Email: " value={formData.businessEmail} />
-      <DataConfirmRow
-        label="Income Per Month: "
-        value={formData.incomePerMonth}
-      />
-      <DataConfirmRow label="Tax Percantage: " value={formData.taxPercantage} /> */}
-      {/* <div className="my-4 flex items-center">
-        <input
-          type="checkbox"
-          name="agreeToTerms"
-          id="agreeToTerms"
-          value={formData.agreeToTerms}
-          onChange={(e) => handelChangeInput(e)}
-          className="w-4 h-4 mr-2 accent-pink-300 focus:accent-pink-500"
-        />
-        <label htmlFor="agreeToTerms">I Agree to Terms of Services</label>
-      </div>
-
-      <div className="my-2 flex justify-between items-center">
-        <button
-          className="bg-yellow-400 px-4 py-2 rounded-xl"
-          onClick={handelPrevStep}
-        >
-          Prev
-        </button>
-
-        <button
-          className="bg-blue-400 px-4 py-2 rounded-xl"
-          onClick={handleSubmitFormData}
-        >
-          Submit
-        </button>
-      </div> */}
       <div className="my-2 flex justify-between items-center">
         <PrevButton handelPrevStep={handelPrevStep} />
 
@@ -290,14 +187,6 @@ const StepD = ({
         {formData.isLogement === true &&
           formData.isTransport === false &&
           !isLoading && (
-            // <button
-            //   type="button"
-            //   disabled={isLoading}
-            //   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            //   onClick={handleSubmitFormData}
-            // >
-            //   {isLoading ? "En cours..." : "Soumettre"}
-            // </button>
             <SubmitButton
               isLoading={isLoading}
               handleSubmitFormData={handleSubmitFormData}
@@ -321,13 +210,3 @@ const StepD = ({
 };
 
 export default StepD;
-
-// // A separate component to sho data
-// const DataConfirmRow = ({ label, value }: any) => {
-//   return (
-//     <div className="my-3 border border-dashed border-gray-200 p-1 rounded-lg">
-//       <span className="mr-4 text-slate-500">{label}</span>
-//       <span className="mr-4 text-slate-900">{value}</span>
-//     </div>
-//   );
-// };

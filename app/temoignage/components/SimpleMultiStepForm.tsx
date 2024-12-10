@@ -8,221 +8,21 @@ import StepD from "./StepD";
 import StepFinal from "./StepFinal";
 import StepFirst from "./StepFirst";
 import StepE from "./StepE";
-
-interface InitialFormData {
-  genre: string;
-  nationalite: string;
-  situation_matrimoniale: string;
-  age: number | null;
-  region: string;
-  quartier: string;
-  pays_provenance: string;
-  duree_pays_provenance: string;
-  pays_accueil: string;
-  duree_pays_accueil: string;
-  // revenu_mensuel: string;
-  // devise_revenu: string;
-  nombre_enfants: number | null;
-  agreeToTerms: boolean;
-  isEmploi: boolean;
-  isEducation: boolean;
-  isLogement: boolean;
-  isTransport: boolean;
-  // Emploi data
-  //emploiData: {};
-  emploiSecteur: string;
-  emploiPoste: string;
-  emploiEmployeur: string;
-  emploiTypeContrat: string;
-  emploiRevenu_mensuel: string;
-  emploiDevise_revenu: string;
-  emploiCanaux: string;
-  emploiSituationProActuelle: string;
-  emploiEmail: string;
-  emploiMotif: string;
-  emploiDureChomage: string;
-  //emploiNiveauDifficulte: string;
-  emploiAvantApres: string;
-  emploiDelai: string;
-  // Education data
-  educationEnfant: [];
-  educationNombreEnfant: number | null;
-  educationNiveauEtude: string;
-  educationTypeEcole: string;
-  educationLanguesEnseignes: string;
-  educationAvecOuSansUniforme: string;
-  educationAvecOuSansTransport: string;
-  educationBudgetScolaire: string;
-  educationNiveauSatisfaction: string;
-  educationProgrammes: string;
-  educationAutres: string;
-  EducationDevise_scolaire: string;
-
-  // logement
-  logement: {
-    statut: string;
-    typeLogement: string;
-    nombreDePieces: string;
-    budget: string;
-    devise: string;
-    zoneGeographique: string;
-    canalAquisition: string;
-    siRecommandation: string;
-  };
-
-  // tranport
-  transport: {
-    moyenUtilise: string;
-    proprietaire: string;
-    budget: string;
-    devise: string;
-    chauffeurPrive: string;
-  };
-}
-
-const initialFormDataRexpat: InitialFormData = {
-  genre: "",
-  nationalite: "",
-  situation_matrimoniale: "",
-  age: null,
-  region: "",
-  quartier: "",
-  pays_provenance: "",
-  duree_pays_provenance: "",
-  pays_accueil: "",
-  duree_pays_accueil: "",
-  // revenu_mensuel: "",
-  nombre_enfants: null,
-  agreeToTerms: true,
-  isEmploi: false,
-  isEducation: false,
-  isLogement: false,
-  isTransport: false,
-  //emploiData: {},
-  emploiSecteur: "",
-  emploiPoste: "",
-  emploiEmployeur: "",
-  emploiTypeContrat: "",
-  emploiRevenu_mensuel: "",
-  emploiDevise_revenu: "USD",
-  emploiCanaux: "",
-  emploiSituationProActuelle: "",
-  emploiEmail: "",
-  emploiMotif: "",
-  emploiDureChomage: "",
-  //emploiNiveauDifficulte: "",
-  emploiAvantApres: "",
-  emploiDelai: "",
-
-  // Education data initialisation
-  educationEnfant: [],
-  educationNombreEnfant: 1,
-  educationNiveauEtude: "",
-  educationTypeEcole: "",
-  educationLanguesEnseignes: "",
-  educationAvecOuSansUniforme: "",
-  educationAvecOuSansTransport: "",
-  educationBudgetScolaire: "",
-  educationNiveauSatisfaction: "",
-  educationProgrammes: "",
-  educationAutres: "",
-  EducationDevise_scolaire: "",
-
-  // logement
-  logement: {
-    statut: "",
-    typeLogement: "",
-    nombreDePieces: "",
-    budget: "",
-    devise: "",
-    zoneGeographique: "",
-    canalAquisition: "",
-    siRecommandation: "",
-  },
-
-  // transport
-  transport: {
-    moyenUtilise: "",
-    proprietaire: "",
-    budget: "",
-    devise: "",
-    chauffeurPrive: "",
-  },
-};
-
-// Types pour les informations de chaque enfant
-interface ChildEducationInfo {
-  niveau: string;
-  budget: number;
-  devise: string;
-  typeEcole: string;
-  uniforme: string;
-  transport: string;
-  satisfaction: string;
-  internat: string;
-}
-
-interface EducationErrors {
-  educationNombreEnfant: string;
-  educationNiveauEtude: string;
-  educationTypeEcole: string;
-  educationLanguesEnseignes: string;
-  educationAvecOuSansUniforme: string;
-  educationAvecOuSansTransport: string;
-  educationBudgetScolaire: string;
-  educationNiveauSatisfaction: string;
-  educationProgrammes: string;
-  educationAutres: string;
-  educationEnfantErrors?: Array<{
-    niveau: string;
-    typeEcole: string;
-    transport: string;
-    uniforme: string;
-    internat: string;
-    //languesEnseignes: string;
-  }>;
-}
-
-const stepsArray: string[] = ["I", "A", "B", "C", "D", "E"];
-
-interface StepDetail {
-  id: string;
-  label: string;
-  description: string;
-}
-
-const stepsArrayDetails: StepDetail[] = [
-  {
-    id: "I",
-    label: "Initialisation",
-    description: "",
-  },
-  {
-    id: "A",
-    label: "Information générale",
-    description: "Des détails anonyme sur vous",
-  },
-  {
-    id: "B",
-    label: "Emploi",
-    description: "Vos informations",
-  },
-  {
-    id: "C",
-    label: "Education",
-    description: "Vos informations",
-  },
-  {
-    id: "D",
-    label: "Logement",
-    description: "Vos informations",
-  },
-  {
-    id: "E",
-    label: "Transport",
-    description: "Vos informations",
-  },
-];
+import {
+  InitialFormData,
+  initialFormDataRexpat,
+} from "@/models/temoignage/model";
+import { validateFormIG } from "@/libs/temoignage/validationFormIg";
+import { validateFormEmploi } from "@/libs/temoignage/validateFormEmploi";
+import {
+  EducationErrors,
+  validateFormEducation,
+} from "@/libs/temoignage/validateFormEducation";
+import { validateFormLogement } from "@/libs/temoignage/validateFormLogement";
+import {
+  stepsArray,
+  stepsArrayDetails,
+} from "@/libs/temoignage/stepsArrayDetails";
 
 interface SimpleMultiStepFormProps {
   showStepNumber: boolean;
@@ -240,9 +40,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   const [errorsLogement, setErrorsLogement] = useState<Record<string, string>>(
     {}
   );
-  // const [errorsEducation, setErrorsEducation] = useState<
-  //   Record<string, string>
-  // >({});
   const [errorsEducation, setErrorsEducation] = useState<
     Partial<EducationErrors>
   >({});
@@ -267,299 +64,13 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateFormIG = (): boolean => {
-    const formErrors: Record<string, string> = {
-      genre: "",
-      nationalite: "",
-      situation_matrimoniale: "",
-      age: "",
-      quartier: "",
-      pays_accueil: "",
-      region: "",
-      duree_pays_accueil: "",
-      pays_provenance: "",
-      duree_pays_provenance: "",
-      // revenu_mensuel: "",
-      // devise_revenu: "",
-      nombre_enfants: "",
-    };
-    //console.log("Validate IG form");
-
-    let isValid: boolean = true;
-
-    if (!formData.genre) {
-      formErrors.genre = "Veuillez choisir votre genre.";
-      isValid = false;
-    }
-    if (!formData.nationalite) {
-      formErrors.nationalite = "Veuillez choisir votre nationalité.";
-      isValid = false;
-    }
-    if (!formData.situation_matrimoniale) {
-      formErrors.situation_matrimoniale =
-        "Veuillez choisir votre situation matrimoniale.";
-      isValid = false;
-    }
-    if (!formData.age) {
-      formErrors.age = "Veuillez renseigner votre age.";
-      isValid = false;
-    }
-    if (!formData.pays_accueil) {
-      formErrors.pays_accueil = "Veuillez sélectionner un pays d'accueil.";
-      isValid = false;
-    }
-    if (!formData.pays_provenance) {
-      formErrors.pays_provenance =
-        "Veuillez sélectionner un pays de provenance.";
-      isValid = false;
-    }
-    if (!formData.region) {
-      formErrors.region = "Veuillez indiquer une région.";
-      isValid = false;
-    }
-    // if (!formData.revenu_mensuel) {
-    //   formErrors.revenu_mensuel = "Veuillez entrer un revenu mensuel valide.";
-    //   isValid = false;
-    // }
-    // if (!formData.devise_revenu) {
-    //   formErrors.devise_revenu = "Veuillez selectionner uen devise.";
-    //   isValid = false;
-    // }
-    if (!formData.nombre_enfants || formData.nombre_enfants < 0) {
-      formErrors.nombre_enfants = "Veuillez entrer un nombre d'enfant valide.";
-      isValid = false;
-    }
-    if (!formData.duree_pays_provenance) {
-      formErrors.duree_pays_provenance =
-        "Veuillez choisir une durée de provenance.";
-      isValid = false;
-    }
-    if (!formData.duree_pays_accueil) {
-      formErrors.duree_pays_accueil =
-        "Veuillez choisir une durée de provenance.";
-      isValid = false;
-    }
-
-    setErrorsIG(formErrors);
-    if (isValid === false) {
-      setIsIGFormValidate(false);
-    } else {
-      setIsIGFormValidate(true);
-    }
-
-    return isValid;
-  };
-
-  const validateFormEmploi = (): boolean => {
-    const formErrors: Record<string, string> = {
-      emploiSecteur: "",
-      emploiPoste: "",
-      emploiEmployeur: "",
-      emploiTypeContrat: "",
-      emploiRevenu_mensuel: "",
-      emploiDevise_revenu: "",
-      emploiCanaux: "",
-      emploiSituationProActuelle: "",
-      emploiEmail: "",
-      //emploiNiveauDifficulte: "",
-      emploiAvantApres: "",
-      emploiDelai: "",
-    };
-
-    let isValid: boolean = true;
-
-    if (!formData.emploiSituationProActuelle) {
-      formErrors.emploiSituationProActuelle =
-        "Veuillez sélectionner votre situation professionnelle";
-      isValid = false;
-    }
-
-    if (!formData.emploiSecteur) {
-      formErrors.emploiSecteur =
-        "Veuillez sélectionner votre secteur d'activite";
-      isValid = false;
-    }
-
-    if (
-      !formData.emploiPoste &&
-      formData.emploiSituationProActuelle !== "Chômeur" &&
-      formData.emploiSituationProActuelle !== "Entrepreneur" &&
-      formData.emploiSituationProActuelle !== "Etudiant"
-    ) {
-      formErrors.emploiPoste = "Veuillez sélectionner votre poste";
-      isValid = false;
-    }
-
-    if (
-      !formData.emploiTypeContrat &&
-      formData.emploiSituationProActuelle !== "Chômeur" &&
-      formData.emploiSituationProActuelle !== "Entrepreneur" &&
-      formData.emploiSituationProActuelle !== "Etudiant"
-    ) {
-      formErrors.emploiTypeContrat =
-        "Veuillez sélectionner votre type de contrat";
-      isValid = false;
-      //console.log("chômeur");
-    }
-
-    console.log(formErrors);
-
-    if (isValid === false) {
-      setIsEmploiFormValidate(false);
-    } else {
-      setIsEmploiFormValidate(true);
-    }
-
-    setErrorsEmploi(formErrors);
-    return isValid;
-  };
-
-  const validateFormEducation = (): boolean => {
-    // Initialiser un tableau pour stocker les erreurs de chaque enfant
-    const educationEnfantErrors: Array<{
-      niveau: string;
-      typeEcole: string;
-      transport: string;
-      uniforme: string;
-      internat: string;
-      //languesEnseignes: string;
-    }> = [];
-
-    // Validation globale
-    let isValid = true;
-
-    // Valider le nombre d'enfants
-    const formErrors: Record<string, string> = {
-      educationNombreEnfant: "",
-      educationNiveauEtude: "",
-      educationTypeEcole: "",
-      educationLanguesEnseignes: "",
-      educationAvecOuSansUniforme: "",
-      educationAvecOuSansTransport: "",
-      educationBudgetScolaire: "",
-      educationNiveauSatisfaction: "",
-      educationProgrammes: "",
-      educationAutres: "",
-    };
-
-    // Vérifier si le nombre d'enfants est renseigné
-    if (!formData.educationNombreEnfant) {
-      formErrors.educationNombreEnfant = "Veuillez saisir un nombre d'enfant";
-      isValid = false;
-    }
-
-    // Parcourir chaque enfant et valider ses informations
-    formData.educationEnfant.forEach((enfant: ChildEducationInfo) => {
-      // Créer un objet d'erreurs pour cet enfant
-      const enfantErrors = {
-        niveau: "",
-        typeEcole: "",
-        transport: "",
-        uniforme: "",
-        internat: "",
-        //languesEnseignes: "",
-      };
-
-      // Validation du niveau d'étude
-      if (!enfant.niveau) {
-        enfantErrors.niveau = "Veuillez sélectionner un niveau d'étude";
-        isValid = false;
-      }
-
-      // Validation du type d'école
-      if (!enfant.typeEcole) {
-        enfantErrors.typeEcole = "Veuillez sélectionner le type d'école";
-        isValid = false;
-      }
-
-      // Validation du transport
-      if (!enfant.transport) {
-        enfantErrors.transport = "Veuillez sélectionner";
-        isValid = false;
-      }
-
-      // Validation de l'uniforme
-      if (!enfant.uniforme) {
-        enfantErrors.uniforme = "Veuillez sélectionner";
-        isValid = false;
-      }
-
-      // Validation de internat
-      if (!enfant.internat) {
-        enfantErrors.internat = "Veuillez sélectionner ";
-        isValid = false;
-      }
-
-      // Validation des langues enseignées (si nécessaire)
-      // if (!enfant.languesEnseignes || enfant.languesEnseignes.length === 0) {
-      //   enfantErrors.languesEnseignes = "Veuillez sélectionner au moins une langue";
-      //   isValid = false;
-      // }
-
-      // Ajouter les erreurs de cet enfant au tableau des erreurs
-      educationEnfantErrors.push(enfantErrors);
-    });
-
-    // Mettre à jour l'état des erreurs
-    console.log(educationEnfantErrors);
-    setErrorsEducation({
-      ...formErrors,
-      educationEnfantErrors, // Ajouter le tableau des erreurs spécifiques aux enfants
-    });
-
-    if (isValid === false) {
-      setIsEducationFormValidate(false);
-    } else {
-      setIsEducationFormValidate(true);
-    }
-    return isValid;
-  };
-
-  const validateFormLogement = (): boolean => {
-    let isValid = true;
-    const formErrors: Record<string, string> = {
-      logementStatut: "",
-      logementTypeLogement: "",
-      logementNombreDePieces: "",
-      logementBudget: "",
-      logementDevise: "",
-      logementZoneGeographique: "",
-      logementCanalAquisition: "",
-      logementSiRecommandation: "",
-    };
-
-    if (!formData.logement.statut) {
-      formErrors.logementStatut = "Veuillez selectionner un statut du logement";
-      isValid = false;
-    }
-
-    if (!formData.logement.typeLogement) {
-      formErrors.logementTypeLogement =
-        "Veuillez selectionner un type de logement";
-      isValid = false;
-    }
-
-    // if (!formData.logement.typeLogement) {
-    //   formErrors.logementTypeLogement = "Veuillez selectionner un type de logement";
-    //   isValid = false;
-    // }
-
-    console.log(formErrors);
-    setErrorsLogement(formErrors);
-
-    if (isValid === false) {
-      setIsLogementFormValidate(false);
-    } else {
-      setIsLogementFormValidate(true);
-    }
-
-    return isValid;
-  };
-
   const handelNextStep = (): void => {
     if (step === "I") {
       setStep("A");
-    } else if (step === "A" && validateFormIG()) {
+    } else if (
+      step === "A" &&
+      validateFormIG(formData, setErrorsIG, setIsIGFormValidate)
+    ) {
       if (formData.isEmploi) {
         setStep("B");
       } else if (formData.isEducation) {
@@ -569,7 +80,10 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       } else if (formData.isTransport) {
         setStep("E");
       }
-    } else if (step === "B" && validateFormEmploi()) {
+    } else if (
+      step === "B" &&
+      validateFormEmploi(formData, setErrorsEmploi, setIsEmploiFormValidate)
+    ) {
       if (formData.isEducation) {
         setStep("C");
       } else if (formData.isLogement) {
@@ -577,13 +91,27 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       } else if (formData.isTransport) {
         setStep("E");
       }
-    } else if (step === "C" && validateFormEducation()) {
+    } else if (
+      step === "C" &&
+      validateFormEducation(
+        formData,
+        setErrorsEducation,
+        setIsEducationFormValidate
+      )
+    ) {
       if (formData.isLogement) {
         setStep("D");
       } else if (formData.isTransport) {
         setStep("E");
       }
-    } else if (step === "D" && validateFormLogement()) {
+    } else if (
+      step === "D" &&
+      validateFormLogement(
+        formData,
+        setErrorsLogement,
+        setIsLogementFormValidate
+      )
+    ) {
       if (formData.isTransport) {
         setStep("E");
       }
@@ -642,11 +170,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       fieldValue = event.target.value;
     }
 
-    // if (name === "age" && Number(fieldValue) < 16) {
-    //   console.log("moins de 16 ans");
-    //   fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
-    // }
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: fieldValue,
@@ -681,10 +204,25 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
       alert("Error!!!!!! You must agree to Terms of Services!!!");
     } else {
       if (
-        validateFormEmploi() &&
-        validateFormIG() &&
-        validateFormEducation() &&
-        validateFormLogement()
+        (validateFormIG(formData, setErrorsIG, setIsIGFormValidate) &&
+          validateFormEmploi(
+            formData,
+            setErrorsEmploi,
+            setIsEmploiFormValidate
+          ) &&
+          formData.isEmploi === true) ||
+        (validateFormEducation(
+          formData,
+          setErrorsEducation,
+          setIsEducationFormValidate
+        ) &&
+          formData.isEducation === true) ||
+        (validateFormLogement(
+          formData,
+          setErrorsLogement,
+          setIsLogementFormValidate
+        ) &&
+          formData.isLogement === true)
       ) {
         setIsLoading(true);
 
@@ -715,7 +253,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
         } finally {
           setIsLoading(false);
         }
-      } else if (!validateFormIG()) {
+      } else if (!validateFormIG(formData, setErrorsIG, setIsIGFormValidate)) {
         console.log("Information general form not validate!");
       }
     }
@@ -724,29 +262,42 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
   const setStepForm = (item: any) => {
     setStep(item);
 
-    if (item === "B" && validateFormIG() === true) {
+    if (
+      item === "B" &&
+      validateFormIG(formData, setErrorsIG, setIsIGFormValidate) === true
+    ) {
       setIsIGFormValidate(true);
     }
 
-    if (item === "C" && validateFormEmploi() === true) {
+    if (
+      item === "C" &&
+      validateFormEmploi(formData, setErrorsEmploi, setIsEmploiFormValidate) ===
+        true
+    ) {
       setIsEmploiFormValidate(true);
     }
 
-    if (item === "D" && validateFormEducation() === true) {
+    if (
+      item === "D" &&
+      validateFormEducation(
+        formData,
+        setErrorsEducation,
+        setIsEducationFormValidate
+      ) === true
+    ) {
       setIsEducationFormValidate(true);
     }
 
-    if (item === "E" && validateFormLogement() === true) {
+    if (
+      item === "E" &&
+      validateFormLogement(
+        formData,
+        setErrorsLogement,
+        setIsLogementFormValidate
+      ) === true
+    ) {
       setIsLogementFormValidate(true);
     }
-
-    // if (validateFormTransport() === true) {
-    //   setIsTransportFormValidate(true);
-    // }
-    // validateFormIG();
-    // validateFormEmploi();
-    // validateFormLogement();
-    // validateFormEducation();
   };
 
   useEffect(() => {
@@ -821,26 +372,6 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
                       isLogementFormValidate
                     )}
                   `}
-                    // className={`flex items-center justify-center w-8 h-8 border rounded-full shrink-0 ${
-                    //   item === step
-                    //     ? "border-blue-600 dark:border-blue-500"
-                    //     : "border-gray-500 dark:border-gray-400"
-                    // } ${
-                    //   isIGFormValidate === false && item === "A"
-                    //     ?
-                    //       "border-red-600 dark:border-red-500"
-                    //     : "border-gray-500 dark:border-gray-400"
-                    // }${
-                    //   item === "B" && isEmploiFormValidate === false
-                    //     ?
-                    //       "border-red-600 dark:border-red-500"
-                    //     : "border-gray-500 dark:border-gray-400"
-                    // } ${
-                    //   item === "C" && isEducationFormValidate === false
-                    //     ?
-                    //       "border-red-600 dark:border-red-500"
-                    //     : "border-gray-500 dark:border-gray-400"
-                    // }`}
                   >
                     {item}
                   </span>

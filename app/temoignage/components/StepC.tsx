@@ -1,35 +1,17 @@
-//import EducationBudgetCurrencyInput from "@/components/EducationBudgetCurrencyInput";
-//import MultiSelectEcole from "@/components/MultiSelectEcole";
-//import MultiSelectEducation from "@/components/MultiSelectEducation";
-//import MultiSelectLangue from "@/components/MultiSelectLangue";
 import EducationBudgetCurrencyInput from "@/components/temoignages/ui/EducationBudgetCurrencyInput";
 import EducationTypeEcoleSelect from "@/components/temoignages/ui/EducationTypeEcoleSelect";
 import NombreEnfantInput from "@/components/temoignages/ui/NombreEnfantInput";
 import NextButton from "@/components/temoignages/button/NextButton";
 import PrevButton from "@/components/temoignages/button/PrevButton";
 import SubmitButton from "@/components/temoignages/button/SubmitButton";
-//import { div } from "motion/react-client";
-//import { span } from "motion/react-client";
 import React, { useEffect, useState } from "react";
-
-// Types pour les informations de chaque enfant
-interface ChildEducationInfo {
-  niveau: string;
-  budget: number;
-  devise: string;
-  typeEcole: string;
-  uniforme: string;
-  transport: string;
-  satisfaction: string;
-  internat: string;
-}
+import { ChildEducationInfo } from "@/libs/temoignage/validateFormEducation";
 
 const StepC = ({
   formData,
   handelChangeInput,
   handelNextStep,
   handelPrevStep,
-  //handelBlur,
   handleSubmitFormData,
   errorsEducation,
   isLoading,
@@ -50,9 +32,6 @@ const StepC = ({
     "Lycée",
     "Université",
   ];
-
-  // Options pour les types d'écoles
-  //const typesEcoles = ["Privée", "Publique", "Internationale", "A domicile"];
 
   // State initialization with default or existing data
   const [nombreEnfants, setNombreEnfants] = useState(
@@ -147,9 +126,7 @@ const StepC = ({
         </label>
         <NombreEnfantInput
           name="educationNombreEnfant"
-          //nombreEnfantIg={formData.nombre_enfants}
           educationNombreEnfant={formData.educationNombreEnfant}
-          //educationNombreEnfant={formData.nombre_enfants}
           errorsEducation={errorsEducation.educationNombreEnfant}
           handelChangeInput={handleNombreEnfantsChange}
         />
@@ -179,9 +156,6 @@ const StepC = ({
                   onChange={(e) =>
                     handleChildInfoChange(index, "niveau", e.target.value)
                   }
-                  // className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md
-                  // focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700
-                  // dark:text-gray-200 transition-colors duration-200"
                   className={`${inputClassName} ${
                     errorsEducation.educationEnfantErrors &&
                     errorsEducation.educationEnfantErrors[index] &&
@@ -241,18 +215,9 @@ const StepC = ({
                       String(e.target.value)
                     )
                   }
-                  //inputClassName={inputClassName}
-                  //inputLabel="Budget d'éducation"
                   inputplaceholder="Ex: 8000"
-                  //inputName={`educationBudgetScolaire`}
-                  //inputId={`educationBudgetScolaire`}
                   inputValue={child.budget}
-                  //formErrors={errorsEducation.educationBudgetScolaire}
                   inputDeviseValue={child.devise}
-                  //inputDeviseName={`EducationDevise_scolaire`}
-                  // inputSituationProActuelle={
-                  //   formData.emploiSituationProActuelle
-                  // }
                 />
               </div>
             </div>
@@ -282,9 +247,6 @@ const StepC = ({
                   onChange={(e) =>
                     handleChildInfoChange(index, "uniforme", e.target.value)
                   }
-                  // name="educationAvecOuSansUniforme"
-                  // value={formData.educationAvecOuSansUniforme}
-                  // onChange={(e) => handelChangeInput(e)}
                 >
                   <option value="">Sélectionnez</option>
                   <option value="Avec">Avec</option>
@@ -318,9 +280,6 @@ const StepC = ({
                   onChange={(e) =>
                     handleChildInfoChange(index, "transport", e.target.value)
                   }
-                  // name="educationAvecOuSansTransport"
-                  // value={formData.educationAvecOuSansTransport}
-                  // onChange={(e) => handelChangeInput(e)}
                 >
                   <option value="">Sélectionnez</option>
                   <option value="Avec">Avec</option>
@@ -351,9 +310,6 @@ const StepC = ({
                   onChange={(e) =>
                     handleChildInfoChange(index, "internat", e.target.value)
                   }
-                  // name="educationNiveauSatisfaction"
-                  // value={formData.educationNiveauSatisfaction}
-                  // onChange={(e) => handelChangeInput(e)}
                 >
                   <option value="">Sélectionnez</option>
                   <option value="Oui">Oui</option>
@@ -372,14 +328,6 @@ const StepC = ({
         {formData.isEducation === true &&
           formData.isLogement === false &&
           !isLoading && (
-            // <button
-            //   type="button"
-            //   disabled={isLoading}
-            //   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            //   onClick={handleSubmitFormData}
-            // >
-            //   {isLoading ? "En cours..." : "Soumettre"}
-            // </button>
             <SubmitButton
               isLoading={isLoading}
               handleSubmitFormData={handleSubmitFormData}
