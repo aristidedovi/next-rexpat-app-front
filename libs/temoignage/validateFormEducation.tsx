@@ -111,12 +111,6 @@ export const validateFormEducation = (
       isValid = false;
     }
 
-    // Validation des langues enseignées (si nécessaire)
-    // if (!enfant.languesEnseignes || enfant.languesEnseignes.length === 0) {
-    //   enfantErrors.languesEnseignes = "Veuillez sélectionner au moins une langue";
-    //   isValid = false;
-    // }
-
     // Ajouter les erreurs de cet enfant au tableau des erreurs
     educationEnfantErrors.push(enfantErrors);
   });

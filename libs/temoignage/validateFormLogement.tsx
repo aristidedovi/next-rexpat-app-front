@@ -37,11 +37,6 @@ export const validateFormLogement = (
     isValid = false;
   }
 
-  // if (!formData.logement.typeLogement) {
-  //   formErrors.logementTypeLogement = "Veuillez selectionner un type de logement";
-  //   isValid = false;
-  // }
-
   console.log(formErrors);
   setErrorsLogement(formErrors);
 

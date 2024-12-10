@@ -1,8 +1,8 @@
 import CountrySelect from "@/components/temoignages/ui/CountrySelect";
-// import CurrencyInput from "@/components/CurrencyInput";
 import NextButton from "@/components/temoignages/button/NextButton";
 import PrevButton from "@/components/temoignages/button/PrevButton";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { InformationGeneral } from "@/libs/temoignage/validationFormIg";
 
 const StepA = ({
   formData,
@@ -10,7 +10,6 @@ const StepA = ({
   handelNextStep,
   handelPrevStep,
   errors,
-  handelBlur,
 }: any) => {
   const inputClassName =
     "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
@@ -18,31 +17,68 @@ const StepA = ({
   const labelClassName =
     "block mb-2 text-sm font-medium text-gray-900 dark:text-white";
 
-  // const isRegionRequired = (region: string) => {
-  //   if (region.length === 0) return true;
-  //   // other checks here
-  //   return false;
-  // };
+  const [informationGeneral, setInformationGeneral] =
+    useState<InformationGeneral>(() => formData.informationGeneral || 0);
+
+  // // Synchronize child info with form data whenever it changes
+  useEffect(() => {
+    // Update form data when child info changes
+    handelChangeInput({
+      target: {
+        name: "informationGeneral",
+        value: informationGeneral,
+      },
+    });
+  }, [informationGeneral]);
+
+  const handleChildInfoChange = (
+    field: keyof InformationGeneral,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInformationGeneral((prev) => ({
+      ...prev,
+      [field]: e.target.value,
+    }));
+
+    //handelChangeInput(e);
+  };
+
+  const handelBlur = (e: any): void => {
+    const { name } = e.target;
+    let fieldValue: string | boolean;
+
+    fieldValue = e.target.value;
+
+    // Vérifie si la valeur est inférieure à 16 et la corrige
+    if (name === "age" && Number(fieldValue) < 16) {
+      //console.log("moins de 16 ans");
+      fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
+    }
+
+    // Vérifie si la valeur est inférieure à 0 et la corrige
+    if (name === "nombre_enfants" && Number(fieldValue) < 0) {
+      fieldValue = "";
+    }
+
+    setInformationGeneral((prevData) => ({
+      ...prevData,
+      [name]: fieldValue,
+    }));
+  };
 
   return (
     <div>
-      {/* <h1 className="mt-2 text-xl font-bold text-blue-900">
-        Step A: Information générale
-      </h1> */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
         {/* // Votre pays */}
         <div className="lg:my-4 sm:my-2">
           <CountrySelect
-            handelChangeInput={handelChangeInput}
+            handelChangeInput={handleChildInfoChange}
             inputLabel="Nationalité"
             inputName="nationalite"
             inputId="countries"
-            inputValue={formData.nationalite}
+            inputValue={informationGeneral.nationalite}
             formErrors={errors.nationalite}
           />
-          {/* {errors.nationalite && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.nationalite}</p>
-          )} */}
         </div>
 
         {/* // Genre */}
@@ -53,15 +89,15 @@ const StepA = ({
           <select
             id="genre"
             className={`${inputClassName} ${
-              errors.genre && !formData.genre
+              errors.genre && !informationGeneral.genre
                 ? "border-red-500"
-                : formData.genre && errors.genre !== ""
+                : informationGeneral.genre && errors.genre !== ""
                 ? "border-blue-500"
                 : ""
             }`}
             name="genre"
-            value={formData.genre}
-            onChange={(e) => handelChangeInput(e)}
+            value={informationGeneral.genre}
+            onChange={(e: any) => handleChildInfoChange("genre", e)}
           >
             <option value="">Sélectionnez</option>
             <option value="Homme">Homme</option>
@@ -81,24 +117,20 @@ const StepA = ({
             min="16"
             name="age"
             //value={formData.age}
-            value={formData.age !== null ? formData.age : ""}
-            onChange={(e) => handelChangeInput(e)}
+            value={
+              informationGeneral.age !== null ? informationGeneral.age : ""
+            }
+            onChange={(e: any) => handleChildInfoChange("age", e)}
             onBlur={(e) => handelBlur(e)}
             id="age"
-            // className={`${inputClassName} ${
-            //   errors.age ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.age && !formData.age
+              errors.age && !informationGeneral.age
                 ? "border-red-500"
-                : formData.age && errors.age !== ""
+                : informationGeneral.age && errors.age !== ""
                 ? "border-blue-500"
                 : ""
             }`}
           />
-          {/* {errors.age && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.age}</p>
-          )} */}
         </div>
       </div>
 
@@ -111,20 +143,20 @@ const StepA = ({
           </label>
           <select
             id="situation_matrimoniale"
-            // className={`${inputClassName} ${
-            //   errors.situation_matrimoniale ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.situation_matrimoniale && !formData.situation_matrimoniale
+              errors.situation_matrimoniale &&
+              !informationGeneral.situation_matrimoniale
                 ? "border-red-500"
-                : formData.situation_matrimoniale &&
+                : informationGeneral.situation_matrimoniale &&
                   errors.situation_matrimoniale !== ""
                 ? "border-blue-500"
                 : ""
             }`}
             name="situation_matrimoniale"
             value={formData.situation_matrimoniale}
-            onChange={(e) => handelChangeInput(e)}
+            onChange={(e: any) =>
+              handleChildInfoChange("situation_matrimoniale", e)
+            }
           >
             <option value="">Sélectionnez</option>
             <option value="Célibataire">Célibataire</option>
@@ -132,11 +164,6 @@ const StepA = ({
             <option value="Divorcé">Divorcé(e)</option>
             <option value="Veuve">Veuve / Veuf</option>
           </select>
-          {/* {errors.situation_matrimoniale && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.situation_matrimoniale}
-            </p>
-          )} */}
         </div>
 
         <div className="lg:my-4 sm:my-2">
@@ -147,80 +174,35 @@ const StepA = ({
             placeholder="3"
             type="number"
             name="nombre_enfants"
-            //value={formData.nombre_enfants}
             value={
-              formData.nombre_enfants !== null ? formData.nombre_enfants : ""
+              informationGeneral.nombre_enfants !== null
+                ? informationGeneral.nombre_enfants
+                : ""
             }
-            onChange={(e) => handelChangeInput(e)}
+            onChange={(e: any) => handleChildInfoChange("nombre_enfants", e)}
             onBlur={(e) => handelBlur(e)}
-            // id="nombre_enfants"
-            // className={`${inputClassName} ${
-            //   errors.nombre_enfants ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.nombre_enfants && !formData.nombre_enfants
+              errors.nombre_enfants && !informationGeneral.nombre_enfants
                 ? "border-red-500"
-                : formData.nombre_enfants && errors.nombre_enfants !== ""
+                : informationGeneral.nombre_enfants &&
+                  errors.nombre_enfants !== ""
                 ? "border-blue-500"
                 : ""
             }`}
           />
-          {/* {errors.nombre_enfants && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.nombre_enfants}
-            </p>
-          )} */}
         </div>
-        {/* <div className="lg:my-4 sm:my-2">
-          <CurrencyInput
-            handelChangeInput={handelChangeInput}
-            inputLabel="Revenu mensuel"
-            inputName="revenu_mensuel"
-            inputId="revenu_mensuel"
-            inputValue={formData.revenu_mensuel}
-            formErrors={errors.revenu_mensuel}
-            inputDeviseValue={formData.devise_revenu}
-            inputDeviseName="devise_revenu"
-          />
-        </div> */}
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="revenu_mensuel" className={labelClassName}>
-            Revenu mensuel (FCFA)*
-          </label>
-          <select
-            name="revenu_mensuel"
-            value={formData.revenu_mensuel}
-            onChange={(e) => handelChangeInput(e)}
-            id="revenu_mensuel"
-            className={`${inputClassName} ${
-              errors.revenu_mensuel ? "border-red-500" : ""
-            }`}
-          >
-            <option>Choisir son revenu mensuel</option>
-            <option value="0 - 100 000">0 - 100 000</option>
-            <option value="100 000 - 250 000">100 000 - 250 000</option>
-            <option value="250 000 - 500 000">250 000 - 500 000</option>
-            <option value="500 000 - 750 000">500 000 - 750 000</option>
-            <option value="750 000 - 1 000 000">750 000 - 1 000 000</option>
-          </select>
-        </div> */}
       </div>
       {/* // Pays de provenance  */}
       <div className="grid lg:grid-cols-2 sm:grid-cols-1  gap-4">
         <div className="lg:my-4 sm:my-2">
           <CountrySelect
-            handelChangeInput={handelChangeInput}
+            handelChangeInput={handleChildInfoChange}
             inputLabel="Pays de provenance"
             inputName="pays_provenance"
             inputId="pays_provenance"
-            inputValue={formData.pays_provenance}
+            inputValue={informationGeneral.pays_provenance}
             formErrors={errors.pays_provenance}
           />
-          {/* {errors.pays_provenance && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.pays_provenance}
-            </p>
-          )} */}
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_provenance" className={labelClassName}>
@@ -228,16 +210,16 @@ const StepA = ({
           </label>
           <select
             name="duree_pays_provenance"
-            value={formData.duree_pays_provenance}
-            onChange={(e) => handelChangeInput(e)}
+            value={informationGeneral.duree_pays_provenance}
+            onChange={(e: any) =>
+              handleChildInfoChange("duree_pays_provenance", e)
+            }
             id="duree_pays_provenance"
-            // className={`${inputClassName} ${
-            //   errors.duree_pays_provenance ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.duree_pays_provenance && !formData.duree_pays_provenance
+              errors.duree_pays_provenance &&
+              !informationGeneral.duree_pays_provenance
                 ? "border-red-500"
-                : formData.duree_pays_provenance &&
+                : informationGeneral.duree_pays_provenance &&
                   errors.duree_pays_provenance !== ""
                 ? "border-blue-500"
                 : ""
@@ -249,44 +231,19 @@ const StepA = ({
             <option value="2plus de 12 mois">plus de 12 mois</option>
           </select>
         </div>
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="duree_pays_provenance" className={labelClassName}>
-            Durée pays de provenance (ans)
-          </label>
-          <input
-            placeholder="3 ans"
-            type="number"
-            name="duree_pays_provenance"
-            value={formData.duree_pays_provenance}
-            onChange={(e) => handelChangeInput(e)}
-            id="duree_pays_provenance"
-            className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errors.duree_pays_provenance ? "border-red-500" : ""
-            // }`}
-          /> */}
-        {/* {errors.duree_pays_provenance && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.duree_pays_provenance}
-            </p>
-          )} */}
-        {/* </div> */}
       </div>
 
       {/* // Pays d'accueil  */}
       <div className="grid lg:grid-cols-4 sm:grid-cols-1  gap-4">
         <div className="lg:my-4 sm:my-2">
           <CountrySelect
-            handelChangeInput={handelChangeInput}
+            handelChangeInput={handleChildInfoChange}
             inputLabel="Pays d'accueil"
             inputName="pays_accueil"
             inputId="pays_accueil"
-            inputValue={formData.pays_accueil}
+            inputValue={informationGeneral.pays_accueil}
             formErrors={errors.pays_accueil}
           />
-          {/* {errors.pays_accueil && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.pays_accueil}</p>
-          )} */}
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="region" className={labelClassName}>
@@ -296,24 +253,17 @@ const StepA = ({
             placeholder="Dakar"
             type="text"
             name="region"
-            value={formData.region}
-            onChange={(e) => handelChangeInput(e)}
+            value={informationGeneral.region}
+            onChange={(e) => handleChildInfoChange("region", e)}
             id="region"
-            //className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errors.region ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.region && !formData.region
+              errors.region && !informationGeneral.region
                 ? "border-red-500"
-                : formData.region && errors.region !== ""
+                : informationGeneral.region && errors.region !== ""
                 ? "border-blue-500"
                 : ""
             }`}
           />
-          {/* {errors.region && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.region}</p>
-          )} */}
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="quartier" className={labelClassName}>
@@ -323,17 +273,11 @@ const StepA = ({
             placeholder="Sacré coeur"
             type="text"
             name="quartier"
-            value={formData.quartier}
-            onChange={(e) => handelChangeInput(e)}
+            value={informationGeneral.quartier}
+            onChange={(e) => handleChildInfoChange("quartier", e)}
             id="quartier"
             className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errors.quartier ? "border-red-500" : ""
-            // }`}
           />
-          {/* {errors.quartier && (
-            <p className="mt-2 text-pink-600 text-sm">{errors.quartier}</p>
-          )} */}
         </div>
         <div className="lg:my-4 sm:my-2">
           <label htmlFor="duree_pays_accueil" className={labelClassName}>
@@ -341,16 +285,16 @@ const StepA = ({
           </label>
           <select
             name="duree_pays_accueil"
-            value={formData.duree_pays_accueil}
-            onChange={(e) => handelChangeInput(e)}
+            value={informationGeneral.duree_pays_accueil}
+            onChange={(e: any) =>
+              handleChildInfoChange("duree_pays_accueil", e)
+            }
             id="duree_pays_accueil"
-            // className={`${inputClassName} ${
-            //   errors.duree_pays_accueil ? "border-red-500" : ""
-            // }`}
             className={`${inputClassName} ${
-              errors.duree_pays_accueil && !formData.duree_pays_accueil
+              errors.duree_pays_accueil &&
+              !informationGeneral.duree_pays_accueil
                 ? "border-red-500"
-                : formData.duree_pays_accueil &&
+                : informationGeneral.duree_pays_accueil &&
                   errors.duree_pays_accueil !== ""
                 ? "border-blue-500"
                 : ""
@@ -362,42 +306,9 @@ const StepA = ({
             <option value="2plus de 12 mois">plus de 12 mois</option>
           </select>
         </div>
-        {/* <div className="lg:my-4 sm:my-2">
-          <label htmlFor="duree_pays_accueil" className={labelClassName}>
-            Duree pays d'accueil (ans)
-          </label>
-          <input
-            placeholder="3 ans"
-            type="number"
-            name="duree_pays_accueil"
-            value={formData.duree_pays_accueil}
-            onChange={(e) => handelChangeInput(e)}
-            id="duree_pays_provenance"
-            className={inputClassName}
-            // className={`${inputClassName} ${
-            //   errors.duree_pays_accueil ? "border-red-500" : ""
-            // }`}
-          /> */}
-        {/* {errors.duree_pays_accueil && (
-            <p className="mt-2 text-pink-600 text-sm">
-              {errors.duree_pays_accueil}
-            </p>
-          )} */}
-        {/* </div> */}
       </div>
       {/* // nombre d'enfant / revenue mensuel */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4"></div>
-
-      {/* <div className="lg:my-4 sm:my-2">
-        <label htmlFor="">Last name</label>
-        <input
-          type="text"
-          name="lastname"
-          value={formData.lastname}
-          onChange={(e) => handelChangeInput(e)}
-          className={inputClassName}
-        />
-      </div> */}
       <div className="lg:my-4 sm:my-2 flex justify-between items-center">
         <PrevButton handelPrevStep={handelPrevStep} />
 

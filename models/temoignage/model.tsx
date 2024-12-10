@@ -1,15 +1,4 @@
 export interface InitialFormData {
-  genre: string;
-  nationalite: string;
-  situation_matrimoniale: string;
-  age: number | null;
-  region: string;
-  quartier: string;
-  pays_provenance: string;
-  duree_pays_provenance: string;
-  pays_accueil: string;
-  duree_pays_accueil: string;
-
   informationGeneral: {
     genre: string;
     nationalite: string;
@@ -23,43 +12,33 @@ export interface InitialFormData {
     duree_pays_accueil: string;
     nombre_enfants: number | null;
   };
-  // revenu_mensuel: string;
-  // devise_revenu: string;
-  nombre_enfants: number | null;
+
   agreeToTerms: boolean;
   isEmploi: boolean;
   isEducation: boolean;
   isLogement: boolean;
   isTransport: boolean;
+
   // Emploi data
-  //emploiData: {};
-  emploiSecteur: string;
-  emploiPoste: string;
-  emploiEmployeur: string;
-  emploiTypeContrat: string;
-  emploiRevenu_mensuel: string;
-  emploiDevise_revenu: string;
-  emploiCanaux: string;
-  emploiSituationProActuelle: string;
-  emploiEmail: string;
-  emploiMotif: string;
-  emploiDureChomage: string;
-  //emploiNiveauDifficulte: string;
-  emploiAvantApres: string;
-  emploiDelai: string;
+  emploi: {
+    secteur: string;
+    poste: string;
+    employeur: string;
+    typeContrat: string;
+    revenu_mensuel: string;
+    devise_revenu: string;
+    canaux: string;
+    situationProActuelle: string;
+    email: string;
+    motif: string;
+    dureChomage: string;
+    avantApres: string;
+    delai: string;
+  };
+
   // Education data
   educationEnfant: [];
   educationNombreEnfant: number | null;
-  educationNiveauEtude: string;
-  educationTypeEcole: string;
-  educationLanguesEnseignes: string;
-  educationAvecOuSansUniforme: string;
-  educationAvecOuSansTransport: string;
-  educationBudgetScolaire: string;
-  educationNiveauSatisfaction: string;
-  educationProgrammes: string;
-  educationAutres: string;
-  EducationDevise_scolaire: string;
 
   // logement
   logement: {
@@ -84,17 +63,6 @@ export interface InitialFormData {
 }
 
 export const initialFormDataRexpat: InitialFormData = {
-  genre: "",
-  nationalite: "",
-  situation_matrimoniale: "",
-  age: null,
-  region: "",
-  quartier: "",
-  pays_provenance: "",
-  duree_pays_provenance: "",
-  pays_accueil: "",
-  duree_pays_accueil: "",
-
   informationGeneral: {
     genre: "",
     nationalite: "",
@@ -109,42 +77,32 @@ export const initialFormDataRexpat: InitialFormData = {
     duree_pays_accueil: "",
   },
 
-  // revenu_mensuel: "",
-  nombre_enfants: null,
   agreeToTerms: true,
   isEmploi: false,
   isEducation: false,
   isLogement: false,
   isTransport: false,
-  //emploiData: {},
-  emploiSecteur: "",
-  emploiPoste: "",
-  emploiEmployeur: "",
-  emploiTypeContrat: "",
-  emploiRevenu_mensuel: "",
-  emploiDevise_revenu: "USD",
-  emploiCanaux: "",
-  emploiSituationProActuelle: "",
-  emploiEmail: "",
-  emploiMotif: "",
-  emploiDureChomage: "",
-  //emploiNiveauDifficulte: "",
-  emploiAvantApres: "",
-  emploiDelai: "",
+
+  //emploiData
+  emploi: {
+    secteur: "",
+    poste: "",
+    employeur: "",
+    typeContrat: "",
+    revenu_mensuel: "",
+    devise_revenu: "",
+    canaux: "",
+    situationProActuelle: "",
+    email: "",
+    motif: "",
+    dureChomage: "",
+    avantApres: "",
+    delai: "",
+  },
 
   // Education data initialisation
   educationEnfant: [],
   educationNombreEnfant: 1,
-  educationNiveauEtude: "",
-  educationTypeEcole: "",
-  educationLanguesEnseignes: "",
-  educationAvecOuSansUniforme: "",
-  educationAvecOuSansTransport: "",
-  educationBudgetScolaire: "",
-  educationNiveauSatisfaction: "",
-  educationProgrammes: "",
-  educationAutres: "",
-  EducationDevise_scolaire: "",
 
   // logement
   logement: {
