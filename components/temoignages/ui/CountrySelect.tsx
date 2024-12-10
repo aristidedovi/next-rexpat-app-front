@@ -65,7 +65,7 @@ const CountrySelect = ({
         }`}
         name={inputName}
         value={inputValue}
-        onChange={(e) => handelChangeInput(e)}
+        onChange={(e) => handelChangeInput(inputName, e)}
       >
         <option value="">Sélectionnez</option>
         {countries.map((country) => (

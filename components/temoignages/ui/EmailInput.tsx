@@ -15,9 +15,10 @@ const EmailInput = ({ emploiEmail, handelChangeInput }: any) => {
         <input
           placeholder="Ex: nom@gmail.com"
           type="text"
-          name="emploiEmail"
+          name="email"
           value={emploiEmail || ""}
-          onChange={handelChangeInput}
+          //onChange={handelChangeInput}
+          onChange={(e: any) => handelChangeInput("email", e)}
           id="emploiEmail"
           className={inputClassName}
         />

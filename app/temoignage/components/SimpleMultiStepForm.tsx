@@ -176,28 +176,28 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
     }));
   };
 
-  const handelBlur = (e: any): void => {
-    const { name } = e.target;
-    let fieldValue: string | boolean;
+  // const handelBlur = (e: any): void => {
+  //   const { name } = e.target;
+  //   let fieldValue: string | boolean;
 
-    fieldValue = e.target.value;
+  //   fieldValue = e.target.value;
 
-    // Vérifie si la valeur est inférieure à 16 et la corrige
-    if (name === "age" && Number(fieldValue) < 16) {
-      //console.log("moins de 16 ans");
-      fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
-    }
+  //   // Vérifie si la valeur est inférieure à 16 et la corrige
+  //   if (name === "age" && Number(fieldValue) < 16) {
+  //     //console.log("moins de 16 ans");
+  //     fieldValue = ""; // Fixe la valeur minimale si elle est en dessous
+  //   }
 
-    // Vérifie si la valeur est inférieure à 0 et la corrige
-    if (name === "nombre_enfants" && Number(fieldValue) < 0) {
-      fieldValue = "";
-    }
+  //   // Vérifie si la valeur est inférieure à 0 et la corrige
+  //   if (name === "nombre_enfants" && Number(fieldValue) < 0) {
+  //     fieldValue = "";
+  //   }
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: fieldValue,
-    }));
-  };
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: fieldValue,
+  //   }));
+  // };
 
   const handleSubmitFormData = async () => {
     if (!formData.agreeToTerms) {
@@ -408,7 +408,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelChangeInput={handelChangeInput}
             handelNextStep={handelNextStep}
             handelPrevStep={handelPrevStep}
-            handelBlur={handelBlur}
+            //handelBlur={handelBlur}
             errors={errorsIG}
             isLoading={isLoading}
           />
@@ -430,7 +430,7 @@ const SimpleMultiStepForm: FC<SimpleMultiStepFormProps> = ({
             handelChangeInput={handelChangeInput}
             handelNextStep={handelNextStep}
             handelPrevStep={handelPrevStep}
-            handelBlur={handelBlur}
+            //handelBlur={handelBlur}
             handleSubmitFormData={handleSubmitFormData}
             errorsEducation={errorsEducation}
             isLoading={isLoading}

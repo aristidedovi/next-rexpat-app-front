@@ -79,20 +79,24 @@ const SecteurActivites = ({
 
     // Call the parent component's change handler
     //handelChangeInput(e);
-    handelChangeInput({
-      target: {
-        name: "emploiPoste",
-        value: "",
-      },
-    });
-    handelChangeInput(e);
+    // handelChangeInput({
+    //   target: {
+    //     name: "poste",
+    //     value: "",
+    //   },
+    // });
+    handelChangeInput("secteur", e);
+    // handelChangeInput("poste", "");
+
     // handelChangeInput(inputPostName, "");
     // handelChangeInput(inputSecteurName, e.target.value);
   };
 
   const handlePosteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // Call the parent component's change handler
-    handelChangeInput(e);
+    //handelChangeInput(e);
+    handelChangeInput("poste", e);
+
     //handelChangeInput(inputPostName, e.target.value);
   };
 
@@ -121,7 +125,7 @@ const SecteurActivites = ({
               id={inputId}
               value={inputValue}
               //onChange={(e) => handelChangeInput(e)}
-              onChange={handleSecteurChange}
+              onChange={(e) => handleSecteurChange(e)}
             >
               <option value="">Sélectionnez</option>
               {secteurs.map((secteur) => (
@@ -151,10 +155,11 @@ const SecteurActivites = ({
                 <input
                   placeholder="Ex: Chauffeur"
                   type="text"
-                  name="emploiPoste"
+                  name="poste"
                   value={inputPoste}
-                  onChange={(e) => handelChangeInput(e)}
-                  id="emploiPoste"
+                  //onChange={(e) => handelChangeInput(e)}
+                  onChange={(e: any) => handelChangeInput("poste", e)}
+                  id="poste"
                   className={inputClassName}
                 />
               </div>
@@ -173,8 +178,8 @@ const SecteurActivites = ({
                       ? "border-blue-500"
                       : ""
                   }`}
-                  name="emploiPoste"
-                  id="emploiPoste"
+                  name="poste"
+                  id="poste"
                   value={inputPoste}
                   disabled={!selectedSecteur && inputPoste === ""}
                   onChange={handlePosteChange}

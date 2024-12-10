@@ -1,3 +1,19 @@
+export interface Emploi {
+  secteur: string;
+  poste: string;
+  employeur: string;
+  typeContrat: string;
+  revenu_mensuel: string;
+  devise_revenu: string;
+  canaux: string;
+  situationProActuelle: string;
+  email: string;
+  motif: string;
+  dureChomage: string;
+  avantApres: string;
+  delai: string;
+}
+
 export const validateFormEmploi = (
   formData: any,
   setErrorsEmploi: any,
@@ -20,32 +36,32 @@ export const validateFormEmploi = (
 
   let isValid: boolean = true;
 
-  if (!formData.emploiSituationProActuelle) {
+  if (!formData.emploi.situationProActuelle) {
     formErrors.emploiSituationProActuelle =
       "Veuillez sélectionner votre situation professionnelle";
     isValid = false;
   }
 
-  if (!formData.emploiSecteur) {
+  if (!formData.emploi.secteur) {
     formErrors.emploiSecteur = "Veuillez sélectionner votre secteur d'activite";
     isValid = false;
   }
 
   if (
-    !formData.emploiPoste &&
-    formData.emploiSituationProActuelle !== "Chômeur" &&
-    formData.emploiSituationProActuelle !== "Entrepreneur" &&
-    formData.emploiSituationProActuelle !== "Etudiant"
+    !formData.emploi.poste &&
+    formData.emploi.situationProActuelle !== "Chômeur" &&
+    formData.emploi.situationProActuelle !== "Entrepreneur" &&
+    formData.emploi.situationProActuelle !== "Etudiant"
   ) {
     formErrors.emploiPoste = "Veuillez sélectionner votre poste";
     isValid = false;
   }
 
   if (
-    !formData.emploiTypeContrat &&
-    formData.emploiSituationProActuelle !== "Chômeur" &&
-    formData.emploiSituationProActuelle !== "Entrepreneur" &&
-    formData.emploiSituationProActuelle !== "Etudiant"
+    !formData.emploi.typeContrat &&
+    formData.emploi.situationProActuelle !== "Chômeur" &&
+    formData.emploi.situationProActuelle !== "Entrepreneur" &&
+    formData.emploi.situationProActuelle !== "Etudiant"
   ) {
     formErrors.emploiTypeContrat =
       "Veuillez sélectionner votre type de contrat";
