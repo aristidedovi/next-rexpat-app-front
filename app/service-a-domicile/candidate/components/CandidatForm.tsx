@@ -1,19 +1,19 @@
 // import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 // import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
-interface Candidat {
-  nom: string;
-  prenom: string;
-  age: number | null;
-  genre: string;
-  situationMatrimoniale: string;
-  adresse: string;
-  phone: string;
-  avecOuSansEnfant: string;
-  typeDeService: string;
-  frequencePrestation: string;
-  frequenceService: string;
-}
+// interface Candidat {
+//   nom: string;
+//   prenom: string;
+//   age: number | null;
+//   genre: string;
+//   situationMatrimoniale: string;
+//   adresse: string;
+//   phone: string;
+//   avecOuSansEnfant: string;
+//   typeDeService: string;
+//   frequencePrestation: string;
+//   frequenceService: string;
+// }
 
 export default function CandidatForm() {
   return (
