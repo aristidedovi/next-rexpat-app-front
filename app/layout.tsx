@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
-import PrelineScript from "@/components/PrelineScript";
+// import PrelineScript from "@/components/PrelineScript";
 import { Footer } from "@/components/sections/Footer";
 
 const geistSans = localFont({
@@ -35,7 +35,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <PrelineScript />
+      {/* <PrelineScript /> */}
     </html>
   );
 }
