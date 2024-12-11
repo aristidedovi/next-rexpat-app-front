@@ -1,23 +1,72 @@
+"use client";
+
+import { div } from "motion/react-client";
 // import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 // import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
-// interface Candidat {
-//   nom: string;
-//   prenom: string;
-//   age: number | null;
-//   genre: string;
-//   situationMatrimoniale: string;
-//   adresse: string;
-//   phone: string;
-//   avecOuSansEnfant: string;
-//   typeDeService: string;
-//   frequencePrestation: string;
-//   frequenceService: string;
-// }
+import { useEffect, useState } from "react";
+
+interface Candidat {
+  nom: string;
+  prenom: string;
+  age: number | null;
+  genre: string;
+  situationMatrimoniale: string;
+  adresse: string;
+  phone: string;
+  avecOuSansEnfant: string;
+  typeDeService: string;
+  frequencePrestation: string;
+  frequenceDescente: string;
+}
+
+const intialCandidateDate: Candidat = {
+  nom: "",
+  prenom: "",
+  age: null,
+  genre: "",
+  situationMatrimoniale: "",
+  adresse: "",
+  phone: "",
+  avecOuSansEnfant: "",
+  typeDeService: "",
+  frequencePrestation: "",
+  frequenceDescente: "",
+};
 
 export default function CandidatForm() {
+  const [candidat, SetCandidat] = useState<Candidat>(intialCandidateDate);
+
+  useEffect(() => {
+    // Update form data when child info changes
+    // handelChangeInput({
+    //   target: {
+    //     name: "informationGeneral",
+    //     value: informationGeneral,
+    //   },
+    // });
+  }, [candidat]);
+
+  const handleChildInfoChange = (
+    field: keyof Candidat,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    SetCandidat((prev) => ({
+      ...prev,
+      [field]: e.target.value,
+    }));
+
+    console.log(candidat);
+    //handelChangeInput(e);
+  };
+
+  const handleSubmitCandidat = () => {
+    console.log(candidat);
+  };
+
   return (
-    <form>
+    // <form>
+    <div>
       <div className="space-y-12">
         {/* <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base/7 font-semibold text-gray-900">
@@ -152,6 +201,7 @@ export default function CandidatForm() {
                 <input
                   id="nom"
                   name="nom"
+                  onChange={(e) => handleChildInfoChange("nom", e)}
                   type="text"
                   placeholder="Ex: Fall"
                   autoComplete="family-name"
@@ -171,6 +221,7 @@ export default function CandidatForm() {
                   id="prenom"
                   name="prenom"
                   type="text"
+                  onChange={(e) => handleChildInfoChange("prenom", e)}
                   placeholder="Ex: Fatou"
                   autoComplete="given-name"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -190,6 +241,7 @@ export default function CandidatForm() {
                   id="age"
                   name="age"
                   type="number"
+                  onChange={(e) => handleChildInfoChange("age", e)}
                   placeholder="Ex: 25"
                   autoComplete="address-level2"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -208,6 +260,7 @@ export default function CandidatForm() {
                 <select
                   id="genre"
                   name="genre"
+                  onChange={(e: any) => handleChildInfoChange("genre", e)}
                   autoComplete="genre"
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
@@ -228,6 +281,9 @@ export default function CandidatForm() {
               <div className="mt-2">
                 <select
                   id="situationMatrimoniale"
+                  onChange={(e: any) =>
+                    handleChildInfoChange("situationMatrimoniale", e)
+                  }
                   name="situationMatrimoniale"
                   autoComplete="situationMatrimoniale"
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -252,6 +308,7 @@ export default function CandidatForm() {
                 <input
                   id="adresse"
                   name="adresse"
+                  onChange={(e: any) => handleChildInfoChange("adresse", e)}
                   type="text"
                   placeholder="Ex: Liberté 6"
                   autoComplete="adresse"
@@ -271,6 +328,7 @@ export default function CandidatForm() {
                 <input
                   id="phone"
                   name="phone"
+                  onChange={(e: any) => handleChildInfoChange("phone", e)}
                   type="text"
                   placeholder="Ex: 77 777 77 77"
                   autoComplete="phone"
@@ -281,16 +339,19 @@ export default function CandidatForm() {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="enfant"
+                htmlFor="avecOuSansEnfant"
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Avez vous un ou des enfants
               </label>
               <div className="mt-2">
                 <select
-                  id="enfant"
-                  name="enfant"
-                  autoComplete="enfant"
+                  id="avecOuSansEnfant"
+                  name="avecOuSansEnfant"
+                  autoComplete="avecOuSansEnfant"
+                  onChange={(e: any) =>
+                    handleChildInfoChange("avecOuSansEnfant", e)
+                  }
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
                   <option value="">Sélectionnez</option>
@@ -302,16 +363,19 @@ export default function CandidatForm() {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="type-service"
+                htmlFor="typeDeService"
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Type de service
               </label>
               <div className="mt-2">
                 <select
-                  id="type-service"
-                  name="type-service"
-                  autoComplete="type-service"
+                  id="typeDeService"
+                  name="typeDeService"
+                  autoComplete="typeDeService"
+                  onChange={(e: any) =>
+                    handleChildInfoChange("typeDeService", e)
+                  }
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
                   <option value="">Selectionnez</option>
@@ -329,16 +393,19 @@ export default function CandidatForm() {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="frequence-prestation"
+                htmlFor="frequencePrestation"
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Fréquence de prestation
               </label>
               <div className="mt-2">
                 <select
-                  id="frequence-prestation"
-                  name="frequence-prestation"
-                  autoComplete="frequence-prestation"
+                  id="frequencePrestation"
+                  name="frequencePrestation"
+                  onChange={(e: any) =>
+                    handleChildInfoChange("frequencePrestation", e)
+                  }
+                  autoComplete="frequencePrestation"
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
                   <option value="">Selectionnez</option>
@@ -352,16 +419,19 @@ export default function CandidatForm() {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="frequence-descente"
+                htmlFor="frequenceDescente"
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Fréquence de descente
               </label>
               <div className="mt-2">
                 <select
-                  id="frequence-descente"
-                  name="frequence-descente"
-                  autoComplete="frequence-descente"
+                  id="frequenceDescente"
+                  name="frequenceDescente"
+                  autoComplete="frequenceDescente"
+                  onChange={(e: any) =>
+                    handleChildInfoChange("frequenceDescente", e)
+                  }
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
                   <option value="">Selectionnez</option>
@@ -588,12 +658,14 @@ export default function CandidatForm() {
           Cancel
         </button> */}
         <button
-          type="submit"
+          //type="submit"
+          onClick={handleSubmitCandidat}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Soumettre
         </button>
       </div>
-    </form>
+      {/* </form> */}
+    </div>
   );
 }
