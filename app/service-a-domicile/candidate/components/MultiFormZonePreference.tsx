@@ -58,6 +58,7 @@ const MultiFormQuartiers: React.FC<MultiSelectQuartiersProps> = ({
       : [...selectedValues, option];
 
     setSelectedValues(newValues);
+    console.log(e);
 
     handelChangeInput("zonePreference", {
       target: {
