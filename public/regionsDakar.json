@@ -1,0 +1,78 @@
+[
+      {
+        "nom": "Dakar",
+        "quartiers": [
+          "Plateau",
+          "Médina",
+          "Fann Hock",
+          "Point E",
+          "Almadies",
+          "Ngor",
+          "Yoff",
+          "Ouakam",
+          "Mermoz-Sacré-Cœur",
+          "Liberté",
+          "Sicap Liberté",
+          "HLM",
+          "Gueule Tapée",
+          "Dieuppeul Derklé",
+          "Castors",
+          "Colobane",
+          "Hann Maristes",
+          "Patte d'Oie",
+          "Grand Dakar"
+        ]
+      },
+      {
+        "nom": "Pikine",
+        "quartiers": [
+          "Pikine Est",
+          "Pikine Ouest",
+          "Thiaroye Gare",
+          "Thiaroye Sur Mer",
+          "Dalifort",
+          "Tally Boumack",
+          "Djiddah Thiaroye Kao",
+          "Mbao",
+          "Keur Massar",
+          "Yeumbeul Nord",
+          "Yeumbeul Sud",
+          "Diamaguène Sicap Mbao",
+          "Malika",
+          "Rufisque Nord",
+          "Tivaouane Diacksao"
+        ]
+      },
+      {
+        "nom": "Guédiawaye",
+        "quartiers": [
+          "Golf Sud",
+          "Wakhinane Nimzatt",
+          "Médina Gounass",
+          "Sicap Daroukhane",
+          "Sam Notaire",
+          "Ndiareme Limamoulaye",
+          "Hamo 4",
+          "Cité des Enseignants",
+          "Cité Gadaye"
+        ]
+      },
+      {
+        "nom": "Rufisque",
+        "quartiers": [
+          "Rufisque Est",
+          "Rufisque Ouest",
+          "Rufisque Nord",
+          "Bargny",
+          "Diamniadio",
+          "Sangalkam",
+          "Sébikotane",
+          "Tivaouane Peulh",
+          "Yène",
+          "Niaga",
+          "Sendou",
+          "Jaxaay-Parcelles"
+        ]
+      }
+    ]
+  
